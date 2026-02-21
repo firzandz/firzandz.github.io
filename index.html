@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Firzan - Product Designer</title>
+  <title>About — Firzan</title>
   <link href="https://fonts.googleapis.com/css2?family=Jacquard+24&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -90,12 +90,35 @@
       border: 1px solid rgba(74, 222, 128, 0.3);
       padding: 7px 14px;
       border-radius: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-status::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.15), transparent);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 200%; }
     }
     .status-dot {
       width: 6px; height: 6px;
       border-radius: 50%;
       background: #4ade80;
       flex-shrink: 0;
+      position: relative;
+      animation: pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
+    }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+      70%  { box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
     }
     .hero-status span.status-text {
       font-family: 'DM Mono', monospace;
@@ -103,6 +126,7 @@
       color: #4ade80;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+      position: relative;
     }
 
     .hero-headline-wrap {
@@ -138,11 +162,13 @@
 
     .hero-photo-wrap {
       position: relative;
-      min-height: 320px;
+      min-height: 420px;
       overflow: hidden;
       background: var(--bg2);
     }
     .hero-photo-wrap img {
+      position: absolute;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -234,9 +260,33 @@
     }
 
     /* ── PROCESS ── */
-    .process {
+    .process-section {
       border-bottom: 1px solid var(--border);
     }
+    .process-header {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 80px;
+      padding: 64px 52px 48px;
+      border-bottom: 1px solid var(--border);
+      align-items: end;
+    }
+    .process-title {
+      font-size: clamp(40px, 6vw, 72px);
+      color: var(--white);
+      line-height: 1;
+    }
+    .process-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 80px;
+      padding: 40px 52px;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+      transition: background 0.2s;
+    }
+    .process-row:hover { background: var(--bg2); }
+    .process-row:last-child { border-bottom: none; }
 
     .process-header {
       padding: 64px 52px 48px;
@@ -454,57 +504,49 @@
       letter-spacing: 0.1em;
     }
 
-    /* RESPONSIVE */
-    /* ── TABLET (max 860px) ── */
-    @media (max-width: 860px) {
-      .hero, .divider, .manifesto, .contact { padding-left: 24px; padding-right: 24px; }
-      .hero-top { left: 24px; right: 24px; }
-      .hero-headline-wrap { padding: 120px 24px 40px; }
-      .hero-bottom { grid-template-columns: 1fr; }
-      .hero-bio-wrap { border-right: none; border-bottom: 1px solid var(--border); padding: 32px 24px; }
-      .hero-photo-wrap { min-height: 280px; }
-      .manifesto { grid-template-columns: 1fr; gap: 16px; padding: 64px 24px; }
-      .belief-step { grid-template-columns: 80px 1fr; gap: 20px; }
-      .exp-header { grid-template-columns: 1fr; gap: 16px; padding: 40px 24px; }
-      .exp-item { grid-template-columns: 1fr; gap: 8px; padding: 36px 24px; }
-      .exp-left { display: flex; gap: 12px; align-items: center; }
-      .contact-grid { grid-template-columns: 1fr; gap: 24px; }
-      .contact { padding: 80px 24px; }
-      footer { padding: 20px 24px; flex-direction: column; gap: 6px; }
-    }
+        @media (max-width: 768px) {
+      .hero-top { left: 20px; right: 20px; top: 28px; }
+      .hero-name { font-size: 10px; }
+      .hero-headline-wrap { padding: 90px 20px 28px; }
 
-    /* ── MOBILE (max 480px) ── */
-    @media (max-width: 480px) {
-      .hero-top { left: 20px; right: 20px; top: 32px; }
-      .hero-name { font-size: 10px; letter-spacing: 0.08em; }
-      .hero-headline-wrap { padding: 100px 20px 32px; }
-      .hero, .manifesto, .contact { padding-left: 20px; padding-right: 20px; }
-      .hero-bio-wrap { padding: 28px 20px; }
-      .hero-bio { font-size: 16px; }
-      .hero-photo-wrap { min-height: 240px; }
+      /* Image moves below bio on mobile */
+      .hero-bottom { display: flex; flex-direction: column; }
+      .hero-bio-wrap { order: 1; padding: 24px 20px; border-right: none; border-bottom: 1px solid var(--border); }
+      .hero-photo-wrap { order: 2; min-height: 280px; }
+      .hero-bio { font-size: 15px; }
 
-      .manifesto { padding: 56px 20px; }
-      .manifesto-title { font-size: clamp(52px, 14vw, 72px); }
-      .manifesto-text { font-size: 16px; }
+      .divider { padding: 20px; }
 
-      .belief-process { margin-top: 40px; }
-      .belief-step { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
-      .process-num { font-size: 11px; }
+      /* Belief */
+      .manifesto { display: block; padding: 48px 20px; }
+      .manifesto-title { font-size: 52px; margin-top: 12px; }
+      .manifesto-text { font-size: 15px; }
+
+      /* Process — clean single column */
+      .process-header { display: block; padding: 36px 20px 24px; }
+      .process-title { font-size: 48px; margin-top: 12px; }
+      .process-row { display: block; padding: 24px 20px; }
+      .process-num { margin-bottom: 8px; }
       .process-name { font-size: 20px; }
-      .process-desc { font-size: 14px; }
+      .process-desc { font-size: 13px; margin-top: 6px; }
 
-      .exp-header { padding: 36px 20px 32px; }
-      .exp-item { padding: 28px 20px; gap: 12px; }
-      .exp-company { font-size: 24px; }
-      .exp-desc { font-size: 14px; }
+      /* Experience */
+      .exp-header { display: block; padding: 36px 20px 24px; }
+      .exp-title { font-size: 48px; margin-top: 12px; }
+      .exp-item { display: block; padding: 28px 20px; }
+      .exp-left { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
+      .exp-company { font-size: 22px; }
+      .exp-desc { font-size: 13px; }
 
-      .contact { padding: 56px 20px; }
-      .contact-headline { font-size: clamp(52px, 16vw, 80px); }
-      .contact-links { gap: 16px; }
-      .contact-link { font-size: 16px; }
+      /* Contact */
+      .contact { padding: 48px 20px; }
+      .contact-grid { display: block; }
+      .side-label { margin-bottom: 12px; display: block; }
+      .contact-headline { font-size: 52px; margin-top: 8px; }
+      .contact-links { gap: 14px; flex-wrap: wrap; }
+      .contact-link { font-size: 15px; }
 
-      .marquee-item { font-size: 11px; }
-      footer { padding: 18px 20px; }
+      footer { padding: 16px 20px; flex-direction: column; gap: 4px; text-align: center; }
       .footer-text { font-size: 10px; }
     }
   </style>
@@ -563,7 +605,7 @@
     </div>
   </div>
 
-  <!-- MANIFESTO + PROCESS MERGED -->
+  <!-- MANIFESTO -->
   <section class="manifesto">
     <div class="side-label">Belief</div>
     <div class="manifesto-content">
@@ -571,29 +613,34 @@
       <p class="manifesto-text">
         I believe design is about creating <strong>direction when things are unclear</strong> — working closely with teams to turn complexity into focus, and building solutions that scale not just visually, but in how <strong>products and organizations grow.</strong>
       </p>
+    </div>
+  </section>
 
-      <div class="belief-process">
-        <div class="belief-step">
-          <div class="process-num">01 ——</div>
-          <div>
-            <div class="process-name">Understand <span>& Frame</span></div>
-            <p class="process-desc">Clarify the problem, challenge assumptions, and align on what actually needs to be solved.</p>
-          </div>
-        </div>
-        <div class="belief-step">
-          <div class="process-num">02 ——</div>
-          <div>
-            <div class="process-name">Explore <span>& Co-Create</span></div>
-            <p class="process-desc">Experiment with cross-functional partners to shape solutions with real business impact.</p>
-          </div>
-        </div>
-        <div class="belief-step">
-          <div class="process-num">03 ——</div>
-          <div>
-            <div class="process-name">Evaluate <span>& Iterate</span></div>
-            <p class="process-desc">Measure outcomes early and in production, then iterate based on what we actually learn.</p>
-          </div>
-        </div>
+  <!-- PROCESS -->
+  <section class="process-section">
+    <div class="process-header">
+      <div class="side-label">Process</div>
+      <h2 class="gothic process-title">How I work.</h2>
+    </div>
+    <div class="process-row">
+      <div class="process-num">01 ——</div>
+      <div>
+        <div class="process-name">Understand & Frame</div>
+        <p class="process-desc">Clarify the problem, challenge assumptions, and align on what actually needs to be solved.</p>
+      </div>
+    </div>
+    <div class="process-row">
+      <div class="process-num">02 ——</div>
+      <div>
+        <div class="process-name">Explore & Co-Create</div>
+        <p class="process-desc">Experiment with cross-functional partners to shape solutions with real business impact.</p>
+      </div>
+    </div>
+    <div class="process-row">
+      <div class="process-num">03 ——</div>
+      <div>
+        <div class="process-name">Evaluate & Iterate</div>
+        <p class="process-desc">Measure outcomes early and in production, then iterate based on what we actually learn.</p>
       </div>
     </div>
   </section>
@@ -643,7 +690,7 @@
       <div>
         <h2 class="gothic contact-headline">Let&rsquo;s<br/>talk.</h2>
         <div class="contact-links">
-          <a href="mailto:firzandz@gmail.com" class="contact-link" target="_blank">Email</a>
+          <a href="/cdn-cgi/l/email-protection#a2c4cbd0d8c3ccc6d8e2c5cfc3cbce8cc1cdcf" class="contact-link">Email</a>
           <a href="https://www.linkedin.com/in/firzandz/" class="contact-link" target="_blank">LinkedIn</a>
           <a href="https://tinkertrails.substack.com/" class="contact-link" target="_blank">Blog</a>
         </div>
