@@ -71,30 +71,38 @@
       right: 52px;
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
     }
 
     .hero-name {
       font-family: 'DM Mono', monospace;
-      font-size: 18px;
+      font-size: 13px;
       color: var(--white);
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
     .hero-status {
-      font-family: 'DM Mono', monospace;
-      font-size: 18px;
-      color: var(--muted);
-      letter-spacing: 0.08em;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
+      background: rgba(74, 222, 128, 0.08);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+      padding: 7px 14px;
+      border-radius: 100px;
     }
     .status-dot {
       width: 6px; height: 6px;
       border-radius: 50%;
       background: #4ade80;
+      flex-shrink: 0;
+    }
+    .hero-status span.status-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: #4ade80;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
     .hero-headline-wrap {
@@ -294,7 +302,6 @@
 
     /* ── EXPERIENCE ── */
     .experience {
-      border-bottom: 1px solid var(--border);
     }
 
     .exp-header {
@@ -380,7 +387,8 @@
 
     /* ── CONTACT ── */
     .contact {
-      padding: 120px 52px;
+      padding: 80px 52px;
+      border-top: 1px solid var(--border);
     }
 
     .contact-grid {
@@ -394,24 +402,12 @@
       font-size: clamp(48px, 8vw, 110px);
       color: var(--white);
       line-height: 0.95;
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
 
     .contact-email {
-      display: inline-block;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      font-size: clamp(18px, 2vw, 28px);
-      color: var(--muted2);
-      text-decoration: none;
-      border-bottom: 1px solid var(--border2);
-      padding-bottom: 6px;
-      letter-spacing: -0.01em;
-      transition: color 0.2s, border-color 0.2s;
-      margin-bottom: 48px;
-      display: block;
+      display: none;
     }
-    .contact-email:hover { color: var(--white); border-color: var(--muted2); }
 
     .contact-links {
       display: flex;
@@ -442,9 +438,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      overflow: hidden;
     }
     .footer-text {
       font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
       font-size: 13px;
       color: var(--muted);
       letter-spacing: 0.1em;
@@ -471,7 +475,8 @@
 
     /* ── MOBILE (max 480px) ── */
     @media (max-width: 480px) {
-      .hero-name { font-size: 11px; letter-spacing: 0.08em; }
+      .hero-top { left: 20px; right: 20px; top: 32px; }
+      .hero-name { font-size: 10px; letter-spacing: 0.08em; }
       .hero-headline-wrap { padding: 100px 20px 32px; }
       .hero, .manifesto, .contact { padding-left: 20px; padding-right: 20px; }
       .hero-bio-wrap { padding: 28px 20px; }
@@ -493,7 +498,7 @@
       .exp-company { font-size: 24px; }
       .exp-desc { font-size: 14px; }
 
-      .contact { padding: 64px 20px; }
+      .contact { padding: 56px 20px; }
       .contact-headline { font-size: clamp(52px, 16vw, 80px); }
       .contact-links { gap: 16px; }
       .contact-link { font-size: 16px; }
@@ -512,7 +517,7 @@
       <span class="hero-name">Firzan — Product Designer</span>
       <span class="hero-status">
         <span class="status-dot"></span>
-        Available
+        <span class="status-text">Available</span>
       </span>
     </div>
 
@@ -636,7 +641,7 @@
     <div class="contact-grid">
       <div class="side-label">Contact</div>
       <div>
-        <h2 class="gothic contact-headline">Let's<br/>talk.</h2>
+        <h2 class="gothic contact-headline">Let&rsquo;s<br/>talk.</h2>
         <div class="contact-links">
           <a href="/cdn-cgi/l/email-protection#a2c4cbd0d8c3ccc6d8e2c5cfc3cbce8cc1cdcf" class="contact-link">Email</a>
           <a href="https://www.linkedin.com/in/firzandz/" class="contact-link" target="_blank">LinkedIn</a>
