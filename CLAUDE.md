@@ -106,11 +106,15 @@ Fonts are loaded via Google Fonts CDN in the `<head>`.
 
 ## Key Constraints
 
-- **No JavaScript** — all interactivity is CSS-only (animations, hover states, transitions).
-- **No external CSS frameworks** — do not introduce Bootstrap, Tailwind, or similar.
-- **No build tooling** — do not add npm, webpack, vite, or any build step.
-- **Single file** — all styles remain in the `<style>` block of `index.html` unless a significant page split is explicitly requested.
-- **Dark theme only** — the site is designed exclusively for dark mode; do not add light mode.
+- **No JavaScript** — the site has zero JS. All motion and interactivity is handled purely with CSS: `@keyframes` for animations (marquee scroll, pulsing dot, grain texture), `:hover` for state changes (card background color, scale transforms), and CSS transitions for smoothness. If a requested feature seems to require JS (e.g. a modal, form validation, theme toggle), find a CSS-only equivalent or flag it as out of scope.
+
+- **No external CSS frameworks** — do not introduce Bootstrap, Tailwind, or any utility/component library. Every style is written by hand using CSS custom properties. Adding a framework would conflict with the existing naming conventions, bloat the file, and contradict the intentional minimalism of the project.
+
+- **No build tooling** — do not create a `package.json`, install npm packages, add a bundler (Webpack, Vite, Parcel, Rollup), or introduce any compilation step. The site is edited and shipped as raw files. Anyone with a text editor can contribute without any environment setup.
+
+- **Single file** — all CSS lives in the `<style>` block inside `index.html`. Do not create a separate `style.css` or split styles into component files unless explicitly asked to refactor the architecture. Keeping everything in one file makes it easy to read, search, and edit without jumping between files.
+
+- **Dark theme only** — the color system is built entirely around a black background (`--bg: #000`) with no light-mode counterpart. Do not add `prefers-color-scheme` media queries or a theme toggle.
 
 ## Deployment
 
