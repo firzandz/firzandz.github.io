@@ -276,163 +276,212 @@
       color: var(--white);
       line-height: 1;
     }
-    .process-row {
+
+    .process-cards {
       display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 80px;
-      padding: 40px 52px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .process-card {
+      padding: 36px 32px 40px;
+      border-right: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      align-items: start;
-      transition: background 0.2s;
+      transition: background 0.3s;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
-    .process-row:hover { background: var(--bg2); }
-    .process-row:last-child { border-bottom: none; }
+    .process-card:last-child { border-right: none; }
+    .process-card:hover { background: var(--bg2); }
 
-    .process-header {
-      padding: 64px 52px 48px;
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 80px;
+    .process-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
     }
 
-    .process-item {
-      display: grid;
-      grid-template-columns: 180px 1fr 1fr;
-      gap: 80px;
-      padding: 48px 52px;
-      border-top: 1px solid var(--border);
-      align-items: start;
-      transition: background 0.2s;
-    }
-    .process-item:hover { background: var(--bg2); }
-    .process-item:last-child { border-bottom: none; }
-
-    .process-num {
+    .process-card-label {
       font-family: 'DM Mono', monospace;
-      font-size: 13px;
+      font-size: 11px;
       color: var(--muted);
       letter-spacing: 0.14em;
-      padding-top: 4px;
+      text-transform: uppercase;
     }
 
-    .process-name {
-      font-size: clamp(22px, 2.5vw, 32px);
-      color: var(--white);
-      line-height: 1.15;
+    .process-card-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
     }
-    .process-name span {
+
+    .process-card-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 24px;
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .process-card-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
+    }
+
+    .process-card-name {
       font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      font-size: 0.75em;
-      color: var(--muted2);
-      margin-top: 2px;
+      font-weight: 600;
+      font-size: clamp(20px, 2vw, 26px);
+      color: var(--white);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
     }
 
-    .process-desc {
-      font-size: 18px;
+    .process-card-desc {
+      font-size: 15px;
       color: var(--muted2);
-      line-height: 1.85;
-      padding-top: 4px;
+      line-height: 1.75;
+      flex-grow: 1;
     }
 
-    .belief-process {
-      margin-top: 56px;
-      border-top: 1px solid var(--border);
-    }
-    .belief-step {
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 40px;
-      padding: 32px 0;
+    /* ── SELECTED PROJECTS ── */
+    .projects {
       border-bottom: 1px solid var(--border);
-      align-items: start;
-    }
-    .belief-step:last-child { border-bottom: none; }
-
-    /* ── EXPERIENCE ── */
-    .experience {
     }
 
-    .exp-header {
-      padding: 64px 52px 0;
+    .projects-header {
+      padding: 64px 52px 48px;
       display: grid;
       grid-template-columns: 180px 1fr;
       gap: 80px;
       align-items: end;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 48px;
     }
 
-    .exp-title {
+    .projects-title {
       font-size: clamp(36px, 5vw, 64px);
       color: var(--white);
       line-height: 1.05;
     }
-    .exp-title-sub {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      font-size: clamp(20px, 2.5vw, 32px);
-      color: var(--muted2);
-      display: block;
-      margin-top: 4px;
-    }
 
-    .exp-item {
+    .projects-grid {
       display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 80px;
-      padding: 52px;
-      border-bottom: 1px solid var(--border);
-      align-items: start;
-      transition: background 0.2s;
+      grid-template-columns: 1fr 1fr;
     }
-    .exp-item:hover { background: var(--bg2); }
-    .exp-item:last-child { border-bottom: none; }
 
-    .exp-left {}
-    .exp-period {
+    .project-card {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .project-card:nth-child(odd) {
+      border-right: 1px solid var(--border);
+    }
+    .project-card:hover { background: var(--bg2); }
+    .project-card:hover .project-thumb img {
+      transform: scale(1.03);
+    }
+
+    .project-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: var(--bg3);
+      position: relative;
+    }
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(100%);
+      transition: transform 0.5s ease;
+    }
+    .project-thumb-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: 'DM Mono', monospace;
       font-size: 13px;
       color: var(--muted);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-bottom: 10px;
     }
-    .exp-flag { font-size: 18px; }
 
-    .exp-company {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      font-size: 30px;
-      color: var(--white);
-      letter-spacing: -0.03em;
-      margin-bottom: 6px;
+    .project-info {
+      padding: 28px 32px 32px;
     }
-    .exp-role {
-      font-family: 'DM Mono', monospace;
-      font-size: 13px;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+
+    .project-name {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 22px;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-size: 15px;
+      color: var(--muted2);
+      line-height: 1.7;
       margin-bottom: 16px;
     }
-    .exp-desc {
-      font-size: 18px;
-      color: var(--muted2);
-      line-height: 1.85;
-      max-width: 520px;
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-    .exp-pill {
-      display: inline-block;
+    .project-tag {
       font-family: 'DM Mono', monospace;
-      font-size: 12px;
+      font-size: 11px;
       color: var(--muted);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       border: 1px solid var(--border2);
-      padding: 4px 12px;
-      margin-top: 16px;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    .project-card--soon {
+      cursor: default;
+      opacity: 0.55;
+    }
+    .project-card--soon:hover { background: transparent; }
+    .project-card--soon .project-thumb img { filter: grayscale(100%) brightness(0.6); }
+    .project-card--soon:hover .project-thumb img { transform: none; }
+
+    .coming-soon {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(200, 240, 74, 0.3);
+      background: rgba(200, 240, 74, 0.06);
+      padding: 3px 8px;
+      border-radius: 2px;
+      margin-left: 10px;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
     }
 
     /* ── CONTACT ── */
@@ -538,22 +587,19 @@
       .side-label { margin-bottom: 16px; }
       .manifesto-text { font-size: 16px; max-width: 100%; }
 
-      /* Process — single column */
+      /* Process — stack cards */
       .process-header { grid-template-columns: 1fr; gap: 0; padding: 48px 28px 32px; }
       .process-title { margin-top: 12px; }
-      .process-row { grid-template-columns: 1fr; gap: 0; padding: 28px 28px; }
-      .process-item { grid-template-columns: 1fr; gap: 16px; padding: 32px 28px; }
-      .process-num { margin-bottom: 8px; }
-      .process-desc { font-size: 15px; margin-top: 6px; }
+      .process-cards { grid-template-columns: 1fr; }
+      .process-card { border-right: none; padding: 28px 28px 32px; }
       .belief-step { grid-template-columns: 1fr; gap: 12px; }
 
-      /* Experience — single column */
-      .exp-header { grid-template-columns: 1fr; gap: 0; padding: 48px 28px 32px; }
-      .exp-title { margin-top: 12px; }
-      .exp-item { grid-template-columns: 1fr; gap: 0; padding: 32px 28px; }
-      .exp-left { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
-      .exp-company { font-size: 24px; }
-      .exp-desc { font-size: 15px; max-width: 100%; }
+      /* Projects — single column */
+      .projects-header { grid-template-columns: 1fr; gap: 0; padding: 48px 28px 32px; }
+      .projects-title { margin-top: 12px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:nth-child(odd) { border-right: none; }
+      .project-info { padding: 24px 28px 28px; }
 
       /* Contact — single column */
       .contact { padding: 64px 28px; }
@@ -582,14 +628,14 @@
       .manifesto-text { font-size: 15px; }
 
       .process-header { padding: 36px 20px 24px; }
-      .process-row { padding: 24px 20px; }
-      .process-name { font-size: 20px; }
-      .process-desc { font-size: 14px; }
+      .process-card { padding: 24px 20px 28px; }
+      .process-card-name { font-size: 20px; }
+      .process-card-desc { font-size: 14px; }
 
-      .exp-header { padding: 36px 20px 24px; }
-      .exp-item { padding: 28px 20px; }
-      .exp-company { font-size: 22px; }
-      .exp-desc { font-size: 14px; }
+      .projects-header { padding: 36px 20px 24px; }
+      .project-info { padding: 20px 20px 24px; }
+      .project-name { font-size: 19px; }
+      .project-desc { font-size: 14px; }
 
       .contact { padding: 48px 20px; }
       .contact-link { font-size: 15px; }
@@ -670,64 +716,86 @@
       <div class="side-label">Process</div>
       <h2 class="gothic process-title">How I work.</h2>
     </div>
-    <div class="process-row">
-      <div class="process-num">01 ——</div>
-      <div>
-        <div class="process-name">Understand & Frame</div>
-        <p class="process-desc">Clarify the problem, challenge assumptions, and align on what actually needs to be solved.</p>
+    <div class="process-cards">
+      <div class="process-card">
+        <div class="process-card-top">
+          <span class="process-card-label">Step</span>
+          <span class="process-card-num">01</span>
+        </div>
+        <div class="process-card-icon">
+          <!-- Replace with: <img src="./assets/icon-frame.svg" alt="Understand"> -->
+        </div>
+        <div class="process-card-name">Understand &amp; Frame</div>
+        <p class="process-card-desc">Clarify the problem, challenge assumptions, and align on what actually needs to be solved.</p>
       </div>
-    </div>
-    <div class="process-row">
-      <div class="process-num">02 ——</div>
-      <div>
-        <div class="process-name">Explore & Co-Create</div>
-        <p class="process-desc">Experiment with cross-functional partners to shape solutions with real business impact.</p>
+      <div class="process-card">
+        <div class="process-card-top">
+          <span class="process-card-label">Step</span>
+          <span class="process-card-num">02</span>
+        </div>
+        <div class="process-card-icon">
+          <!-- Replace with: <img src="./assets/icon-explore.svg" alt="Explore"> -->
+        </div>
+        <div class="process-card-name">Explore &amp; Co-Create</div>
+        <p class="process-card-desc">Experiment with cross-functional partners to shape solutions with real business impact.</p>
       </div>
-    </div>
-    <div class="process-row">
-      <div class="process-num">03 ——</div>
-      <div>
-        <div class="process-name">Evaluate & Iterate</div>
-        <p class="process-desc">Measure outcomes early and in production, then iterate based on what we actually learn.</p>
+      <div class="process-card">
+        <div class="process-card-top">
+          <span class="process-card-label">Step</span>
+          <span class="process-card-num">03</span>
+        </div>
+        <div class="process-card-icon">
+          <!-- Replace with: <img src="./assets/icon-iterate.svg" alt="Iterate"> -->
+        </div>
+        <div class="process-card-name">Evaluate &amp; Iterate</div>
+        <p class="process-card-desc">Measure outcomes early and in production, then iterate based on what we actually learn.</p>
       </div>
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
-  <section class="experience">
-    <div class="exp-header">
-      <div class="side-label">Experience</div>
+  <!-- SELECTED PROJECTS -->
+  <section class="projects">
+    <div class="projects-header">
+      <div class="side-label">Work</div>
       <div>
-        <h2 class="gothic exp-title">
-          Where I've<br/>worked.
+        <h2 class="gothic projects-title">
+          Selected<br/>projects.
         </h2>
       </div>
     </div>
 
-    <div class="exp-item">
-      <div class="exp-left">
-        <div class="exp-period">2022 — Present</div>
-        <span class="exp-flag">🇮🇩</span>
-      </div>
-      <div>
-        <div class="exp-company">Superbank Indonesia</div>
-        <div class="exp-role">Product Designer</div>
-        <p class="exp-desc">Building from the ground up. Helped scale from zero to over 6 million users by shaping core product experiences, design culture, and design system.</p>
-        <span class="exp-pill">0 → 6M users</span>
-      </div>
-    </div>
+    <div class="projects-grid">
 
-    <div class="exp-item">
-      <div class="exp-left">
-        <div class="exp-period">2018 — 2022</div>
-        <span class="exp-flag">🇮🇩</span>
+      <div class="project-card project-card--soon">
+        <div class="project-thumb">
+          <!-- Replace with: <img src="./assets/thumb-ovo-nabung.webp" alt="OVO Nabung"> -->
+          <div class="project-thumb-placeholder">Thumbnail</div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">OVO Nabung <span class="coming-soon">Coming Soon</span></div>
+          <p class="project-desc">Turning an E-Wallet Ecosystem into a Banking Engine.</p>
+          <div class="project-tags">
+            <span class="project-tag">Product Design</span>
+            <span class="project-tag">Fintech</span>
+          </div>
+        </div>
       </div>
-      <div>
-        <div class="exp-company">BRI</div>
-        <div class="exp-role">Lead Product Designer</div>
-        <p class="exp-desc">Designed complex, large-scale financial systems for the largest bank in Indonesia. Making dense, regulated experiences feel clear and human.</p>
-        <span class="exp-pill">Large-scale financial systems</span>
+
+      <div class="project-card project-card--soon">
+        <div class="project-thumb">
+          <!-- Replace with: <img src="./assets/thumb-bridex.webp" alt="BRIdex Design System"> -->
+          <div class="project-thumb-placeholder">Thumbnail</div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">BRIdex Design System <span class="coming-soon">Coming Soon</span></div>
+          <p class="project-desc">A unified design system for Indonesia's largest bank — bringing consistency and scalability across complex financial products.</p>
+          <div class="project-tags">
+            <span class="project-tag">Design System</span>
+            <span class="project-tag">Enterprise</span>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 
