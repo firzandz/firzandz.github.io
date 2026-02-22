@@ -2,6 +2,16 @@
 
 This file provides guidance for AI assistants working in this repository.
 
+## About the Owner
+
+**Firzan is a product designer with no coding background.** When making changes or explaining anything technical:
+
+- **Explain every change in plain language** — what it does and why, not just what it is.
+- **Break changes into small steps** — one thing at a time, not several things at once.
+- **Avoid jargon** — if a technical term is necessary, briefly define it in parentheses.
+- **Describe the visual outcome** — e.g. "this will make the button move up by 8 pixels" rather than "margin-top: -8px".
+- **Confirm before touching multiple files** — ask before making changes that span more than one file.
+
 ## Project Overview
 
 This is a personal portfolio website for **Firzan** (Firzandi Aulia), a Product Designer with 8+ years of experience in fintech and banking. The site is hosted on GitHub Pages at `firzandz.github.io`.
