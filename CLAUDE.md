@@ -6,27 +6,40 @@ This file provides guidance for AI assistants working in this repository.
 
 This is a personal portfolio website for **Firzan** (Firzandi Aulia), a Product Designer with 8+ years of experience in fintech and banking. The site is hosted on GitHub Pages at `firzandz.github.io`.
 
-**Stack**: Pure vanilla HTML5 + CSS3. No JavaScript, no build tools, no package manager, no CSS preprocessor. Everything lives in a single `index.html` file.
+**Stack**: Pure vanilla HTML5 + CSS3. No JavaScript, no build tools, no package manager, no CSS preprocessor.
 
 ## Repository Structure
 
 ```
 firzandz.github.io/
-├── index.html          # Entire site: markup + all styles in <style> block
-├── README.md           # Project notes
+├── index.html              # Main portfolio page (markup only)
+├── README.md               # Project notes
+├── CLAUDE.md               # This file
 └── assets/
+    ├── css/
+    │   └── style.css       # All shared styles (linked from every page)
     ├── evaluate-icon.svg
     ├── explore-icon.svg
     ├── problem-icon.svg
-    ├── thumb-bridex.png  # 2400×1500px project thumbnail
-    └── thumb-ovo.png     # 2400×1500px project thumbnail
+    ├── thumb-bridex.png    # 2400×1500px project thumbnail
+    └── thumb-ovo.png       # 2400×1500px project thumbnail
 ```
+
+### Adding a new page (e.g. a case study)
+
+Create a new `.html` file at the repo root and link the shared stylesheet:
+
+```html
+<link rel="stylesheet" href="assets/css/style.css" />
+```
+
+Page-specific styles that don't belong in the shared stylesheet can go in a `<style>` block within that page's `<head>`.
 
 ## Development Workflow
 
 There is no build step. The workflow is:
 
-1. Edit `index.html` directly
+1. Edit files directly (`index.html`, `assets/css/style.css`, or any new page)
 2. Open the file in a browser to preview (no server needed)
 3. Commit and push to deploy via GitHub Pages
 
@@ -81,9 +94,10 @@ Fonts are loaded via Google Fonts CDN in the `<head>`.
 
 - **CSS custom properties** for all colors and reused values — never hardcode color hex values inline.
 - **BEM-like naming**: base class (`hero-top`) with double-dash modifiers (`project-card--soon`).
-- **Section comments** use `/* ── SECTION NAME ── */` format as dividers inside the `<style>` block.
-- All `@keyframes` animations live at the bottom of the `<style>` block.
-- Media queries are grouped at the end of the stylesheet, not scattered per-component.
+- **Section comments** use `/* ── SECTION NAME ── */` format as dividers in `style.css`.
+- All `@keyframes` animations live at the bottom of `style.css`.
+- Media queries are grouped at the end of `style.css`, not scattered per-component.
+- Styles shared across pages belong in `assets/css/style.css`. Styles unique to a single page can live in a `<style>` block in that page's `<head>`.
 
 ## HTML Conventions
 
@@ -94,6 +108,7 @@ Fonts are loaded via Google Fonts CDN in the `<head>`.
 
 ## Assets
 
+- **Stylesheets** live in `assets/css/`. Currently only `style.css` exists and is shared by all pages.
 - **SVG icons** go in `assets/` and are referenced with relative paths (`assets/icon-name.svg`).
 - **Project thumbnails** should be 2400×1500px PNGs for consistency with existing images.
 - All images on the page currently use `filter: grayscale(100%)`.
@@ -112,7 +127,7 @@ Fonts are loaded via Google Fonts CDN in the `<head>`.
 
 - **No build tooling** — do not create a `package.json`, install npm packages, add a bundler (Webpack, Vite, Parcel, Rollup), or introduce any compilation step. The site is edited and shipped as raw files. Anyone with a text editor can contribute without any environment setup.
 
-- **Single file** — all CSS lives in the `<style>` block inside `index.html`. Do not create a separate `style.css` or split styles into component files unless explicitly asked to refactor the architecture. Keeping everything in one file makes it easy to read, search, and edit without jumping between files.
+- **Shared stylesheet** — all styles used by more than one page live in `assets/css/style.css`. Do not create additional CSS files for shared styles; extend this file instead. Page-specific one-off styles may go in a `<style>` block in the page's own `<head>`. Do not add CSS preprocessors or CSS-in-JS.
 
 - **Dark theme only** — the color system is built entirely around a black background (`--bg: #000`) with no light-mode counterpart. Do not add `prefers-color-scheme` media queries or a theme toggle.
 
