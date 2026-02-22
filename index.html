@@ -478,7 +478,20 @@
       align-items: center;
       gap: 6px;
     }
-    .contact-link::after { content: '↗'; font-size: 18px; color: var(--accent); }
+    .contact-link::after {
+      content: '';
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      background-color: var(--accent);
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17L17 7M17 7H7M17 7v10'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17L17 7M17 7H7M17 7v10'/%3E%3C/svg%3E");
+      -webkit-mask-size: contain;
+      mask-size: contain;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      flex-shrink: 0;
+    }
     .contact-link:hover { border-color: var(--white); }
 
     /* FOOTER */
@@ -499,54 +512,89 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-      font-size: 13px;
-      color: var(--muted);
-      letter-spacing: 0.1em;
+
+    /* ── TABLET ── max-width 768px: single column, comfortable padding */
+    @media (max-width: 768px) {
+      /* Hero */
+      .hero-top {
+        left: 28px; right: 28px; top: 28px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .hero-headline-wrap { padding: 110px 28px 36px; }
+      .hero-bottom { grid-template-columns: 1fr; }
+      .hero-bio-wrap { padding: 32px 28px; border-right: none; border-bottom: 1px solid var(--border); }
+      .hero-bio { font-size: 16px; max-width: 100%; }
+      .hero-photo-wrap { min-height: 320px; }
+
+      /* Marquee */
+      .divider { padding: 22px 28px; }
+      .marquee-item { font-size: 15px; gap: 32px; }
+      .marquee-track { gap: 32px; }
+
+      /* Manifesto — single column */
+      .manifesto { grid-template-columns: 1fr; gap: 0; padding: 64px 28px; }
+      .side-label { margin-bottom: 16px; }
+      .manifesto-text { font-size: 16px; max-width: 100%; }
+
+      /* Process — single column */
+      .process-header { grid-template-columns: 1fr; gap: 0; padding: 48px 28px 32px; }
+      .process-title { margin-top: 12px; }
+      .process-row { grid-template-columns: 1fr; gap: 0; padding: 28px 28px; }
+      .process-item { grid-template-columns: 1fr; gap: 16px; padding: 32px 28px; }
+      .process-num { margin-bottom: 8px; }
+      .process-desc { font-size: 15px; margin-top: 6px; }
+      .belief-step { grid-template-columns: 1fr; gap: 12px; }
+
+      /* Experience — single column */
+      .exp-header { grid-template-columns: 1fr; gap: 0; padding: 48px 28px 32px; }
+      .exp-title { margin-top: 12px; }
+      .exp-item { grid-template-columns: 1fr; gap: 0; padding: 32px 28px; }
+      .exp-left { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
+      .exp-company { font-size: 24px; }
+      .exp-desc { font-size: 15px; max-width: 100%; }
+
+      /* Contact — single column */
+      .contact { padding: 64px 28px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 0; }
+      .contact-headline { margin-top: 8px; }
+
+      /* Footer */
+      footer { padding: 20px 28px; flex-direction: column; gap: 6px; text-align: center; }
     }
 
-        @media (max-width: 768px) {
-      .hero-top { left: 20px; right: 20px; top: 28px; }
+    /* ── SMALL MOBILE ── max-width 480px: tighter padding, smaller type */
+    @media (max-width: 480px) {
+      .hero-top { left: 20px; right: 20px; top: 24px; gap: 10px; }
       .hero-name { font-size: 10px; }
-      .hero-headline-wrap { padding: 90px 20px 28px; }
-
-      /* Image moves below bio on mobile */
-      .hero-bottom { display: flex; flex-direction: column; }
-      .hero-bio-wrap { order: 1; padding: 24px 20px; border-right: none; border-bottom: 1px solid var(--border); }
-      .hero-photo-wrap { order: 2; min-height: 280px; }
+      .hero-status { padding: 5px 10px; }
+      .hero-status span.status-text { font-size: 10px; }
+      .hero-headline-wrap { padding: 105px 20px 28px; }
+      .hero-bio-wrap { padding: 24px 20px; }
       .hero-bio { font-size: 15px; }
+      .hero-photo-wrap { min-height: 280px; }
 
-      .divider { padding: 20px; }
+      .divider { padding: 18px 20px; }
+      .marquee-item { font-size: 13px; }
 
-      /* Belief */
-      .manifesto { display: block; padding: 48px 20px; }
-      .manifesto-title { font-size: 52px; margin-top: 12px; }
+      .manifesto { padding: 48px 20px; }
       .manifesto-text { font-size: 15px; }
 
-      /* Process — clean single column */
-      .process-header { display: block; padding: 36px 20px 24px; }
-      .process-title { font-size: 48px; margin-top: 12px; }
-      .process-row { display: block; padding: 24px 20px; }
-      .process-num { margin-bottom: 8px; }
+      .process-header { padding: 36px 20px 24px; }
+      .process-row { padding: 24px 20px; }
       .process-name { font-size: 20px; }
-      .process-desc { font-size: 13px; margin-top: 6px; }
+      .process-desc { font-size: 14px; }
 
-      /* Experience */
-      .exp-header { display: block; padding: 36px 20px 24px; }
-      .exp-title { font-size: 48px; margin-top: 12px; }
-      .exp-item { display: block; padding: 28px 20px; }
-      .exp-left { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
+      .exp-header { padding: 36px 20px 24px; }
+      .exp-item { padding: 28px 20px; }
       .exp-company { font-size: 22px; }
-      .exp-desc { font-size: 13px; }
+      .exp-desc { font-size: 14px; }
 
-      /* Contact */
       .contact { padding: 48px 20px; }
-      .contact-grid { display: block; }
-      .side-label { margin-bottom: 12px; display: block; }
-      .contact-headline { font-size: 52px; margin-top: 8px; }
-      .contact-links { gap: 14px; flex-wrap: wrap; }
       .contact-link { font-size: 15px; }
 
-      footer { padding: 16px 20px; flex-direction: column; gap: 4px; text-align: center; }
+      footer { padding: 16px 20px; }
       .footer-text { font-size: 10px; }
     }
   </style>
@@ -700,4 +748,8 @@
 
   <footer>
     <span class="footer-text">© 2025 Firzan</span>
-    <span class="footer-text">Designing clarity in messy problem spa
+    <span class="footer-text">Designing clarity in messy problem spaces</span>
+  </footer>
+
+</body>
+</html>
