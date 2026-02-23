@@ -20,11 +20,7 @@
     </div>
 
     <div class="hero-headline-wrap">
-      <h1 class="gothic hero-headline">
-        Designing<br/>
-        clarity in<br/>
-        chaos.
-      </h1>
+      <h1 id="hero-heading" class="gothic hero-headline"><span id="hero-text"></span><span class="caret"></span></h1>
     </div>
 
     <div class="hero-bottom">
@@ -180,6 +176,25 @@
     <span class="footer-text">© 2025 Firzan</span>
     <span class="footer-text">Designing clarity in messy problem spaces</span>
   </footer>
+
+  <script>
+  (function () {
+    var text  = 'Designing clarity in chaos';
+    var el    = document.getElementById('hero-text');
+    var caret = document.querySelector('.caret');
+    var i = 0;
+    function type() {
+      if (i < text.length) {
+        el.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 80);
+      } else {
+        caret.style.animation = 'blink 0.8s step-end infinite';
+      }
+    }
+    setTimeout(type, 600);
+  }());
+  </script>
 
 </body>
 </html>
