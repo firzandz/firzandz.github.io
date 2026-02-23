@@ -179,13 +179,18 @@
 
   <script>
   (function () {
-    var text  = 'Designing clarity in chaos';
+    var text  = 'Designing clarity\nin chaos.';
     var el    = document.getElementById('hero-text');
     var caret = document.querySelector('.caret');
     var i = 0;
     function type() {
       if (i < text.length) {
-        el.textContent += text.charAt(i);
+        var ch = text.charAt(i);
+        if (ch === '\n') {
+          el.appendChild(document.createElement('br'));
+        } else {
+          el.appendChild(document.createTextNode(ch));
+        }
         i++;
         setTimeout(type, 80);
       } else {
