@@ -135,8 +135,8 @@ body::after {
 
 .caret {
   display: inline-block;
-  width: 0.35em;
-  height: 0.7em;
+  width: 4px;
+  height: 0.5em;
   background: var(--white);
   vertical-align: text-bottom;
   margin-left: 2px;
