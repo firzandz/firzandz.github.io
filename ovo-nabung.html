@@ -9,7 +9,6 @@
   <style>
     /* ── CASE STUDY PAGE-SPECIFIC STYLES ── */
 
-    /* Back nav — same position & font as .hero-top */
     .cs-nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -42,7 +41,6 @@
       text-transform: uppercase;
     }
 
-    /* Hero — uses same padding rhythm as .hero-headline-wrap */
     .cs-hero {
       padding: 180px 52px 80px;
       border-bottom: 1px solid var(--border);
@@ -71,7 +69,6 @@
       max-width: 640px;
     }
 
-    /* Meta row — same grid rhythm as .manifesto */
     .cs-meta {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -96,7 +93,6 @@
       line-height: 1.6;
     }
 
-    /* Full-width image — same style as .hero-photo-wrap */
     .cs-image-full {
       width: 100%;
       border-bottom: 1px solid var(--border);
@@ -108,8 +104,6 @@
       display: block;
       filter: grayscale(100%);
     }
-
-    /* Placeholder (remove when real images added) */
     .cs-placeholder {
       width: 100%;
       aspect-ratio: 16 / 9;
@@ -123,8 +117,6 @@
       text-transform: uppercase;
       background: var(--bg2);
     }
-
-    /* Image caption */
     .cs-caption {
       font-family: 'DM Mono', monospace;
       font-size: 11px;
@@ -134,7 +126,6 @@
       border-bottom: 1px solid var(--border);
     }
 
-    /* Content section — mirrors .manifesto 2-column grid */
     .cs-section {
       display: grid;
       grid-template-columns: 180px 1fr;
@@ -143,8 +134,6 @@
       padding: 80px 52px;
       border-bottom: 1px solid var(--border);
     }
-
-    /* Side label — same as .side-label */
     .cs-side-label {
       font-family: 'DM Mono', monospace;
       font-size: 13px;
@@ -154,9 +143,6 @@
       line-height: 2.2;
       padding-top: 4px;
     }
-
-    .cs-content {}
-
     .cs-heading {
       font-weight: 500;
       font-size: clamp(22px, 2.5vw, 32px);
@@ -165,7 +151,15 @@
       line-height: 1.3;
       margin-bottom: 24px;
     }
-
+    .cs-subheading {
+      font-weight: 500;
+      font-size: clamp(18px, 2vw, 24px);
+      color: var(--white);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      margin-top: 48px;
+      margin-bottom: 20px;
+    }
     .cs-body {
       font-size: 17px;
       color: var(--text);
@@ -177,7 +171,6 @@
     .cs-body p { margin-bottom: 20px; }
     .cs-body p:last-child { margin-bottom: 0; }
 
-    /* Inline image inside content column */
     .cs-inline-image {
       margin: 40px 0;
       background: var(--bg2);
@@ -198,7 +191,6 @@
       border-top: 1px solid var(--border);
     }
 
-    /* Quote — accent left border, same bg as cards */
     .cs-quote {
       padding: 48px 52px;
       border-bottom: 1px solid var(--border);
@@ -214,10 +206,15 @@
       max-width: 680px;
     }
 
-    /* Stats row — same grid as .hero-bottom */
+    .cs-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
     .cs-stats {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       border-bottom: 1px solid var(--border);
     }
     .cs-stat {
@@ -228,7 +225,7 @@
     .cs-stat:last-child { border-right: none; }
     .cs-stat-number {
       font-weight: 600;
-      font-size: clamp(32px, 4.5vw, 52px);
+      font-size: clamp(28px, 4vw, 48px);
       color: var(--accent);
       letter-spacing: -0.03em;
       line-height: 1;
@@ -242,7 +239,6 @@
       text-transform: uppercase;
     }
 
-    /* Next project link */
     .cs-next {
       padding: 80px 52px;
       text-align: center;
@@ -266,7 +262,7 @@
     }
     .cs-next-title:hover { color: var(--accent); }
 
-    /* ── RESPONSIVE — matches main site breakpoints ── */
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .cs-nav { padding: 20px 28px; }
       .cs-hero { padding: 130px 28px 56px; }
@@ -276,9 +272,9 @@
       .cs-section { grid-template-columns: 1fr; gap: 0; padding: 56px 28px; }
       .cs-side-label { margin-bottom: 16px; }
       .cs-quote { padding: 36px 28px; }
-      .cs-stats { grid-template-columns: 1fr; }
-      .cs-stat { border-right: none; border-bottom: 1px solid var(--border); padding: 32px 28px; }
-      .cs-stat:last-child { border-bottom: none; }
+      .cs-stats { grid-template-columns: 1fr 1fr; }
+      .cs-stat { padding: 32px 28px; }
+      .cs-stat:nth-child(2) { border-right: none; }
       .cs-caption { padding: 12px 28px; }
       .cs-next { padding: 56px 28px; }
     }
@@ -291,7 +287,9 @@
       .cs-section { padding: 40px 20px; }
       .cs-body { font-size: 15px; }
       .cs-quote { padding: 28px 20px; }
-      .cs-stat { padding: 28px 20px; }
+      .cs-stats { grid-template-columns: 1fr; }
+      .cs-stat { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 20px; }
+      .cs-stat:last-child { border-bottom: none; }
       .cs-caption { padding: 10px 20px; }
       .cs-next { padding: 40px 20px; }
     }
@@ -328,7 +326,7 @@
     </div>
     <div class="cs-meta-item">
       <div class="cs-meta-label">Scope</div>
-      <div class="cs-meta-value">End-to-end UX, Onboarding, Co-branding</div>
+      <div class="cs-meta-value">End-to-end UX, Onboarding, Co-branding, Payment</div>
     </div>
   </div>
 
@@ -338,7 +336,9 @@
     <div class="cs-placeholder">Hero Image</div>
   </div>
 
-  <!-- ── PROBLEM ── -->
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- THE PROBLEM                                    -->
+  <!-- ══════════════════════════════════════════════ -->
   <section class="cs-section">
     <div class="cs-side-label">Problem</div>
     <div class="cs-content">
@@ -348,127 +348,188 @@
         <p><strong>First, intent.</strong> Most OVO users already had a primary bank. We weren't competing with other banks. We were competing with "I don't need this."</p>
         <p><strong>Second, friction.</strong> Bank registration is heavy by nature — KTP, personal data, 21 regulatory fields. Inside an app built for instant payments, this felt jarring. Users who had already decided to upgrade were dropping off not because they changed their mind, but because the experience stopped them.</p>
         <p><strong>Third, continuity.</strong> Onboarding was just the beginning. Payments and transaction history had to feel consistent across two separate apps with different systems and design languages. A disjointed post-onboarding experience would undo all the trust we built getting users there.</p>
+        <p>Making this harder, Superbank, Grab, and OVO each operated under different structures, priorities, and timelines. Regulatory approvals, evolving branding, and fragmented product surfaces added complexity on top of an already tight delivery schedule.</p>
       </div>
     </div>
   </section>
 
-  <!-- ── HMW ── -->
+  <!-- HMW -->
   <blockquote class="cs-quote">
     <p>"How might we design a banking upgrade inside OVO that feels like a natural next step — not a whole new product?"</p>
   </blockquote>
 
-  <!-- ── CHALLENGES ── -->
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- MY ROLE                                        -->
+  <!-- ══════════════════════════════════════════════ -->
   <section class="cs-section">
-    <div class="cs-side-label">Challenges</div>
+    <div class="cs-side-label">My Role</div>
     <div class="cs-content">
       <div class="cs-body">
-        <p><strong>Complex Organization.</strong> Superbank, OVO, and Grab operated under different structures, priorities, and decision-making models, making cross-company alignment challenging.</p>
-        <p><strong>Fragmented Product Surfaces.</strong> App flows, accounts, and wallets lived in different paradigms, creating risks of dual states, unclear ownership, and user confusion — even branding was still evolving.</p>
-        <p><strong>Tight Timeline &amp; Regulatory Constraints.</strong> We had to validate the MVP quickly while building a scalable foundation that remained fully compliant with regulatory requirements.</p>
+        <p>As Product Designer, I owned the end-to-end user journey within Superbank, collaborated with designers and stakeholders across Grab and OVO, translated regulatory and technical requirements into clear user flows, and ensured the experience was scalable for future ecosystem partners.</p>
       </div>
     </div>
   </section>
 
-  <!-- ── APPROACH: CVP ── -->
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- DEFINING CVP                                   -->
+  <!-- ══════════════════════════════════════════════ -->
   <section class="cs-section">
     <div class="cs-side-label">Approach</div>
     <div class="cs-content">
       <h2 class="cs-heading">Defining CVP as the Conversion Engine</h2>
+
+      <div class="cs-inline-image">
+        <!-- Replace with: <img src="assets/cs-ovo-cvp.png" alt="CVP screen with annotations"> -->
+        <div class="cs-placeholder">CVP Screen — Upgrade, Not Onboarding + Interest as Hook</div>
+        <div class="cs-inline-caption">Reframed bank account creation into a lightweight feature unlock inside OVO</div>
+      </div>
+
       <div class="cs-body">
         <p>Converting passive OVO users into active Superbank customers came down to two levers working together.</p>
-        <p><strong>The first was economic.</strong> Unlike a typical e-wallet, OVO Nabung lets users earn up to 5% interest on their idle balance — turning money that was just sitting there into something actively working for them. A concrete, immediate reason to upgrade.</p>
-        <p><strong>The second was psychological.</strong> The biggest barrier in digital banking isn't the form — it's the perception of starting over. So we didn't frame it that way. We positioned the entire experience as an upgrade to something users already had — staying inside OVO's familiar environment, with existing data pre-filled, and Superbank introduced quietly in the background.</p>
+        <p><strong>The first was economic.</strong> Unlike a typical e-wallet, OVO Nabung lets users earn up to 5% interest on their idle balance, turning money that was just sitting there into something actively working for them. A concrete, immediate reason to upgrade that didn't require thinking long-term about banking.</p>
+        <p><strong>The second was psychological.</strong> The biggest barrier in digital banking isn't the form — it's the perception of starting over. So we didn't frame it that way. We positioned the entire experience as an upgrade to something users already had — staying inside OVO's familiar environment, with existing data pre-filled, and Superbank introduced quietly in the background. The decision felt small. The value felt immediate.</p>
       </div>
 
       <div class="cs-inline-image">
-        <!-- Replace with: <img src="assets/cs-ovo-cvp.png" alt="CVP Strategy"> -->
-        <div class="cs-placeholder">CVP Strategy Diagram</div>
-        <div class="cs-inline-caption">Two levers: economic value and psychological framing</div>
+        <!-- Replace with: <img src="assets/cs-ovo-cobranding.png" alt="Co-branding strategy"> -->
+        <div class="cs-placeholder">Co-branding — OVO Branding vs Superbank Branding</div>
+        <div class="cs-inline-caption">OVO remains dominant, Superbank introduced as evolution — not migration</div>
       </div>
-    </div>
-  </section>
 
-  <!-- ── CO-BRANDING ── -->
-  <section class="cs-section">
-    <div class="cs-side-label">Branding</div>
-    <div class="cs-content">
-      <h2 class="cs-heading">Co-Branding Strategy</h2>
       <div class="cs-body">
-        <p>A co-branding strategy was implemented between OVO and Superbank with a clear principle: users should never feel like they are moving to a different platform.</p>
-        <p>OVO remains the dominant visual and brand presence. Superbank is introduced in a subtle, supportive role. The overall experience is designed to feel like an evolution of OVO — not a migration.</p>
-      </div>
-
-      <div class="cs-inline-image">
-        <!-- Replace with: <img src="assets/cs-ovo-cobranding.png" alt="Co-branding visual"> -->
-        <div class="cs-placeholder">Co-branding Visual</div>
-        <div class="cs-inline-caption">OVO as primary brand, Superbank as supporting role</div>
+        <p>The co-branding reflected this: OVO remained the dominant presence throughout, with Superbank introduced in a subtle, supportive role as an evolution of OVO, not a migration away from it.</p>
       </div>
     </div>
   </section>
 
-  <!-- ── DROP-OFF IMAGE ── -->
-  <div class="cs-image-full">
-    <!-- Replace with: <img src="assets/cs-ovo-dropoff.png" alt="Drop-off analysis"> -->
-    <div class="cs-placeholder">Onboarding Drop-off Analysis</div>
-  </div>
-  <div class="cs-caption">The biggest drop-off happened at the moment of highest intent</div>
-
-  <!-- ── SOLUTION: COMPLIANCE ── -->
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- MINIMIZING FRICTION                            -->
+  <!-- ══════════════════════════════════════════════ -->
   <section class="cs-section">
     <div class="cs-side-label">Solution</div>
     <div class="cs-content">
       <h2 class="cs-heading">Minimizing Friction Without Compromising Compliance</h2>
-      <div class="cs-body">
-        <p>The compliance team required all 21 fields upfront. Splitting the flow meant users would exist in a partially-verified state — a regulatory concern.</p>
-        <p>I mapped each field to the product it actually served: some were required for savings (identity, address), others specifically for lending (income, source of funds, risk profiling). This gave us the legal basis for the split.</p>
-        <p>The result: <strong>permissive for savings, strict for lending.</strong></p>
+
+      <h3 class="cs-subheading">Where the Journey Breaks</h3>
+
+      <div class="cs-inline-image">
+        <!-- Replace with: <img src="assets/cs-ovo-flow-comparison.png" alt="Superbank vs OVO Nabung onboarding flow"> -->
+        <div class="cs-placeholder">Superbank App Onboarding Flow vs OVO Nabung Onboarding Flow</div>
+        <div class="cs-inline-caption">Superbank: 10 steps — OVO Nabung: 7 steps with pre-filled data</div>
       </div>
 
       <div class="cs-inline-image">
-        <!-- Replace with: <img src="assets/cs-ovo-compliance.png" alt="Compliance field mapping"> -->
-        <div class="cs-placeholder">Compliance Field Mapping</div>
+        <!-- Replace with: <img src="assets/cs-ovo-dropoff.png" alt="Drop-off points in ID capture and additional data"> -->
+        <div class="cs-placeholder">Drop-off Analysis — ID Capture + Additional Data (21 fields)</div>
+        <div class="cs-inline-caption">Users abandon during ID capture and most don't carry their ID card</div>
+      </div>
+
+      <div class="cs-body">
+        <p>The biggest drop-off happened at the moment of highest intent. When users decided to open an account, they were immediately pushed into a full regulatory flow — separate KTP capture, data correction, and 21 additional fields. What should have felt like a simple upgrade became a heavy administrative task. This wasn't a problem of interest. It was friction at the most critical conversion point.</p>
+      </div>
+
+      <h3 class="cs-subheading">The Compliance Challenge</h3>
+
+      <div class="cs-inline-image">
+        <!-- Replace with: <img src="assets/cs-ovo-compliance.png" alt="Field mapping: savings need vs lending need"> -->
+        <div class="cs-placeholder">Data Mapping — Savings Need vs Lending Need</div>
         <div class="cs-inline-caption">Permissive for savings, strict for lending</div>
       </div>
+
+      <div class="cs-body">
+        <p>The compliance team required all 21 fields upfront. Splitting the flow meant users would exist in a partially-verified state — a regulatory concern.</p>
+        <p>I mapped each field to the product it actually served: some were required for savings (identity, address), others specifically for lending (income, source of funds, risk profiling). This gave us the legal basis for the split — framed as <em>better</em> compliance: collect lending data at the point of loan application, when it's actually needed.</p>
+      </div>
+
+      <blockquote class="cs-quote" style="margin: 40px 0; padding: 24px 32px;">
+        <p>"The result: permissive for savings, strict for lending."</p>
+      </blockquote>
     </div>
   </section>
 
-  <!-- ── DESIGN: LITE UPGRADE ── -->
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- FLOW 1: LITE UPGRADE                           -->
+  <!-- ══════════════════════════════════════════════ -->
   <section class="cs-section">
     <div class="cs-side-label">Design</div>
     <div class="cs-content">
       <h2 class="cs-heading">Flow 1: Lite Upgrade (OVO App)</h2>
+
+      <div class="cs-inline-image">
+        <!-- Replace with: <img src="assets/cs-ovo-flow1-before-after.png" alt="Before and after onboarding forms"> -->
+        <div class="cs-placeholder">Before (21 fields) vs After (3 fields) — Form Comparison</div>
+        <div class="cs-inline-caption">Reduced from 21 fields to 3 by leveraging existing OVO KYC data</div>
+      </div>
+
+      <div class="cs-inline-image">
+        <!-- Replace with: <img src="assets/cs-ovo-flow1-screens.png" alt="Lite upgrade flow screens"> -->
+        <div class="cs-placeholder">Lite Upgrade Flow — OVO Premier Data → KTP → Additional Data → Success</div>
+        <div class="cs-inline-caption">After just 3 fields, users have an active OVO Nabung account</div>
+      </div>
+
       <div class="cs-body">
         <p>The first flow lives entirely within the OVO app. By leveraging OVO's existing KYC data, I reduced the registration form from <strong>21 fields down to 3</strong> — only collecting what Superbank needed that OVO didn't already have.</p>
-        <p>This was the critical moment: after completing just 3 fields, the user has an active OVO Nabung account.</p>
+        <p>After completing just 3 fields, the user has an active OVO Nabung account. They can deposit, see their balance, and start earning interest. <strong>Value is unlocked before full compliance is complete.</strong></p>
       </div>
+
+      <h3 class="cs-subheading">Flow 2: Progressive Compliance (Superbank App)</h3>
 
       <div class="cs-inline-image">
-        <!-- Replace with: <img src="assets/cs-ovo-flow1.png" alt="Lite Upgrade flow"> -->
-        <div class="cs-placeholder">Lite Upgrade Flow Screens</div>
-        <div class="cs-inline-caption">21 fields reduced to 3 by leveraging existing OVO KYC data</div>
+        <!-- Replace with: <img src="assets/cs-ovo-flow2.png" alt="Progressive compliance touchpoints in Superbank"> -->
+        <div class="cs-placeholder">Progressive Compliance — Touchpoint + Update Data in Superbank</div>
+        <div class="cs-inline-caption">Remaining data collected at the point of loan application, not before savings</div>
       </div>
-    </div>
-  </section>
 
-  <!-- ── INTEGRATION ── -->
-  <section class="cs-section">
-    <div class="cs-side-label">Integration</div>
-    <div class="cs-content">
-      <h2 class="cs-heading">Integration Across OVO Journey</h2>
       <div class="cs-body">
-        <p>Instead of introducing the upgrade as a separate initiative, I strategically embedded conversion levers across the existing OVO onboarding journey and key touchpoints.</p>
-        <p>The upgrade should feel like a natural progression, not a handoff to another product. By integrating awareness, value cues, and upgrade triggers directly into familiar moments, the transition felt seamless — more like an evolution within OVO than a distinct flow.</p>
-      </div>
-
-      <div class="cs-inline-image">
-        <!-- Replace with: <img src="assets/cs-ovo-integration.png" alt="OVO journey integration"> -->
-        <div class="cs-placeholder">Integration Touchpoints</div>
-        <div class="cs-inline-caption">Conversion levers embedded across the existing OVO journey</div>
+        <p>The remaining data — income, source of funds, risk profiling — is collected inside Superbank, triggered only when the user applies for a loan. Users who are ready to borrow are already high-intent, so the completion barrier drops dramatically. If they haven't verified yet, the flow requires it before the loan proceeds — not before they can access their savings.</p>
       </div>
     </div>
   </section>
 
-  <!-- ── STATS ── -->
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- MULTI-PATH JOURNEYS                            -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="cs-section">
+    <div class="cs-side-label">System</div>
+    <div class="cs-content">
+      <h2 class="cs-heading">Designing for Multi-Path User Journeys</h2>
+
+      <div class="cs-inline-image">
+        <!-- Replace with: <img src="assets/cs-ovo-flowchart.png" alt="Full user journey flowchart across OVO and Superbank"> -->
+        <div class="cs-placeholder">Complete User Journey Flowchart — OVO App → Superbank</div>
+        <div class="cs-inline-caption">Every scenario mapped: new users, returning drop-offs, existing accounts, edge cases</div>
+      </div>
+
+      <div class="cs-body">
+        <p>Savings account creation wasn't a single linear flow. I mapped every scenario across OVO and Superbank: new-to-bank users, returning drop-offs, users who already had a Superbank account, and edge cases like pocket creation mid-journey. Without this, we risked users landing in broken states — partially onboarded, unable to transact, with no clear path forward.</p>
+        <p>The mapping shaped three things directly: our fallback flow logic, push notification triggers for re-engagement, and the cross-app nudge strategy. The goal: no user should ever feel lost between OVO and Superbank, regardless of how they entered or where they stopped.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- PAYMENT FLOW                                   -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="cs-section">
+    <div class="cs-side-label">Payment</div>
+    <div class="cs-content">
+      <h2 class="cs-heading">Integrating Payment Flow</h2>
+
+      <div class="cs-inline-image">
+        <!-- Replace with: <img src="assets/cs-ovo-payment.png" alt="Transaction history across Superbank and OVO"> -->
+        <div class="cs-placeholder">Money Movement — Superbank ↔ OVO APP Transaction History</div>
+        <div class="cs-inline-caption">Consistent transaction display across both apps with clear source indication</div>
+      </div>
+
+      <div class="cs-body">
+        <p>Designing transaction history across Superbank and OVO required a shared framework both partners could build on. I established core principles around consistency, clear source indication, and aligned payment flows — flexible enough to support future ecosystem partners beyond OVO.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- IMPACT                                         -->
+  <!-- ══════════════════════════════════════════════ -->
   <div class="cs-stats">
     <div class="cs-stat">
       <div class="cs-stat-number">1M+</div>
@@ -479,19 +540,34 @@
       <div class="cs-stat-label">Superbank users via OVO Nabung</div>
     </div>
     <div class="cs-stat">
+      <div class="cs-stat-number">-20%</div>
+      <div class="cs-stat-label">Drop-off on personal data page</div>
+    </div>
+    <div class="cs-stat">
       <div class="cs-stat-number">21→3</div>
       <div class="cs-stat-label">Onboarding fields reduced</div>
     </div>
   </div>
 
-  <!-- ── REFLECTION ── -->
+  <section class="cs-section">
+    <div class="cs-side-label">Impact</div>
+    <div class="cs-content">
+      <div class="cs-body">
+        <p>Delivered end-to-end design on time for regulatory requirements, covering onboarding, savings, and all edge cases. Built the scalable onboarding foundation now used across future ecosystem partners.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- REFLECTION                                     -->
+  <!-- ══════════════════════════════════════════════ -->
   <section class="cs-section">
     <div class="cs-side-label">Reflection</div>
     <div class="cs-content">
       <div class="cs-body">
-        <p>Given the tight timeline, I made a deliberate decision to prioritize launch speed over perfecting the messaging. This meant making strategic trade-offs between clearly communicating the CVP and simplifying the onboarding flow.</p>
-        <p>Post-MVP launch, I closely analyzed user feedback and behavioral data. The insights were clear: users struggled to understand the interest rate, expressed concerns about hidden bank fees, and showed early signs of trust friction.</p>
-        <p><em>During launch, this acquisition initiative helped Superbank reach its first 1 million users in under one year — a significant milestone for a new bank in Indonesia. As of 2026, 60% of Superbank users originate from the OVO Nabung journey.</em></p>
+        <p>Given the tight timeline, I made a deliberate decision to prioritize launch speed over perfecting the messaging — a strategic tradeoff between clearly communicating the CVP and simplifying the onboarding flow.</p>
+        <p>Post-MVP, I closely analyzed user feedback and behavioral data. The insights were clear: users struggled to understand the interest rate, expressed concerns about hidden bank fees, and showed early signs of trust friction. These became the focus of our first major iteration after launch.</p>
+        <p><em>During launch, this initiative helped Superbank reach its first 1 million users in under one year — a significant milestone for a new bank in Indonesia. As of 2026, 60% of Superbank users originate from the OVO Nabung journey.</em></p>
       </div>
     </div>
   </section>
@@ -502,7 +578,7 @@
     <a href="#" class="cs-next-title">BRIdex Design System →</a>
   </section>
 
-  <!-- ── FOOTER (same as index.html) ── -->
+  <!-- ── FOOTER ── -->
   <footer>
     <span class="footer-text">© 2025 Firzan</span>
     <span class="footer-text">Designing clarity in messy problem spaces</span>
