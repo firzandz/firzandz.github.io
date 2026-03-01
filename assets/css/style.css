@@ -495,9 +495,7 @@ body::after {
   cursor: default;
   opacity: 0.55;
 }
-.project-card--soon:hover { background: transparent; }
-.project-card--soon .project-thumb img { filter: grayscale(100%) brightness(0.6); }
-.project-card--soon:hover .project-thumb img { transform: none; }
+.project-card--soon:hover { background: var(--bg2); }
 
 .coming-soon {
   display: inline-block;
