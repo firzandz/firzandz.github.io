@@ -423,6 +423,20 @@ body::after {
   filter: grayscale(100%);
   transition: transform 0.5s ease, filter 0.4s ease;
 }
+.project-year {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--muted2);
+  background: rgba(0, 0, 0, 0.55);
+  padding: 3px 9px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
 .project-thumb-placeholder {
   width: 100%;
   height: 100%;
@@ -471,6 +485,10 @@ body::after {
   border: 1px solid var(--border2);
   padding: 4px 10px;
   border-radius: 2px;
+}
+
+.project-card:nth-last-child(-n+2) {
+  border-bottom: none;
 }
 
 .project-card--soon {
