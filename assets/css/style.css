@@ -494,8 +494,12 @@ body::after {
 .project-card--soon {
   cursor: default;
   opacity: 0.55;
+  transition: background 0.3s, opacity 0.3s;
 }
-.project-card--soon:hover { background: var(--bg2); }
+.project-card--soon:hover {
+  background: var(--bg2);
+  opacity: 1;
+}
 
 .coming-soon {
   display: inline-block;
