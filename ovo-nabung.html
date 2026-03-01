@@ -12,15 +12,20 @@
     .cs-nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      padding: 28px 52px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      padding: 28px 0;
       z-index: 100;
       background: rgba(0,0,0,0.85);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
+    }
+    .cs-nav-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .cs-back {
       font-family: 'DM Mono', monospace;
@@ -264,7 +269,8 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .cs-nav { padding: 20px 28px; }
+      .cs-nav { padding: 20px 0; }
+      .cs-nav-inner { padding: 0 28px; }
       .cs-hero { padding: 130px 28px 56px; }
       .cs-meta { grid-template-columns: 1fr 1fr; }
       .cs-meta-item { padding: 24px 28px; }
@@ -279,7 +285,8 @@
       .cs-next { padding: 56px 28px; }
     }
     @media (max-width: 480px) {
-      .cs-nav { padding: 16px 20px; }
+      .cs-nav { padding: 16px 0; }
+      .cs-nav-inner { padding: 0 20px; }
       .cs-hero { padding: 110px 20px 40px; }
       .cs-meta { grid-template-columns: 1fr; }
       .cs-meta-item { padding: 20px 20px; border-right: none; border-bottom: 1px solid var(--border); }
@@ -296,11 +303,14 @@
   </style>
 </head>
 <body>
+  <div class="site-wrap">
 
   <!-- ── NAV ── -->
   <nav class="cs-nav">
-    <a href="index.html" class="cs-back">Back</a>
-    <span class="cs-nav-name">Firzan — Product Designer</span>
+    <div class="cs-nav-inner">
+      <a href="index.html" class="cs-back">Back</a>
+      <span class="cs-nav-name">Firzan — Product Designer</span>
+    </div>
   </nav>
 
   <!-- ── HERO ── -->
@@ -583,6 +593,7 @@
     <span class="footer-text">© 2025 Firzan</span>
     <span class="footer-text">Designing clarity in messy problem spaces</span>
   </footer>
+  </div>  <!-- end .site-wrap -->
 
 </body>
 </html>

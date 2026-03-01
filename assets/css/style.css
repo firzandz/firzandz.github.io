@@ -24,6 +24,16 @@ body {
   overflow-x: hidden;
 }
 
+/* ── SITE WRAPPER — centers content on wide screens ── */
+.site-wrap {
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  min-height: 100vh;
+}
+
 /* Grain */
 body::after {
   content: '';
