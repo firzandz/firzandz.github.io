@@ -430,8 +430,8 @@ body::after {
   font-family: 'DM Mono', monospace;
   font-size: 11px;
   letter-spacing: 0.12em;
-  color: var(--muted2);
-  background: rgba(0, 0, 0, 0.55);
+  color: var(--white);
+  background: rgba(0, 0, 0, 0.7);
   padding: 3px 9px;
   border-radius: 2px;
   pointer-events: none;
