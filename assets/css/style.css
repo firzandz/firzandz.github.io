@@ -592,6 +592,7 @@ footer {
   text-overflow: ellipsis;
 }
 
+
 /* ── TABLET ── max-width 768px: single column, comfortable padding */
 @media (max-width: 768px) {
   /* Hero */
