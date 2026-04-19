@@ -176,15 +176,32 @@ body::after {
 }
 .hero-bio strong { color: var(--white); font-weight: 500; }
 
-.hero-photo-wrap {
-  position: relative;
+.hero-stack-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 420px;
-  overflow: hidden;
   background: var(--bg2);
+  padding: 48px;
 }
-.hero-photo-wrap img {
+
+.hero-stack {
+  position: relative;
+  width: 280px;
+  height: 280px;
+}
+
+.hero-card {
   position: absolute;
-  top: 0; left: 0;
+  inset: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.hero-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -192,19 +209,14 @@ body::after {
   filter: grayscale(100%);
   display: block;
 }
-.hero-photo-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'DM Mono', monospace;
-  font-size: 13px;
-  color: var(--muted);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  min-height: 320px;
-}
+
+.hero-card--1 { transform: rotate(-8deg) translateX(-10px); z-index: 1; }
+.hero-card--2 { transform: rotate(4deg)  translateX(8px);  z-index: 2; }
+.hero-card--3 { transform: rotate(-2deg);                  z-index: 3; }
+
+.hero-stack:hover .hero-card--1 { transform: rotate(-16deg) translateX(-50px) translateY(8px); }
+.hero-stack:hover .hero-card--2 { transform: rotate(0deg)   translateY(-16px); }
+.hero-stack:hover .hero-card--3 { transform: rotate(14deg)  translateX(50px)  translateY(8px); }
 
 /* ── DIVIDER ── */
 .divider {
@@ -603,7 +615,8 @@ footer {
   .hero-bottom { grid-template-columns: 1fr; }
   .hero-bio-wrap { padding: 32px 28px; border-right: none; border-bottom: 1px solid var(--border); }
   .hero-bio { font-size: 16px; max-width: 100%; }
-  .hero-photo-wrap { min-height: 320px; }
+  .hero-stack-wrap { min-height: 300px; padding: 36px 24px; }
+  .hero-stack { width: 220px; height: 220px; }
 
   /* Marquee */
   .divider { padding: 22px 28px; }
@@ -647,7 +660,8 @@ footer {
   .hero-headline-wrap { padding: 210px 20px 28px; }
   .hero-bio-wrap { padding: 24px 20px; }
   .hero-bio { font-size: 15px; }
-  .hero-photo-wrap { min-height: 280px; }
+  .hero-stack-wrap { min-height: 260px; padding: 28px 16px; }
+  .hero-stack { width: 180px; height: 180px; }
 
   .divider { padding: 18px 20px; }
   .marquee-item { font-size: 13px; }
