@@ -210,6 +210,15 @@ body::after {
   display: block;
 }
 
+/* Dark overlay so light-background images fit the dark theme */
+.hero-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+}
+
 .hero-card--1 { transform: rotate(-8deg) translateX(-10px); z-index: 1; }
 .hero-card--2 { transform: rotate(4deg)  translateX(8px);  z-index: 2; }
 .hero-card--3 { transform: rotate(-2deg);                  z-index: 3; }
