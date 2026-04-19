@@ -187,15 +187,15 @@ body::after {
 
 .hero-stack {
   position: relative;
-  width: 400px;
-  height: 340px;
+  width: 580px;
+  height: 460px;
 }
 
 .hero-card {
   position: absolute;
-  width: 240px;
-  height: 240px;
-  border-radius: 24px;
+  width: 360px;
+  height: 360px;
+  border-radius: 32px;
   overflow: hidden;
   border: 3px solid rgba(255, 255, 255, 0.18);
   transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
@@ -647,8 +647,8 @@ footer {
   .hero-bio-wrap { padding: 32px 28px; border-right: none; border-bottom: 1px solid var(--border); }
   .hero-bio { font-size: 16px; max-width: 100%; }
   .hero-stack-wrap { min-height: 300px; padding: 36px 24px; }
-  .hero-stack { width: 320px; height: 280px; }
-  .hero-card { width: 190px; height: 190px; border-radius: 20px; }
+  .hero-stack { width: 460px; height: 380px; }
+  .hero-card { width: 280px; height: 280px; border-radius: 26px; }
 
   /* Marquee */
   .divider { padding: 22px 28px; }
@@ -693,8 +693,8 @@ footer {
   .hero-bio-wrap { padding: 24px 20px; }
   .hero-bio { font-size: 15px; }
   .hero-stack-wrap { min-height: 260px; padding: 28px 16px; }
-  .hero-stack { width: 270px; height: 240px; }
-  .hero-card { width: 160px; height: 160px; border-radius: 18px; }
+  .hero-stack { width: 360px; height: 300px; }
+  .hero-card { width: 220px; height: 220px; border-radius: 22px; }
 
   .divider { padding: 18px 20px; }
   .marquee-item { font-size: 13px; }
