@@ -175,6 +175,44 @@
     .cs-body p { margin-bottom: 20px; }
     .cs-body p:last-child { margin-bottom: 0; }
 
+    .cs-impact {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 32px;
+      padding: 12px 20px;
+      border: 1px solid var(--border2);
+      background: var(--bg3);
+    }
+    .cs-impact-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .cs-impact-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted2);
+      letter-spacing: 0.06em;
+    }
+
+    .cs-link {
+      display: inline-block;
+      margin-top: 20px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .cs-link:hover { opacity: 0.7; }
+
     .cs-inline-image {
       margin: 40px 0;
       background: var(--bg2);
@@ -209,12 +247,6 @@
       max-width: 680px;
     }
 
-    .cs-divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0;
-    }
-
     /* ── AT A GLANCE ── */
     .cs-glance {
       display: grid;
@@ -225,34 +257,80 @@
       border-bottom: 1px solid var(--border);
       background: var(--bg2);
     }
-    .cs-glance-grid {
+    .cs-streams {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1px;
       background: var(--border);
       border: 1px solid var(--border);
       margin-top: 32px;
     }
-    .cs-glance-item {
+    .cs-stream-item {
       background: var(--bg2);
       padding: 28px 32px;
     }
-    .cs-glance-item-label {
+    .cs-stream-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.16em;
+      margin-bottom: 10px;
+    }
+    .cs-stream-name {
+      font-size: 15px;
+      color: var(--white);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .cs-glance-note {
+      margin-top: 20px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted2);
+      letter-spacing: 0.06em;
+      line-height: 1.7;
+    }
+
+    /* ── TESTIMONIAL ── */
+    .cs-testimonial {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 80px;
+      align-items: start;
+      padding: 80px 52px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cs-testimonial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .cs-testimonial-card {
+      background: var(--bg);
+      padding: 36px 32px;
+    }
+    .cs-testimonial-quote {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+    .cs-testimonial-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--white);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .cs-testimonial-title {
       font-family: 'DM Mono', monospace;
       font-size: 11px;
       color: var(--muted);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .cs-glance-item-value {
-      font-size: 15px;
-      color: var(--white);
-      line-height: 1.6;
-    }
-    .cs-glance-item-value strong {
-      color: var(--accent);
-      font-weight: 500;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
     }
 
     .cs-stats {
@@ -315,7 +393,9 @@
       .cs-meta-item:nth-child(2) { border-right: none; }
       .cs-section { grid-template-columns: 1fr; gap: 0; padding: 56px 28px; }
       .cs-glance { grid-template-columns: 1fr; gap: 0; padding: 56px 28px; }
-      .cs-glance-grid { grid-template-columns: 1fr; margin-top: 24px; }
+      .cs-streams { grid-template-columns: 1fr; margin-top: 24px; }
+      .cs-testimonial { grid-template-columns: 1fr; gap: 0; padding: 56px 28px; }
+      .cs-testimonial-grid { grid-template-columns: 1fr; }
       .cs-side-label { margin-bottom: 16px; }
       .cs-quote { padding: 36px 28px; }
       .cs-stats { grid-template-columns: 1fr 1fr; }
@@ -333,6 +413,7 @@
       .cs-meta-item:last-child { border-bottom: none; }
       .cs-section { padding: 40px 20px; }
       .cs-glance { padding: 40px 20px; }
+      .cs-testimonial { padding: 40px 20px; }
       .cs-body { font-size: 15px; }
       .cs-quote { padding: 28px 20px; }
       .cs-stats { grid-template-columns: 1fr; }
@@ -377,7 +458,7 @@
     </div>
     <div class="cs-meta-item">
       <div class="cs-meta-label">Scope</div>
-      <div class="cs-meta-value">0→1 Product, Core Banking UX, Design System, Growth</div>
+      <div class="cs-meta-value">Ecosystem Integration, Payment, Lending, Design Culture</div>
     </div>
   </div>
 
@@ -394,174 +475,173 @@
     <div>
       <h2 class="cs-heading">Superbank at a Glance</h2>
       <div class="cs-body">
-        <p>Superbank is Indonesia's newest fully licensed digital bank — built from zero by a team backed by Grab and KakaoBank. The mandate was clear: design a bank that feels native to how people already live and move money, not how banks traditionally operate.</p>
+        <p>Superbank is Grab's digibank in Indonesia — built from the ground up and scaled to 6 million users in under three years. Across my time there, I worked across three streams: Ecosystem Integration, Payment, and Lending Integration. Beyond shipping product, I helped grow design culture through design critique sessions and design systems work.</p>
       </div>
-      <div class="cs-glance-grid">
-        <div class="cs-glance-item">
-          <div class="cs-glance-item-label">Founded</div>
-          <div class="cs-glance-item-value"><strong>2023</strong> — full product launch</div>
+      <div class="cs-streams">
+        <div class="cs-stream-item">
+          <div class="cs-stream-num">01</div>
+          <div class="cs-stream-name">Ecosystem Integration</div>
         </div>
-        <div class="cs-glance-item">
-          <div class="cs-glance-item-label">Backing</div>
-          <div class="cs-glance-item-value">Grab, KakaoBank, and strategic investors</div>
+        <div class="cs-stream-item">
+          <div class="cs-stream-num">02</div>
+          <div class="cs-stream-name">Payment</div>
         </div>
-        <div class="cs-glance-item">
-          <div class="cs-glance-item-label">Users</div>
-          <div class="cs-glance-item-value"><strong>6 million+</strong> as of 2026</div>
-        </div>
-        <div class="cs-glance-item">
-          <div class="cs-glance-item-label">Market</div>
-          <div class="cs-glance-item-value">Indonesia — Southeast Asia's largest digital economy</div>
-        </div>
-        <div class="cs-glance-item">
-          <div class="cs-glance-item-label">Products</div>
-          <div class="cs-glance-item-value">Savings, Lending, Payments, Ecosystem partnerships</div>
-        </div>
-        <div class="cs-glance-item">
-          <div class="cs-glance-item-label">My Tenure</div>
-          <div class="cs-glance-item-value">Day one — present, spanning pre-launch to growth phase</div>
+        <div class="cs-stream-item">
+          <div class="cs-stream-num">03</div>
+          <div class="cs-stream-name">Lending Integration</div>
         </div>
       </div>
+      <p class="cs-glance-note">+ Design culture — critique sessions, design systems, mentoring</p>
     </div>
   </div>
 
   <!-- ══════════════════════════════════════════════ -->
-  <!-- THE CHALLENGE                                  -->
+  <!-- PROJECT 01: GRAB AND OVO INTEGRATION           -->
   <!-- ══════════════════════════════════════════════ -->
   <section class="cs-section">
-    <div class="cs-side-label">Context</div>
+    <div class="cs-side-label">Project 01</div>
     <div class="cs-content">
-      <h2 class="cs-heading">Starting with a blank canvas — and a banking license.</h2>
+      <h2 class="cs-heading">Grab and OVO Integration</h2>
       <div class="cs-body">
-        <p>Most designers join a product in motion. I joined Superbank before a single screen existed. No legacy UI to inherit, no existing user base to design for, no brand language to extend. Just a regulatory license, a business model, and a question: what should a new Indonesian digital bank actually feel like?</p>
-        <p>The opportunity was significant. Indonesia has over 270 million people, with a large population still underbanked or underserved by traditional institutions. Digital-native banks had started to emerge globally, but in Indonesia the space was still open — particularly for a bank with the Grab ecosystem as its distribution engine.</p>
-        <p>The challenge was equally significant. A 0→1 product at this scale means every decision you make early becomes the foundation for everything that follows. Get the core experience wrong and you're rebuilding it while also scaling it. Get the design system wrong and your team spends the next two years paying off that debt.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- HMW -->
-  <blockquote class="cs-quote">
-    <p>"How do you design a bank that earns trust before it has a track record?"</p>
-  </blockquote>
-
-  <!-- ══════════════════════════════════════════════ -->
-  <!-- MY ROLE                                        -->
-  <!-- ══════════════════════════════════════════════ -->
-  <section class="cs-section">
-    <div class="cs-side-label">My Role</div>
-    <div class="cs-content">
-      <h2 class="cs-heading">From day one to growth phase.</h2>
-      <div class="cs-body">
-        <p>I joined Superbank at the very beginning — before the product had any screens, users, or public presence. My work spanned the full arc of building the bank: shaping the core product experience, establishing the design language, contributing to the design system, and then iterating through each growth phase as the user base scaled from zero to millions.</p>
-        <p>This wasn't a single project. It was a series of interconnected design challenges — each one building on the last, each one shaped by what we learned from real users in the market.</p>
-
-        <h3 class="cs-subheading">Areas of Contribution</h3>
-        <p><strong>Core banking UX.</strong> Savings, onboarding, transaction history, and account management — the essential flows every user encounters on day one.</p>
-        <p><strong>Ecosystem partnerships.</strong> Designing the integration layer between Superbank and partners like OVO and GrabPay — experiences that had to feel coherent across completely different apps.</p>
-        <p><strong>Design system foundation.</strong> Establishing the component library and design language that gave the team a shared visual and interaction vocabulary as we scaled.</p>
-        <p><strong>Growth-phase iteration.</strong> Post-launch, translating user feedback and behavioral data into design improvements that directly affected activation and retention metrics.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════ -->
-  <!-- DESIGN APPROACH                                -->
-  <!-- ══════════════════════════════════════════════ -->
-  <section class="cs-section">
-    <div class="cs-side-label">Approach</div>
-    <div class="cs-content">
-      <h2 class="cs-heading">Designing trust before designing features.</h2>
-      <div class="cs-body">
-        <p>Early in the process, we ran discovery to understand how Indonesians actually thought about their money and their banks. What we found shaped everything: <strong>trust was the primary barrier, not awareness.</strong> People weren't unfamiliar with digital banking — they were cautious about it. Every design decision had to answer, somewhere in the user's mind, the question: "Is this safe?"</p>
-        <p>This meant clarity over cleverness. Transparent language around interest rates and fees. Immediate feedback at every step. A visual identity that felt stable and considered, not startup-casual.</p>
-        <p>It also meant resisting the urge to ship features just because we could. A new bank doesn't earn forgiveness for a bad experience the way an established one does. We had to get the essential flows right — even if that meant fewer features at launch.</p>
+        <p>Most of Superbank's users come through Grab and OVO — so the quality of the onboarding experience across those ecosystems directly determines whether acquisition converts into active users.</p>
+        <p>On the Grab side, I redesigned the account linkage flow, identifying the friction points driving drop-off and resolving them through clearer intent-setting and a tighter step sequence. The insight was simple but easy to miss: <strong>users weren't confused about Superbank — they were confused about why the handoff was happening and what they were agreeing to.</strong></p>
+        <p>From there, I led the OVO Nabung experience end-to-end. The original registration required 21 fields. By reusing OVO's existing KYC data, we reduced it to 3 — with progressive compliance triggered only when users unlocked loan products. Less friction at entry, full compliance where it actually mattered. It shipped under a tight deadline, and became Superbank's onboarding standard for all future ecosystem partners.</p>
       </div>
 
       <div class="cs-inline-image">
-        <div class="cs-placeholder" style="aspect-ratio: 4/3;">Design principles — image placeholder</div>
-        <div class="cs-inline-caption">Core design principles established in the early phase of the product</div>
+        <div class="cs-placeholder" style="aspect-ratio: 16/9;">Project 01 — image placeholder</div>
+        <div class="cs-inline-caption">Grab account linkage flow and OVO Nabung onboarding redesign</div>
       </div>
+
+      <div class="cs-impact">
+        <span class="cs-impact-label">Impact</span>
+        <span class="cs-impact-text">xx% user acquisition &nbsp;·&nbsp; xx% transaction volume</span>
+      </div>
+      <br/>
+      <a href="ovo-nabung.html" class="cs-link">Full case study → OVO Nabung</a>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════════ -->
-  <!-- CORE PRODUCT EXPERIENCE                        -->
+  <!-- PROJECT 02: PAYMENT CAPABILITIES               -->
   <!-- ══════════════════════════════════════════════ -->
   <section class="cs-section">
-    <div class="cs-side-label">Product</div>
+    <div class="cs-side-label">Project 02</div>
     <div class="cs-content">
-      <h2 class="cs-heading">Building the core product experience.</h2>
-
-      <h3 class="cs-subheading">Onboarding</h3>
+      <h2 class="cs-heading">Enabling Payment Capabilities</h2>
       <div class="cs-body">
-        <p>Banking onboarding in Indonesia is regulated — KYC (Know Your Customer) requirements mean collecting identity documents and personal data before a user can transact. The challenge was making this process feel like a product experience, not a compliance burden.</p>
-        <p>We designed the flow to front-load value communication and minimize perceived effort at each step. Progress indicators, clear language about why each piece of data was needed, and smart defaults all contributed to completion rates that significantly outperformed our initial benchmarks.</p>
+        <p>Payment isn't a supporting feature in digital banking. It's the reason users come back — and the reason a bank generates revenue beyond deposits.</p>
+        <p>I built Superbank's payment layer from the ground up across four products: <strong>BI-Fast, QRIS, Bill Payment, and Cards.</strong> Each was designed not just to meet regulatory requirements, but to become a habitual touchpoint in users' daily financial lives. Without payment, Superbank is a place to park savings. With it, there's transaction fee revenue, there's engagement, and there's a sustainable business underneath.</p>
+        <p>But zero-to-one was only the foundation. Once the core products were live, I worked on extending them — integrating payment into the rewards ecosystem to drive retention, establishing it as a source of fund for open lending, and building a payment standardisation layer that every subsequent product could build on top of. The goal was to make payment the connective tissue of the entire Superbank experience, not just a standalone feature set.</p>
       </div>
 
       <div class="cs-inline-image">
-        <div class="cs-placeholder" style="aspect-ratio: 16/9;">Onboarding flow — image placeholder</div>
-        <div class="cs-inline-caption">Onboarding flow: from registration to first deposit</div>
+        <div class="cs-placeholder" style="aspect-ratio: 16/9;">Project 02 — image placeholder</div>
+        <div class="cs-inline-caption">BI-Fast, QRIS, Bill Payment, and Cards — built 0→1</div>
       </div>
 
-      <h3 class="cs-subheading">Core Banking</h3>
-      <div class="cs-body">
-        <p>The home screen and account management surfaces are the product's heartbeat — users return to them daily. We designed them around the jobs people actually do: check balance, transfer money, understand what happened to their money. Everything else was secondary.</p>
-        <p>Navigation was deliberately simple. We resisted the temptation to surface every feature prominently. A new bank builds trust by doing a few things extremely well, not by looking like it does everything.</p>
-      </div>
-
-      <div class="cs-inline-image">
-        <div class="cs-placeholder" style="aspect-ratio: 16/9;">Core banking screens — image placeholder</div>
-        <div class="cs-inline-caption">Home screen, savings view, and transaction history</div>
+      <div class="cs-impact">
+        <span class="cs-impact-label">Impact</span>
+        <span class="cs-impact-text">xx% active transacting users &nbsp;·&nbsp; xx% fee revenue contribution</span>
       </div>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════════ -->
-  <!-- IMPACT                                         -->
+  <!-- PROJECT 03: LENDING INTEGRATION                -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="cs-section">
+    <div class="cs-side-label">Project 03</div>
+    <div class="cs-content">
+      <h2 class="cs-heading">Lending Ecosystem Integration</h2>
+      <div class="cs-body">
+        <p>Lending is Superbank's primary revenue driver — and most users arrive through Grab and OVO, not organic discovery. The challenge wasn't generating intent. It was converting it.</p>
+
+        <h3 class="cs-subheading">Channel 1: Joint Application Flow</h3>
+        <p>I designed a joint application flow for Grab and OVO users, letting them register for both a loan and a Superbank account in one go, without leaving their ecosystem app. The design challenge was <strong>intent clarity</strong>: users needed to understand upfront that while they apply within the ecosystem, their loan would live in the Superbank app. Getting that handoff right was the difference between a confident user and a confused one.</p>
+
+        <h3 class="cs-subheading">Channel 2: Akulaku Loan Channeling</h3>
+        <p>The second was a loan channeling integration with Akulaku, where users access credit backed by Superbank's limit through Akulaku's own platform. Here the challenge was <strong>compliance</strong> — Superbank's form requirements had to be completed mid-flow, on top of what Akulaku had already collected. The work was about making that feel like a natural continuation rather than a bureaucratic interruption, so users stayed motivated to complete and convert.</p>
+
+        <p>Both projects came down to the same underlying problem: <strong>high-intent users hitting low-clarity moments.</strong> The design work was about closing that gap.</p>
+      </div>
+
+      <div class="cs-inline-image">
+        <div class="cs-placeholder" style="aspect-ratio: 16/9;">Project 03 — image placeholder</div>
+        <div class="cs-inline-caption">Joint application flow (Grab/OVO) and Akulaku loan channeling integration</div>
+      </div>
+
+      <div class="cs-impact">
+        <span class="cs-impact-label">Impact</span>
+        <span class="cs-impact-text">xx% apply conversion &nbsp;·&nbsp; xx% drop-off reduction</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- DESIGN MENTORING                               -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="cs-section">
+    <div class="cs-side-label">Mentoring</div>
+    <div class="cs-content">
+      <h2 class="cs-heading">Good design culture doesn't build itself.</h2>
+      <div class="cs-body">
+        <p>Alongside my product work, I took on building design practice at Superbank from the inside. I ran sharing sessions on design process and craft, participated in internal hackathons, and mentored three designers — one of whom converted to a full-time role. Not as a formal mandate, but as something I believed the team needed.</p>
+        <p>The goal was simple: make design thinking more legible across the organisation, so it wasn't just designers who understood the value of the work — it was everyone we collaborated with.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- STATS                                          -->
   <!-- ══════════════════════════════════════════════ -->
   <div class="cs-stats">
     <div class="cs-stat">
       <div class="cs-stat-number">6M+</div>
-      <div class="cs-stat-label">Users as of 2026</div>
+      <div class="cs-stat-label">Users in under 3 years</div>
     </div>
     <div class="cs-stat">
-      <div class="cs-stat-number">0→1</div>
-      <div class="cs-stat-label">Full product built from scratch</div>
+      <div class="cs-stat-number">3</div>
+      <div class="cs-stat-label">Work streams owned</div>
     </div>
     <div class="cs-stat">
-      <div class="cs-stat-number">3+</div>
-      <div class="cs-stat-label">Ecosystem partnerships designed</div>
+      <div class="cs-stat-number">4</div>
+      <div class="cs-stat-label">Payment products built 0→1</div>
     </div>
     <div class="cs-stat">
-      <div class="cs-stat-number">Day 1</div>
-      <div class="cs-stat-label">Joined pre-launch</div>
+      <div class="cs-stat-number">3</div>
+      <div class="cs-stat-label">Designers mentored</div>
     </div>
   </div>
 
-  <section class="cs-section">
-    <div class="cs-side-label">Impact</div>
-    <div class="cs-content">
-      <div class="cs-body">
-        <p>Superbank launched on schedule and has since grown to over 6 million users — a significant achievement for a new licensed bank in Indonesia. The design system and core UX patterns established in the early phase have scaled without requiring fundamental rework, which was a primary goal from the start.</p>
-        <p>Individual initiatives within this broader story — like the OVO Nabung integration — have been documented separately as their own case studies.</p>
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- TESTIMONIAL                                    -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="cs-testimonial">
+    <div class="cs-side-label">Testimonial</div>
+    <div class="cs-testimonial-grid">
+      <div class="cs-testimonial-card">
+        <p class="cs-testimonial-quote">Placeholder quote from colleague.</p>
+        <div class="cs-testimonial-name">Loretta</div>
+        <div class="cs-testimonial-title">Superbank</div>
+      </div>
+      <div class="cs-testimonial-card">
+        <p class="cs-testimonial-quote">Placeholder quote from colleague.</p>
+        <div class="cs-testimonial-name">Icha</div>
+        <div class="cs-testimonial-title">Superbank</div>
+      </div>
+      <div class="cs-testimonial-card">
+        <p class="cs-testimonial-quote">Placeholder quote from colleague.</p>
+        <div class="cs-testimonial-name">Dara</div>
+        <div class="cs-testimonial-title">Superbank</div>
+      </div>
+      <div class="cs-testimonial-card">
+        <p class="cs-testimonial-quote">Placeholder quote from colleague.</p>
+        <div class="cs-testimonial-name">Marsha</div>
+        <div class="cs-testimonial-title">Superbank</div>
       </div>
     </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════ -->
-  <!-- REFLECTION                                     -->
-  <!-- ══════════════════════════════════════════════ -->
-  <section class="cs-section">
-    <div class="cs-side-label">Reflection</div>
-    <div class="cs-content">
-      <div class="cs-body">
-        <p>Building a bank from scratch taught me that the most consequential design decisions often don't look like design decisions. What to defer. Which feature to cut. How to frame a regulatory requirement as a trust signal rather than a burden. These choices shaped the product more than any individual screen.</p>
-        <p>The other thing I learned: <strong>0→1 design is fundamentally a prioritization problem.</strong> You can design anything — you cannot design everything. The discipline of protecting what matters most, especially when there's pressure to ship more, is a skill that only gets tested in the real conditions of building something new.</p>
-        <p><em>This case study covers the broad arc of building Superbank. See the OVO Nabung case study for a deep-dive into one of the most complex ecosystem design challenges within this work.</em></p>
-      </div>
-    </div>
-  </section>
+  </div>
 
   <!-- ── NEXT PROJECT ── -->
   <section class="cs-next">
