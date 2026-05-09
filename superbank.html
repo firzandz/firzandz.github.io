@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building a Bank from Scratch — Firzan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jacquard+24&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* ── CASE STUDY PAGE-SPECIFIC STYLES ── */
+
+    .cs-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      padding: 28px 0;
+      z-index: 100;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .cs-nav-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cs-back {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .cs-back:hover { color: var(--accent); }
+    .cs-back::before { content: '← '; }
+    .cs-nav-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .cs-hero {
+      padding: 180px 52px 80px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cs-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .cs-title {
+      font-size: clamp(36px, 5vw, 64px);
+      color: var(--white);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .cs-subtitle {
+      font-weight: 300;
+      font-size: clamp(18px, 2.2vw, 24px);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    .cs-meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+    .cs-meta-item {
+      padding: 32px 52px;
+      border-right: 1px solid var(--border);
+    }
+    .cs-meta-item:last-child { border-right: none; }
+    .cs-meta-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .cs-meta-value {
+      font-size: 15px;
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    .cs-image-full {
+      width: 100%;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--bg2);
+    }
+    .cs-image-full img {
+      width: 100%;
+      display: block;
+    }
+    .cs-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: var(--bg2);
+    }
+    .cs-caption {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      padding: 14px 52px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cs-section {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 80px;
+      align-items: start;
+      padding: 80px 52px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cs-side-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--white);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      line-height: 2.2;
+      padding-top: 4px;
+    }
+    .cs-heading {
+      font-weight: 500;
+      font-size: clamp(22px, 2.5vw, 32px);
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 24px;
+    }
+    .cs-subheading {
+      font-weight: 500;
+      font-size: clamp(18px, 2vw, 24px);
+      color: var(--white);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      margin-top: 48px;
+      margin-bottom: 20px;
+    }
+    .cs-body {
+      font-size: 17px;
+      color: var(--text);
+      line-height: 1.85;
+      max-width: 600px;
+    }
+    .cs-body strong { color: var(--white); font-weight: 500; }
+    .cs-body em { color: var(--muted2); font-style: italic; }
+    .cs-body p { margin-bottom: 20px; }
+    .cs-body p:last-child { margin-bottom: 0; }
+
+    .cs-inline-image {
+      margin: 40px 0;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .cs-inline-image img {
+      width: 100%;
+      display: block;
+    }
+    .cs-inline-caption {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .cs-quote {
+      padding: 48px 52px;
+      border-bottom: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      background: var(--bg2);
+    }
+    .cs-quote p {
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(17px, 1.8vw, 21px);
+      color: var(--white);
+      line-height: 1.75;
+      max-width: 680px;
+    }
+
+    .cs-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── AT A GLANCE ── */
+    .cs-glance {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 80px;
+      align-items: start;
+      padding: 80px 52px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+    }
+    .cs-glance-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 32px;
+    }
+    .cs-glance-item {
+      background: var(--bg2);
+      padding: 28px 32px;
+    }
+    .cs-glance-item-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .cs-glance-item-value {
+      font-size: 15px;
+      color: var(--white);
+      line-height: 1.6;
+    }
+    .cs-glance-item-value strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .cs-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+    .cs-stat {
+      padding: 48px 52px;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+    .cs-stat:last-child { border-right: none; }
+    .cs-stat-number {
+      font-weight: 600;
+      font-size: clamp(28px, 4vw, 48px);
+      color: var(--accent);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .cs-stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .cs-next {
+      padding: 80px 52px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .cs-next-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .cs-next-title {
+      font-weight: 500;
+      font-size: clamp(24px, 3.5vw, 44px);
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: color 0.2s;
+    }
+    .cs-next-title:hover { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .cs-nav { padding: 20px 0; }
+      .cs-nav-inner { padding: 0 28px; }
+      .cs-hero { padding: 130px 28px 56px; }
+      .cs-meta { grid-template-columns: 1fr 1fr; }
+      .cs-meta-item { padding: 24px 28px; }
+      .cs-meta-item:nth-child(2) { border-right: none; }
+      .cs-section { grid-template-columns: 1fr; gap: 0; padding: 56px 28px; }
+      .cs-glance { grid-template-columns: 1fr; gap: 0; padding: 56px 28px; }
+      .cs-glance-grid { grid-template-columns: 1fr; margin-top: 24px; }
+      .cs-side-label { margin-bottom: 16px; }
+      .cs-quote { padding: 36px 28px; }
+      .cs-stats { grid-template-columns: 1fr 1fr; }
+      .cs-stat { padding: 32px 28px; }
+      .cs-stat:nth-child(2) { border-right: none; }
+      .cs-caption { padding: 12px 28px; }
+      .cs-next { padding: 56px 28px; }
+    }
+    @media (max-width: 480px) {
+      .cs-nav { padding: 16px 0; }
+      .cs-nav-inner { padding: 0 20px; }
+      .cs-hero { padding: 110px 20px 40px; }
+      .cs-meta { grid-template-columns: 1fr; }
+      .cs-meta-item { padding: 20px 20px; border-right: none; border-bottom: 1px solid var(--border); }
+      .cs-meta-item:last-child { border-bottom: none; }
+      .cs-section { padding: 40px 20px; }
+      .cs-glance { padding: 40px 20px; }
+      .cs-body { font-size: 15px; }
+      .cs-quote { padding: 28px 20px; }
+      .cs-stats { grid-template-columns: 1fr; }
+      .cs-stat { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 20px; }
+      .cs-stat:last-child { border-bottom: none; }
+      .cs-caption { padding: 10px 20px; }
+      .cs-next { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-wrap">
+
+  <!-- ── NAV ── -->
+  <nav class="cs-nav">
+    <div class="cs-nav-inner">
+      <a href="/" class="cs-back">Back</a>
+      <span class="cs-nav-name">Case Study 2</span>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="cs-hero">
+    <div class="cs-eyebrow">Case Study</div>
+    <h1 class="cs-title">Building a Bank from Scratch</h1>
+    <p class="cs-subtitle">Designing the full product experience of a new digital bank — from zero to launch.</p>
+  </section>
+
+  <!-- ── META ── -->
+  <div class="cs-meta">
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Role</div>
+      <div class="cs-meta-value">Product Designer</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Company</div>
+      <div class="cs-meta-value">Superbank Indonesia</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Timeline</div>
+      <div class="cs-meta-value">2023 – Now</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Scope</div>
+      <div class="cs-meta-value">0→1 Product, Core Banking UX, Design System, Growth</div>
+    </div>
+  </div>
+
+  <!-- ── HERO IMAGE ── -->
+  <div class="cs-image-full">
+    <div class="cs-placeholder">Hero image — Superbank</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SUPERBANK AT A GLANCE                          -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="cs-glance">
+    <div class="cs-side-label">At a Glance</div>
+    <div>
+      <h2 class="cs-heading">Superbank at a Glance</h2>
+      <div class="cs-body">
+        <p>Superbank is Indonesia's newest fully licensed digital bank — built from zero by a team backed by Grab and KakaoBank. The mandate was clear: design a bank that feels native to how people already live and move money, not how banks traditionally operate.</p>
+      </div>
+      <div class="cs-glance-grid">
+        <div class="cs-glance-item">
+          <div class="cs-glance-item-label">Founded</div>
+          <div class="cs-glance-item-value"><strong>2023</strong> — full product launch</div>
+        </div>
+        <div class="cs-glance-item">
+          <div class="cs-glance-item-label">Backing</div>
+          <div class="cs-glance-item-value">Grab, KakaoBank, and strategic investors</div>
+        </div>
+        <div class="cs-glance-item">
+          <div class="cs-glance-item-label">Users</div>
+          <div class="cs-glance-item-value"><strong>6 million+</strong> as of 2026</div>
+        </div>
+        <div class="cs-glance-item">
+          <div class="cs-glance-item-label">Market</div>
+          <div class="cs-glance-item-value">Indonesia — Southeast Asia's largest digital economy</div>
+        </div>
+        <div class="cs-glance-item">
+          <div class="cs-glance-item-label">Products</div>
+          <div class="cs-glance-item-value">Savings, Lending, Payments, Ecosystem partnerships</div>
+        </div>
+        <div class="cs-glance-item">
+          <div class="cs-glance-item-label">My Tenure</div>
+          <div class="cs-glance-item-value">Day one — present, spanning pre-launch to growth phase</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- THE CHALLENGE                                  -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="cs-section">
+    <div class="cs-side-label">Context</div>
+    <div class="cs-content">
+      <h2 class="cs-heading">Starting with a blank canvas — and a banking license.</h2>
+      <div class="cs-body">
+        <p>Most designers join a product in motion. I joined Superbank before a single screen existed. No legacy UI to inherit, no existing user base to design for, no brand language to extend. Just a regulatory license, a business model, and a question: what should a new Indonesian digital bank actually feel like?</p>
+        <p>The opportunity was significant. Indonesia has over 270 million people, with a large population still underbanked or underserved by traditional institutions. Digital-native banks had started to emerge globally, but in Indonesia the space was still open — particularly for a bank with the Grab ecosystem as its distribution engine.</p>
+        <p>The challenge was equally significant. A 0→1 product at this scale means every decision you make early becomes the foundation for everything that follows. Get the core experience wrong and you're rebuilding it while also scaling it. Get the design system wrong and your team spends the next two years paying off that debt.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HMW -->
+  <blockquote class="cs-quote">
+    <p>"How do you design a bank that earns trust before it has a track record?"</p>
+  </blockquote>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- MY ROLE                                        -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="cs-section">
+    <div class="cs-side-label">My Role</div>
+    <div class="cs-content">
+      <h2 class="cs-heading">From day one to growth phase.</h2>
+      <div class="cs-body">
+        <p>I joined Superbank at the very beginning — before the product had any screens, users, or public presence. My work spanned the full arc of building the bank: shaping the core product experience, establishing the design language, contributing to the design system, and then iterating through each growth phase as the user base scaled from zero to millions.</p>
+        <p>This wasn't a single project. It was a series of interconnected design challenges — each one building on the last, each one shaped by what we learned from real users in the market.</p>
+
+        <h3 class="cs-subheading">Areas of Contribution</h3>
+        <p><strong>Core banking UX.</strong> Savings, onboarding, transaction history, and account management — the essential flows every user encounters on day one.</p>
+        <p><strong>Ecosystem partnerships.</strong> Designing the integration layer between Superbank and partners like OVO and GrabPay — experiences that had to feel coherent across completely different apps.</p>
+        <p><strong>Design system foundation.</strong> Establishing the component library and design language that gave the team a shared visual and interaction vocabulary as we scaled.</p>
+        <p><strong>Growth-phase iteration.</strong> Post-launch, translating user feedback and behavioral data into design improvements that directly affected activation and retention metrics.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- DESIGN APPROACH                                -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="cs-section">
+    <div class="cs-side-label">Approach</div>
+    <div class="cs-content">
+      <h2 class="cs-heading">Designing trust before designing features.</h2>
+      <div class="cs-body">
+        <p>Early in the process, we ran discovery to understand how Indonesians actually thought about their money and their banks. What we found shaped everything: <strong>trust was the primary barrier, not awareness.</strong> People weren't unfamiliar with digital banking — they were cautious about it. Every design decision had to answer, somewhere in the user's mind, the question: "Is this safe?"</p>
+        <p>This meant clarity over cleverness. Transparent language around interest rates and fees. Immediate feedback at every step. A visual identity that felt stable and considered, not startup-casual.</p>
+        <p>It also meant resisting the urge to ship features just because we could. A new bank doesn't earn forgiveness for a bad experience the way an established one does. We had to get the essential flows right — even if that meant fewer features at launch.</p>
+      </div>
+
+      <div class="cs-inline-image">
+        <div class="cs-placeholder" style="aspect-ratio: 4/3;">Design principles — image placeholder</div>
+        <div class="cs-inline-caption">Core design principles established in the early phase of the product</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- CORE PRODUCT EXPERIENCE                        -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="cs-section">
+    <div class="cs-side-label">Product</div>
+    <div class="cs-content">
+      <h2 class="cs-heading">Building the core product experience.</h2>
+
+      <h3 class="cs-subheading">Onboarding</h3>
+      <div class="cs-body">
+        <p>Banking onboarding in Indonesia is regulated — KYC (Know Your Customer) requirements mean collecting identity documents and personal data before a user can transact. The challenge was making this process feel like a product experience, not a compliance burden.</p>
+        <p>We designed the flow to front-load value communication and minimize perceived effort at each step. Progress indicators, clear language about why each piece of data was needed, and smart defaults all contributed to completion rates that significantly outperformed our initial benchmarks.</p>
+      </div>
+
+      <div class="cs-inline-image">
+        <div class="cs-placeholder" style="aspect-ratio: 16/9;">Onboarding flow — image placeholder</div>
+        <div class="cs-inline-caption">Onboarding flow: from registration to first deposit</div>
+      </div>
+
+      <h3 class="cs-subheading">Core Banking</h3>
+      <div class="cs-body">
+        <p>The home screen and account management surfaces are the product's heartbeat — users return to them daily. We designed them around the jobs people actually do: check balance, transfer money, understand what happened to their money. Everything else was secondary.</p>
+        <p>Navigation was deliberately simple. We resisted the temptation to surface every feature prominently. A new bank builds trust by doing a few things extremely well, not by looking like it does everything.</p>
+      </div>
+
+      <div class="cs-inline-image">
+        <div class="cs-placeholder" style="aspect-ratio: 16/9;">Core banking screens — image placeholder</div>
+        <div class="cs-inline-caption">Home screen, savings view, and transaction history</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- IMPACT                                         -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="cs-stats">
+    <div class="cs-stat">
+      <div class="cs-stat-number">6M+</div>
+      <div class="cs-stat-label">Users as of 2026</div>
+    </div>
+    <div class="cs-stat">
+      <div class="cs-stat-number">0→1</div>
+      <div class="cs-stat-label">Full product built from scratch</div>
+    </div>
+    <div class="cs-stat">
+      <div class="cs-stat-number">3+</div>
+      <div class="cs-stat-label">Ecosystem partnerships designed</div>
+    </div>
+    <div class="cs-stat">
+      <div class="cs-stat-number">Day 1</div>
+      <div class="cs-stat-label">Joined pre-launch</div>
+    </div>
+  </div>
+
+  <section class="cs-section">
+    <div class="cs-side-label">Impact</div>
+    <div class="cs-content">
+      <div class="cs-body">
+        <p>Superbank launched on schedule and has since grown to over 6 million users — a significant achievement for a new licensed bank in Indonesia. The design system and core UX patterns established in the early phase have scaled without requiring fundamental rework, which was a primary goal from the start.</p>
+        <p>Individual initiatives within this broader story — like the OVO Nabung integration — have been documented separately as their own case studies.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- REFLECTION                                     -->
+  <!-- ══════════════════════════════════════════════ -->
+  <section class="cs-section">
+    <div class="cs-side-label">Reflection</div>
+    <div class="cs-content">
+      <div class="cs-body">
+        <p>Building a bank from scratch taught me that the most consequential design decisions often don't look like design decisions. What to defer. Which feature to cut. How to frame a regulatory requirement as a trust signal rather than a burden. These choices shaped the product more than any individual screen.</p>
+        <p>The other thing I learned: <strong>0→1 design is fundamentally a prioritization problem.</strong> You can design anything — you cannot design everything. The discipline of protecting what matters most, especially when there's pressure to ship more, is a skill that only gets tested in the real conditions of building something new.</p>
+        <p><em>This case study covers the broad arc of building Superbank. See the OVO Nabung case study for a deep-dive into one of the most complex ecosystem design challenges within this work.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NEXT PROJECT ── -->
+  <section class="cs-next">
+    <div class="cs-next-label">Next Project</div>
+    <a href="ovo-nabung.html" class="cs-next-title">OVO Nabung →</a>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <span class="footer-text">© 2026 Firzan</span>
+    <span class="footer-text">Designing clarity in messy problem spaces</span>
+  </footer>
+  </div>  <!-- end .site-wrap -->
+
+</body>
+</html>
