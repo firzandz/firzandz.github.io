@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title description">
+  <title id="title">Firzan scribble mark</title>
+  <desc id="description">An abstract looped logo drawn as a continuous, imperfect pen stroke.</desc>
+
+  <defs>
+    <filter id="rough-ink" x="-12%" y="-12%" width="124%" height="124%">
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.035"
+        numOctaves="2"
+        seed="11"
+        result="noise"
+      />
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="noise"
+        scale="1.35"
+        xChannelSelector="R"
+        yChannelSelector="G"
+      />
+    </filter>
+  </defs>
+
+  <g fill="none" stroke="#ff7f56" stroke-linecap="round" stroke-linejoin="round">
+    <path
+      d="M64 64
+         C46 31 27 18 18 37
+         C9 57 31 78 64 64
+         C97 50 119 70 109 91
+         C99 112 77 96 64 64
+         C51 32 29 16 19 37
+         C8 59 31 79 64 64
+         C97 49 119 70 108 91
+         C97 111 78 97 64 64
+         C50 31 29 17 18 38
+         C7 59 30 79 64 64
+         C98 49 120 68 109 90
+         C98 111 78 97 64 64"
+      stroke-width="4.2"
+      filter="url(#rough-ink)"
+    />
+
+    <path
+      d="M21 42 C31 27 49 42 64 64 C79 86 97 101 108 86"
+      stroke-width="1.2"
+      opacity="0.42"
+      filter="url(#rough-ink)"
+    />
+
+    <path
+      d="M18 91 C31 110 51 94 64 64 C77 34 98 17 109 39"
+      stroke-width="3.6"
+      filter="url(#rough-ink)"
+    />
+
+    <path
+      d="M24 97 C43 111 54 85 64 64 C74 43 91 18 108 33"
+      stroke-width="1"
+      opacity="0.36"
+    />
+  </g>
+</svg>
