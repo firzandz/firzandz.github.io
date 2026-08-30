@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A clean, reusable product design case study template for Firzan Aulia." />
+  <title>Case Study Template — Firzan Aulia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&amp;family=Inter:wght@400;500&amp;family=Newsreader:opsz,wght@6..72,400&amp;display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --background: #101010;
+      --surface: #171717;
+      --surface-hover: #181818;
+      --line: #292929;
+      --line-soft: #202020;
+      --text: #f0eee9;
+      --text-secondary: #aaa7a1;
+      --text-tertiary: #73716d;
+      --accent: #ff8a65;
+      --accent-soft: rgba(255, 138, 101, 0.14);
+      --page-width: 1080px;
+      --sidebar-width: 240px;
+      --main-width: 840px;
+      --reading-width: 672px;
+
+      /* Typography system */
+      --font-display: "Newsreader", Georgia, serif;
+      --font-body: "Inter", Arial, sans-serif;
+      --font-utility: "DM Mono", monospace;
+      --type-hero: clamp(40px, 5vw, 48px);
+      --type-quote: clamp(20px, 2.5vw, 22px);
+      --type-story: 30px;
+      --type-subtitle: 14px;
+      --type-body: 16px;
+      --type-label: 12px;
+      --type-annotation: 11px;
+      --leading-tight: 1.1;
+      --leading-body: 1.72;
+    }
+
+    body:has(.theme-toggle-input:checked) {
+      --background: #f3f0e9;
+      --surface: #ebe7de;
+      --surface-hover: #e4ded3;
+      --line: #d0c9be;
+      --line-soft: #ddd7cd;
+      --text: #191815;
+      --text-secondary: #5e5a53;
+      --text-tertiary: #8a847a;
+      --accent: #e9633a;
+      --accent-soft: rgba(233, 99, 58, 0.13);
+      color-scheme: light;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 40px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      color-scheme: dark;
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      line-height: var(--leading-body);
+      transition: background-color 220ms ease, color 220ms ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .theme-toggle-input {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 100;
+      display: flex;
+      width: 56px;
+      height: 30px;
+      align-items: center;
+      justify-content: space-around;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      transition: background-color 220ms ease, border-color 220ms ease;
+    }
+
+    .theme-toggle::before {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--text);
+      transform: translateX(26px);
+      transition: transform 220ms ease, background-color 220ms ease;
+    }
+
+    .theme-icon {
+      position: relative;
+      z-index: 1;
+      width: 18px;
+      color: var(--text-tertiary);
+      font-size: var(--type-label);
+      line-height: 1;
+      text-align: center;
+      transition: color 220ms ease;
+    }
+
+    .theme-icon--moon { color: var(--background); }
+    .theme-toggle-input:checked + .theme-toggle::before { transform: translateX(0); }
+    .theme-toggle-input:checked + .theme-toggle .theme-icon--sun { color: var(--background); }
+    .theme-toggle-input:checked + .theme-toggle .theme-icon--moon { color: var(--text-tertiary); }
+    .theme-toggle-input:focus-visible + .theme-toggle { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .mobile-nav { display: none; }
+
+    .case-layout {
+      display: grid;
+      width: min(calc(100% - 48px), var(--page-width));
+      margin: 0 auto;
+      padding-top: 48px;
+      grid-template-columns: var(--sidebar-width) minmax(0, var(--main-width));
+      align-items: start;
+    }
+
+    /* ── Quiet project navigation ── */
+    .side-nav {
+      position: sticky;
+      top: 40px;
+      padding-right: 28px;
+    }
+
+    .back-link {
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      margin-bottom: 30px;
+      color: var(--text-secondary);
+      font-family: var(--font-utility);
+      font-size: 20px;
+      line-height: 1;
+      text-decoration: none;
+      transition: color 160ms ease;
+    }
+
+    .back-link:hover { color: var(--accent); }
+
+    .side-nav ol {
+      display: grid;
+      gap: 4px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .side-nav a:not(.back-link) {
+      display: block;
+      padding: 5px 0;
+      color: var(--text-tertiary);
+      font-family: var(--font-utility);
+      font-size: var(--type-annotation);
+      line-height: 1.5;
+      text-decoration: none;
+      transition: color 160ms ease;
+    }
+
+    .side-nav a:not(.back-link):hover { color: var(--accent); }
+
+    .side-nav a[aria-current="location"] {
+      color: var(--text);
+    }
+
+    .side-nav a[aria-current="location"]::before {
+      content: "—";
+      margin-right: 7px;
+      color: var(--accent);
+    }
+
+    .story-nav-link a {
+      padding-left: 12px !important;
+    }
+
+    .story-preview-link { display: list-item; }
+    body:has(.case-details[open]) .story-preview-link { display: none; }
+
+    /* ── Reading column ── */
+    .case-main {
+      width: 100%;
+      min-width: 0;
+      padding-bottom: 80px;
+    }
+
+    .reading-column {
+      width: min(calc(100% - 120px), var(--reading-width));
+      margin: 0 auto;
+    }
+
+    .hero { padding: 0 0 52px; }
+
+    .hero h1 {
+      max-width: 570px;
+      margin: 0 0 12px;
+      font-family: var(--font-display);
+      font-size: var(--type-hero);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: var(--leading-tight);
+    }
+
+    .project-meta {
+      margin: 0;
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      font-size: var(--type-subtitle);
+      line-height: 1.55;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+      font-family: var(--font-utility);
+      font-size: var(--type-annotation);
+    }
+
+    .project-tags span {
+      padding: 5px 9px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--surface);
+      color: var(--text-secondary);
+    }
+
+    .hero-placeholder {
+      display: grid;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      margin-top: 34px;
+      place-items: center;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text-tertiary);
+      font-family: var(--font-utility);
+      font-size: var(--type-annotation);
+    }
+
+    .hero-caption {
+      margin: 8px 0 0;
+      color: var(--text-tertiary);
+      font-family: var(--font-utility);
+      font-size: var(--type-annotation);
+      line-height: 1.55;
+    }
+
+    .hook {
+      margin: 0 0 48px;
+      padding-left: 16px;
+      border-left: 2px solid var(--accent);
+      color: var(--text);
+      font-family: var(--font-display);
+      font-size: var(--type-quote);
+      line-height: 1.45;
+    }
+
+    /* ── Trailer: the whole story in one screen ── */
+    .trailer {
+      padding-bottom: 0;
+    }
+
+    .summary-section {
+      margin-bottom: 34px;
+    }
+
+    .summary-section:last-of-type { margin-bottom: 0; }
+
+    .section-label {
+      margin: 0 0 10px;
+      color: var(--text);
+      font-family: var(--font-utility);
+      font-size: var(--type-label);
+      font-weight: 400;
+    }
+
+    .summary-section p,
+    .summary-section li {
+      color: var(--text-secondary);
+    }
+
+    .summary-section p { margin: 0 0 12px; }
+    .summary-section p:last-child { margin-bottom: 0; }
+
+    .outcome-list {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .outcome-list li { margin-bottom: 8px; padding-left: 4px; }
+    .outcome-list li::marker { color: var(--accent); }
+
+    .case-details {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .expand-control {
+      display: block;
+      padding: 48px 0 46px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .expand-control::-webkit-details-marker { display: none; }
+    .expand-control::marker { content: ""; }
+
+    .teaser-content {
+      display: block;
+      max-height: 235px;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+    }
+
+    .teaser-label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--text-tertiary);
+      font-family: var(--font-utility);
+      font-size: var(--type-annotation);
+      text-transform: uppercase;
+    }
+
+    .teaser-title {
+      display: block;
+      margin-bottom: 14px;
+      font-family: var(--font-display);
+      font-size: var(--type-story);
+      line-height: 1.2;
+    }
+
+    .teaser-copy {
+      display: block;
+      margin-bottom: 14px;
+      color: var(--text-secondary);
+      line-height: var(--leading-body);
+    }
+
+    .read-more {
+      display: flex;
+      width: max-content;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      margin: -10px auto 0;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      background: var(--background);
+      color: var(--text);
+      font-family: var(--font-utility);
+      font-size: var(--type-annotation);
+      text-decoration: none;
+      transition: border-color 160ms ease, color 160ms ease;
+    }
+
+    .expand-control:hover .read-more { border-color: var(--accent); color: var(--accent); }
+
+    .case-details[open] > .expand-control,
+    .case-details[open] .teaser-content,
+    .case-details[open] .read-more { display: none; }
+
+    .detail-link { display: none; }
+    body:has(.case-details[open]) .detail-link { display: list-item; }
+    body:has(.case-details[open]) .mobile-links .detail-link { display: inline; }
+
+    /* ── Full story ── */
+    .full-story {
+      padding-top: 70px;
+    }
+
+    .full-story-intro {
+      margin-bottom: 54px;
+    }
+
+    .full-story-intro h2 {
+      margin: 0 0 12px;
+      font-family: var(--font-display);
+      font-size: calc(var(--type-story) + 2px);
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+    }
+
+    .full-story-intro p {
+      margin: 0;
+      color: var(--text-secondary);
+    }
+
+    .story-section {
+      margin-bottom: 64px;
+    }
+
+    .story-section h2 {
+      margin: 0 0 14px;
+      font-family: var(--font-display);
+      font-size: var(--type-story);
+      font-weight: 400;
+      letter-spacing: -0.012em;
+      line-height: 1.2;
+    }
+
+    .story-section h3 {
+      margin: 34px 0 10px;
+      font-size: var(--type-body);
+      font-weight: 500;
+    }
+
+    .story-section p {
+      margin: 0 0 16px;
+      color: var(--text-secondary);
+    }
+
+    .story-section strong { color: var(--text); font-weight: 500; }
+
+    .figure-placeholder {
+      display: grid;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      margin: 28px 0 8px;
+      place-items: center;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text-tertiary);
+      font-family: var(--font-utility);
+      font-size: var(--type-annotation);
+    }
+
+    .figure-caption {
+      margin: 0 !important;
+      color: var(--text-tertiary) !important;
+      font-family: var(--font-utility);
+      font-size: var(--type-annotation);
+      line-height: 1.55;
+    }
+
+    .decision-list {
+      margin: 26px 0 0;
+      padding: 0;
+      border-top: 1px solid var(--line);
+      list-style: none;
+    }
+
+    .decision-list li {
+      display: grid;
+      padding: 18px 0;
+      grid-template-columns: 92px 1fr;
+      gap: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .decision-number {
+      color: var(--accent);
+      font-family: var(--font-utility);
+      font-size: var(--type-annotation);
+    }
+
+    .decision-copy { color: var(--text-secondary); }
+
+    .reflection {
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+    }
+
+    .framework-note {
+      margin-top: 76px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .framework-note summary {
+      color: var(--text-secondary);
+      font-family: var(--font-utility);
+      font-size: var(--type-annotation);
+      cursor: pointer;
+    }
+
+    .framework-note ol {
+      margin: 20px 0 0;
+      padding-left: 22px;
+      color: var(--text-secondary);
+      font-size: var(--type-subtitle);
+    }
+
+    .framework-note li { margin-bottom: 8px; padding-left: 4px; }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 70px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--text-tertiary);
+      font-family: var(--font-utility);
+      font-size: var(--type-annotation);
+    }
+
+    .footer a { text-decoration: none; }
+    .footer a:hover { color: var(--accent); }
+
+    @media (max-width: 820px) {
+      html { scroll-padding-top: 72px; }
+
+      .mobile-nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        min-height: 56px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 88px 0 20px;
+        border-bottom: 1px solid var(--line);
+        background: color-mix(in srgb, var(--background) 94%, transparent);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+      }
+
+      .theme-toggle {
+        top: 13px;
+        right: 16px;
+      }
+
+      .mobile-nav > a {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--text-secondary);
+        font-family: var(--font-utility);
+        font-size: var(--type-label);
+        text-decoration: none;
+      }
+
+      .mobile-back-icon {
+        color: var(--text);
+        font-size: 18px;
+        line-height: 1;
+      }
+
+      .mobile-links {
+        display: flex;
+        gap: 14px;
+      }
+
+      .mobile-links a {
+        color: var(--text-secondary);
+        font-family: var(--font-utility);
+        font-size: var(--type-annotation);
+        text-decoration: none;
+      }
+
+      .case-layout {
+        display: block;
+        width: 100%;
+        padding-top: 52px;
+      }
+
+      .side-nav { display: none; }
+      .case-main { width: 100%; }
+      .reading-column { width: min(calc(100% - 40px), var(--reading-width)); }
+    }
+
+    @media (max-width: 480px) {
+      .case-layout { padding-top: 40px; }
+      .hero { padding-bottom: 42px; }
+      .project-tags { gap: 7px; }
+      .hero-placeholder { margin-top: 28px; }
+      .hook { margin-bottom: 40px; }
+      .summary-section { margin-bottom: 30px; }
+      .full-story { padding-top: 54px; }
+      .story-section { margin-bottom: 54px; }
+      .reflection { padding: 24px; }
+      .decision-list li { grid-template-columns: 72px 1fr; gap: 14px; }
+      .footer { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <input class="theme-toggle-input" type="checkbox" id="theme-toggle" aria-label="Use light mode" />
+  <label class="theme-toggle" for="theme-toggle" title="Switch light and dark mode">
+    <span class="theme-icon theme-icon--sun" aria-hidden="true">☀</span>
+    <span class="theme-icon theme-icon--moon" aria-hidden="true">☾</span>
+    <span class="visually-hidden">Switch light and dark mode</span>
+  </label>
+
+  <header class="mobile-nav">
+    <a href="index.html"><span class="mobile-back-icon" aria-hidden="true">←</span><span>Portfolio</span></a>
+    <nav class="mobile-links" aria-label="Mobile case study navigation">
+      <a href="#outcome">Summary</a>
+      <a href="#read-full">Story</a>
+      <a class="detail-link" href="#reflection">Reflection</a>
+    </nav>
+  </header>
+
+  <div class="case-layout">
+    <aside class="side-nav" aria-label="Case study navigation">
+      <a class="back-link" href="index.html" aria-label="Back to portfolio">←</a>
+      <ol id="section-navigation">
+        <li><a href="#outcome">Outcome</a></li>
+        <li><a href="#situation">Situation</a></li>
+        <li><a href="#contribution">Approach &amp; contribution</a></li>
+        <li class="story-preview-link"><a href="#read-full">Full story</a></li>
+      </ol>
+    </aside>
+
+    <main class="case-main">
+      <!-- Replace the title, company line, tags, and hero image. -->
+      <header class="hero reading-column">
+        <h1>Project title goes here</h1>
+        <p class="project-meta">Company name · Year · Project duration · Your role</p>
+        <div class="project-tags" aria-label="Project skills">
+          <span>Product strategy</span>
+          <span>Design research</span>
+          <span>Systems thinking</span>
+        </div>
+        <div class="hero-placeholder" role="img" aria-label="Placeholder for the project hero image">
+          Project hero · 16:9
+        </div>
+        <p class="hero-caption">Add one sentence explaining what the reader should notice in this image.</p>
+      </header>
+
+      <div class="reading-column">
+        <!-- One memorable question that frames the project tension. -->
+        <blockquote class="hook">
+          How might we create a meaningful change for users without compromising the business constraint?
+        </blockquote>
+
+        <!-- TRAILER: a reader should understand the case study before continuing. -->
+        <section class="trailer" aria-label="Executive summary">
+          <section class="summary-section" id="outcome">
+            <h2 class="section-label">Outcome</h2>
+            <ol class="outcome-list">
+              <li>Primary measurable result and why it mattered.</li>
+              <li>Secondary result that shows product, business, or organizational impact.</li>
+            </ol>
+          </section>
+
+          <section class="summary-section" id="situation">
+            <h2 class="section-label">Situation</h2>
+            <p>Explain the user problem and business tension in one short paragraph. Focus on what made this problem worth solving now.</p>
+            <p>End with the insight that changed how the team understood the problem.</p>
+          </section>
+
+          <section class="summary-section" id="contribution">
+            <h2 class="section-label">Approach &amp; contribution</h2>
+            <p>State what you personally owned, the strategic move you introduced, and how you worked with the team to deliver it.</p>
+          </section>
+        </section>
+
+        <!-- FULL STORY: include only evidence and decisions that support the trailer. -->
+        <details class="case-details" id="full-story">
+          <summary class="expand-control" id="read-full">
+            <span class="teaser-content">
+              <span class="teaser-label">Full story preview</span>
+              <span class="teaser-title">01. Frame the real problem</span>
+              <span class="teaser-copy">Give the minimum context required to understand the challenge. Avoid a long company introduction or a chronological diary of activities.</span>
+              <span class="teaser-copy">Use the behavior, data, or operational constraint that proved the visible interface problem was only a symptom.</span>
+            </span>
+            <span class="read-more">See full case study ↓</span>
+          </summary>
+
+          <article class="full-story">
+          <header class="full-story-intro">
+            <h2>The full story</h2>
+            <p>The evidence, decisions, and tradeoffs behind the executive summary.</p>
+          </header>
+
+          <section class="story-section" id="problem">
+            <h2>01. Frame the real problem</h2>
+            <p>Give the minimum context required to understand the challenge. Avoid a long company introduction or a chronological diary of activities.</p>
+            <p><strong>Use evidence.</strong> Include the behavior, data, or operational constraint that proved the visible interface problem was only a symptom.</p>
+            <figure style="margin:0;">
+              <div class="figure-placeholder" role="img" aria-label="Placeholder for research evidence">Research evidence or journey</div>
+              <figcaption class="figure-caption">Explain what the reader should notice in this artifact.</figcaption>
+            </figure>
+          </section>
+
+          <section class="story-section" id="direction">
+            <h2>02. Choose a direction</h2>
+            <p>Show the model, principle, or insight that gave the team a shared direction. This section should make your judgment visible.</p>
+            <ul class="decision-list">
+              <li><span class="decision-number">Decision 01</span><span class="decision-copy">Name the move and explain the tradeoff it resolved.</span></li>
+              <li><span class="decision-number">Decision 02</span><span class="decision-copy">Connect the design choice to user and business evidence.</span></li>
+              <li><span class="decision-number">Decision 03</span><span class="decision-copy">Explain how the solution could scale beyond the first release.</span></li>
+            </ul>
+          </section>
+
+          <section class="story-section" id="design">
+            <h2>03. Make the change tangible</h2>
+            <p>Use a small number of annotated product artifacts. Each visual should prove a decision rather than simply decorate the page.</p>
+            <figure style="margin:0;">
+              <div class="figure-placeholder" role="img" aria-label="Placeholder for final product design">Final design or before / after</div>
+              <figcaption class="figure-caption">Describe the change and why it mattered.</figcaption>
+            </figure>
+          </section>
+
+          <section class="story-section" id="results">
+            <h2>04. Close the loop</h2>
+            <p>Return to the outcomes from the trailer and explain what changed for users, the business, and the team.</p>
+            <ol class="outcome-list">
+              <li><strong>XX%</strong> — primary product or user result.</li>
+              <li><strong>X×</strong> — business, operational, or efficiency result.</li>
+              <li><strong>Y months</strong> — adoption, rollout, or delivery evidence.</li>
+            </ol>
+          </section>
+
+          <section class="story-section reflection" id="reflection">
+            <h2>My reflection</h2>
+            <p>End with the lesson you still use. Name what you would keep, what you would change, and how the project shaped your practice.</p>
+            <p>Avoid generic lessons. The strongest reflection reveals a specific change in how you make product decisions.</p>
+          </section>
+          </article>
+        </details>
+
+        <details class="framework-note">
+          <summary>Template writing order</summary>
+          <ol>
+            <li>Write the outcomes first.</li>
+            <li>Summarize the situation and your contribution.</li>
+            <li>Select two or three decisions that prove the summary.</li>
+            <li>Add only the artifacts required to explain those decisions.</li>
+            <li>Finish with one honest reflection.</li>
+          </ol>
+        </details>
+
+        <footer class="footer">
+          <span>© 2026 Firzan Aulia</span>
+          <a href="index.html">Back to selected work ↑</a>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const sectionNavigation = document.querySelector("#section-navigation");
+    const caseDetails = document.querySelector(".case-details");
+    const summaryHeadings = [...document.querySelectorAll(".summary-section[id] > h2")];
+    const storyHeadings = [...document.querySelectorAll(".story-section[id] > h2")];
+    const allSectionHeadings = [...summaryHeadings, ...storyHeadings];
+
+    const createNavigationItem = (heading, isStorySection = false) => {
+      const section = heading.parentElement;
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+
+      if (isStorySection) item.className = "detail-link story-nav-link";
+      link.href = `#${section.id}`;
+      link.textContent = heading.textContent;
+      item.append(link);
+      return item;
+    };
+
+    const storyPreviewItem = document.createElement("li");
+    const storyPreviewLink = document.createElement("a");
+    storyPreviewItem.className = "story-preview-link";
+    storyPreviewLink.href = "#read-full";
+    storyPreviewLink.textContent = "Full story";
+    storyPreviewItem.append(storyPreviewLink);
+
+    sectionNavigation.replaceChildren(
+      ...summaryHeadings.map((heading) => createNavigationItem(heading)),
+      storyPreviewItem,
+      ...storyHeadings.map((heading) => createNavigationItem(heading, true))
+    );
+
+    const updateCurrentSection = () => {
+      const availableHeadings = caseDetails.open ? allSectionHeadings : summaryHeadings;
+      const readingLine = window.scrollY + 160;
+      let currentSection;
+
+      availableHeadings.forEach((heading) => {
+        const section = heading.parentElement;
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        if (sectionTop <= readingLine) currentSection = section;
+      });
+
+      sectionNavigation.querySelectorAll("a").forEach((link) => {
+        if (link.hash === `#${currentSection?.id}`) {
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    };
+
+    updateCurrentSection();
+    window.addEventListener("scroll", updateCurrentSection, { passive: true });
+    caseDetails.addEventListener("toggle", updateCurrentSection);
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest('a[href^="#"]');
+      if (!link) return;
+
+      const target = document.querySelector(link.hash);
+      if (!target) return;
+
+      event.preventDefault();
+      target.scrollIntoView({
+        behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+        block: "start"
+      });
+      history.pushState(null, "", link.hash);
+    });
+  </script>
+</body>
+</html>
