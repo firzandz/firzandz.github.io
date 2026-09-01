@@ -1,0 +1,79 @@
+/* Firzan Portfolio Design System — semantic tokens */
+:root {
+  color-scheme: dark;
+
+  /* Color */
+  --background: #101010;
+  --surface: #141414;
+  --surface-hover: #181818;
+  --line: #292929;
+  --line-soft: #202020;
+  --text: #f0eee9;
+  --text-secondary: #aaa7a1;
+  --text-tertiary: #73716d;
+  --accent: #ff8a65;
+  --accent-soft: rgba(255, 138, 101, 0.14);
+  --notes-glow: rgba(255, 255, 255, 0.055);
+  --notes-glow-soft: rgba(255, 255, 255, 0.022);
+
+  /* Typography */
+  --font-body: "Inter", Arial, sans-serif;
+  --font-display: "Jacquard 24", cursive;
+  --font-mono: "DM Mono", monospace;
+  --font-javanese: "Noto Sans Javanese", sans-serif;
+  --type-xs: 12px;
+  --type-sm: 13px;
+  --type-md: 14px;
+  --type-lg: 17px;
+  --type-display: clamp(34px, 5vw, 48px);
+  --leading-tight: 1;
+  --leading-sm: 18px;
+  --leading-md: 20px;
+  --leading-copy: 23px;
+  --tracking-body: -0.0064em;
+  --tracking-small: -0.003em;
+
+  /* Space */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 14px;
+  --space-5: 18px;
+  --space-6: 20px;
+  --space-7: 24px;
+  --space-8: 28px;
+  --space-section: 116px;
+  --space-section-first: 96px;
+
+  /* Shape and layout */
+  --radius-sm: 8px;
+  --radius-case-study: 6px;
+  --radius-md: 13px;
+  --radius-lg: 15px;
+  --radius-pill: 999px;
+  --content-width: 650px;
+
+  /* Motion */
+  --duration-fast: 160ms;
+  --duration-base: 180ms;
+  --duration-theme: 220ms;
+  --ease-standard: ease;
+  --dimmed-opacity: 0.28;
+}
+
+body:has(.theme-toggle-input:checked),
+[data-theme="light"] {
+  --background: #f3f0e9;
+  --surface: #ebe7de;
+  --surface-hover: #e4ded3;
+  --line: #d0c9be;
+  --line-soft: #ddd7cd;
+  --text: #191815;
+  --text-secondary: #5e5a53;
+  --text-tertiary: #8a847a;
+  --accent: #e9633a;
+  --accent-soft: rgba(233, 99, 58, 0.13);
+  --notes-glow: rgba(255, 255, 255, 0.72);
+  --notes-glow-soft: rgba(94, 90, 83, 0.045);
+  color-scheme: light;
+}

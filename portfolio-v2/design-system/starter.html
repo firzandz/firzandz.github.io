@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Firzan portfolio page." />
+  <title>New page — Firzan Aulia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&amp;family=Inter:wght@400..600&amp;family=Jacquard+24&amp;family=Noto+Sans+Javanese:wght@400..700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="components.css" />
+</head>
+<body>
+  <input class="theme-toggle-input" type="checkbox" id="theme-toggle" aria-label="Use light mode" />
+  <label class="theme-toggle" for="theme-toggle" title="Switch light and dark mode">
+    <span class="theme-icon theme-icon--sun" aria-hidden="true">☀</span>
+    <span class="theme-icon theme-icon--moon" aria-hidden="true">☾</span>
+    <span class="visually-hidden">Switch light and dark mode</span>
+  </label>
+
+  <main class="page">
+    <header>
+      <div class="profile">
+        <div class="profile-copy">
+          <span class="profile-name">Firzan Aulia</span>
+          <span class="profile-role">Product designer and systems builder.</span>
+        </div>
+      </div>
+
+      <h1 class="hero-headline" aria-label="New page headline.">
+        <span data-typing-text="New page headline.">New page headline.</span><span class="typing-caret" aria-hidden="true"></span>
+      </h1>
+
+      <div class="intro">
+        <p>Use this space for the minimum context a reader needs.</p>
+        <p>Emphasize only the <span class="intro-emphasis">important decision</span> and link to <a class="text-link" href="#">supporting evidence</a>.</p>
+      </div>
+    </header>
+
+    <section class="section" aria-labelledby="example-heading">
+      <h2 class="section-heading" id="example-heading">Section label</h2>
+      <div class="projects-grid">
+        <a class="project-card" href="#">
+          <span class="project-sticker">New</span>
+          <div class="project-visual" aria-hidden="true">
+            <div class="placeholder-visual"></div>
+          </div>
+          <div>
+            <h3 class="project-title">Card title</h3>
+            <p class="project-description">A short outcome-oriented description.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span data-local-greeting>It’s a good time to say hello.</span>
+      <span class="footer-javanese" lang="jv-Java" aria-label="Cetha">ꦕꦼꦛ</span>
+    </footer>
+  </main>
+
+  <script src="behaviors.js"></script>
+</body>
+</html>
