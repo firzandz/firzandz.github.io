@@ -79,11 +79,31 @@
     .theme-icon {
       position: relative;
       z-index: 1;
+      display: grid;
+      place-items: center;
       width: 18px;
-      text-align: center;
+      transition: color 220ms ease;
+    }
+
+    .icon {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      flex: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      vertical-align: -0.125em;
+    }
+
+    .icon--sm {
+      width: 13px;
+      height: 13px;
+    }
+
+    .theme-icon [data-feather] {
+      font-style: normal;
       font-size: 12px;
       line-height: 1;
-      transition: color 220ms ease;
     }
 
     .theme-icon--sun {
@@ -252,16 +272,17 @@
     }
 
     .project-card {
+      --project-surface: var(--surface);
       position: relative;
       display: flex;
-      min-height: 236px;
+      min-height: 308px;
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
       padding: 18px;
       border: 1px solid var(--line);
       border-radius: 15px;
-      background: var(--surface);
+      background: var(--project-surface);
       text-decoration: none;
       box-shadow: inset 0 0 0 3px var(--background);
       transition:
@@ -273,9 +294,10 @@
     }
 
     .project-card:hover {
+      --project-surface: var(--surface-hover);
       transform: translateY(-3px);
       border-color: #414141;
-      background: var(--surface-hover);
+      background: var(--project-surface);
     }
 
     @media (hover: hover) {
@@ -315,66 +337,159 @@
     }
 
     .project-visual--image {
-      min-height: 164px;
-      margin: -18px -18px 14px;
+      min-height: 198px;
+      margin: -18px -18px 16px;
       overflow: hidden;
       border-bottom: 1px solid var(--line);
     }
 
     .placeholder-visual {
       position: relative;
-      width: min(84%, 190px);
-      height: 116px;
+      width: min(calc(100% - 36px), 276px);
+      height: 166px;
       overflow: hidden;
-      border: 1px dashed var(--text-tertiary);
-      border-radius: 13px;
-      background: repeating-linear-gradient(
-        135deg,
-        var(--surface) 0,
-        var(--surface) 12px,
-        var(--surface-hover) 12px,
-        var(--surface-hover) 13px
-      );
+      background: transparent;
     }
 
     .placeholder-visual::before {
       content: "";
       position: absolute;
-      inset: 12px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
+      z-index: 1;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18px 18px, transparent 0 7px, var(--text-tertiary) 7.5px 8px, transparent 8.5px),
+        radial-gradient(circle at calc(100% - 18px) 18px, transparent 0 7px, var(--text-tertiary) 7.5px 8px, transparent 8.5px),
+        linear-gradient(var(--text-tertiary), var(--text-tertiary)) 0 18px / 100% 1px no-repeat,
+        linear-gradient(var(--text-tertiary), var(--text-tertiary)) 18px 0 / 1px 100% no-repeat,
+        linear-gradient(var(--text-tertiary), var(--text-tertiary)) calc(100% - 18px) 0 / 1px 100% no-repeat;
+      opacity: 0.34;
+      pointer-events: none;
+      transition: opacity 180ms ease;
     }
 
     .placeholder-visual::after {
-      content: "+";
+      content: "";
       position: absolute;
-      top: 50%;
-      left: 50%;
-      display: grid;
-      width: 32px;
-      height: 32px;
-      place-items: center;
-      border: 1px solid var(--accent);
-      border-radius: 50%;
-      background: var(--surface);
-      color: var(--text);
-      font-family: "DM Mono", monospace;
-      font-size: 13px;
-      transform: translate(-50%, -50%);
+      z-index: 3;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 30%;
+      background: linear-gradient(to bottom, transparent, var(--project-surface) 96%);
+      pointer-events: none;
+      transition: height 220ms ease, opacity 180ms ease;
     }
 
-    .placeholder-visual span {
+    .project-thumbnail-image {
       position: absolute;
+      z-index: 2;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-thumbnail-image:not([src]) { display: none; }
+    .placeholder-visual:has(.project-thumbnail-image[src]) .placeholder-browser { opacity: 0; }
+
+    .placeholder-browser {
+      position: absolute;
+      z-index: 2;
+      top: 28px;
       right: 24px;
-      bottom: 22px;
+      bottom: -4px;
       left: 24px;
-      height: 1px;
-      background: var(--line);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--background);
+      transition: border-color 180ms ease;
     }
 
-    .placeholder-visual span + span {
-      right: 50%;
-      bottom: 16px;
+    .project-card:hover .placeholder-visual::after,
+    .project-card:focus-visible .placeholder-visual::after {
+      height: 8%;
+      opacity: 0;
+    }
+
+    .project-card:hover .placeholder-visual::before,
+    .project-card:focus-visible .placeholder-visual::before {
+      opacity: 0.48;
+    }
+
+    .project-card:hover .placeholder-browser,
+    .project-card:focus-visible .placeholder-browser {
+      border-color: var(--text-tertiary);
+    }
+
+    .placeholder-visual--dash .placeholder-browser,
+    .placeholder-visual--dash .placeholder-line--field {
+      border-style: dashed;
+    }
+
+    .placeholder-visual--dash .placeholder-line:not(.placeholder-line--field) {
+      background: repeating-linear-gradient(90deg, var(--line) 0 7px, transparent 7px 11px);
+    }
+
+    .placeholder-visual--pencil .placeholder-browser {
+      border-radius: 11px 8px 12px 9px;
+      box-shadow: 2px 1px 0 -1px var(--line-soft);
+      transform: rotate(-0.45deg);
+      transform-origin: center;
+    }
+
+    .placeholder-visual--pencil .placeholder-line {
+      box-shadow: 0 1px 0 color-mix(in srgb, var(--line) 55%, transparent);
+      transform: rotate(-0.7deg);
+    }
+
+    .placeholder-visual--pencil .placeholder-line--copy,
+    .placeholder-visual--pencil .placeholder-line--action {
+      transform: rotate(0.8deg);
+    }
+
+    .placeholder-toolbar {
+      display: block;
+      height: 18px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .placeholder-toolbar::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 9px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--text-tertiary);
+      box-shadow: 8px 0 0 var(--line), 16px 0 0 var(--text-secondary);
+    }
+
+    .placeholder-line {
+      position: absolute;
+      left: 18px;
+      display: block;
+      height: 5px;
+      border-radius: 2px;
+      background: var(--line-soft);
+    }
+
+    .placeholder-line--title { top: 36px; width: 34%; height: 7px; background: var(--line); }
+    .placeholder-line--copy { top: 51px; width: 26%; }
+    .placeholder-line--field { top: 67px; width: 48%; height: 10px; border: 1px solid var(--line); background: transparent; }
+    .placeholder-line--action { top: 86px; width: 20%; height: 9px; background: var(--text-tertiary); }
+
+    .placeholder-browser::after {
+      content: "";
+      position: absolute;
+      top: 19px;
+      right: 0;
+      bottom: 0;
+      width: 42%;
+      border-left: 1px solid var(--line-soft);
+      background: var(--surface-hover);
+      opacity: 0.45;
     }
 
     .project-title {
@@ -694,6 +809,77 @@
     .project-row:hover .stacked-panels span:nth-child(1) { transform: translateX(-4px) rotate(-10deg); }
     .project-row:hover .stacked-panels span:nth-child(3) { transform: translateX(4px) rotate(11deg); }
 
+    /* ── Testimonials ── */
+    .testimonial-avatar {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background:
+        radial-gradient(circle at 66% 30%, var(--accent-soft), transparent 38%),
+        var(--surface-hover);
+      color: var(--text-tertiary);
+      font-family: "DM Mono", monospace;
+      font-size: 9px;
+      line-height: 1;
+    }
+
+    .testimonial-person {
+      display: flex;
+      min-width: 0;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .testimonial-person-copy {
+      min-width: 0;
+    }
+
+    .testimonial-name,
+    .testimonial-title {
+      display: block;
+    }
+
+    .testimonial-name {
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 18px;
+    }
+
+    .testimonial-title {
+      overflow: hidden;
+      color: var(--text-tertiary);
+      font-size: 11px;
+      line-height: 16px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .testimonial-quote {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 19px;
+    }
+
+    .testimonial-list {
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .testimonial-list-item {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.72fr) minmax(0, 1.8fr);
+      gap: 24px;
+      align-items: start;
+      margin: 0;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
     /* ── Writing ── */
     .writing-list {
       display: grid;
@@ -902,6 +1088,11 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
         grid-template-columns: 1fr;
       }
 
+      .testimonial-list-item {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
       .project-row {
         min-height: 136px;
         grid-template-columns: 112px minmax(0, 1fr);
@@ -995,8 +1186,8 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
 <body>
   <input class="theme-toggle-input" type="checkbox" id="theme-toggle" aria-label="Use light mode" />
   <label class="theme-toggle" for="theme-toggle" title="Switch light and dark mode">
-    <span class="theme-icon theme-icon--sun" aria-hidden="true">☀</span>
-    <span class="theme-icon theme-icon--moon" aria-hidden="true">☾</span>
+    <span class="theme-icon theme-icon--sun" aria-hidden="true"><i class="icon icon--sm" data-feather="sun">☀</i></span>
+    <span class="theme-icon theme-icon--moon" aria-hidden="true"><i class="icon icon--sm" data-feather="moon">☾</i></span>
     <span class="visually-hidden">Switch light and dark mode</span>
   </label>
 
@@ -1040,7 +1231,16 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
         <a class="project-card" href="case-study-template.html" aria-label="View OVO Nabung case study template">
           <span class="project-sticker">New</span>
           <div class="project-visual project-visual--image" aria-hidden="true">
-            <div class="placeholder-visual"><span></span><span></span></div>
+            <div class="placeholder-visual placeholder-visual--pencil">
+              <img class="project-thumbnail-image" alt="" />
+              <div class="placeholder-browser">
+                <span class="placeholder-toolbar"></span>
+                <span class="placeholder-line placeholder-line--title"></span>
+                <span class="placeholder-line placeholder-line--copy"></span>
+                <span class="placeholder-line placeholder-line--field"></span>
+                <span class="placeholder-line placeholder-line--action"></span>
+              </div>
+            </div>
           </div>
           <div>
             <h3 class="project-title">OVO Nabung</h3>
@@ -1051,7 +1251,16 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
         <a class="project-card" href="bridex-case-study.html" aria-label="View BRIDex case study">
           <span class="project-sticker project-sticker--strategy">Design Strategy</span>
           <div class="project-visual project-visual--image" aria-hidden="true">
-            <div class="placeholder-visual"><span></span><span></span></div>
+            <div class="placeholder-visual placeholder-visual--dash">
+              <img class="project-thumbnail-image" alt="" />
+              <div class="placeholder-browser">
+                <span class="placeholder-toolbar"></span>
+                <span class="placeholder-line placeholder-line--title"></span>
+                <span class="placeholder-line placeholder-line--copy"></span>
+                <span class="placeholder-line placeholder-line--field"></span>
+                <span class="placeholder-line placeholder-line--action"></span>
+              </div>
+            </div>
           </div>
           <div>
             <h3 class="project-title">BRIDex</h3>
@@ -1062,7 +1271,16 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
         <a class="project-card" href="case-study-template.html" aria-label="View Building a Bank from Scratch case study template">
           <span class="project-sticker project-sticker--ecosystem">Ecosystem</span>
           <div class="project-visual project-visual--image" aria-hidden="true">
-            <div class="placeholder-visual"><span></span><span></span></div>
+            <div class="placeholder-visual placeholder-visual--pencil">
+              <img class="project-thumbnail-image" alt="" />
+              <div class="placeholder-browser">
+                <span class="placeholder-toolbar"></span>
+                <span class="placeholder-line placeholder-line--title"></span>
+                <span class="placeholder-line placeholder-line--copy"></span>
+                <span class="placeholder-line placeholder-line--field"></span>
+                <span class="placeholder-line placeholder-line--action"></span>
+              </div>
+            </div>
           </div>
           <div>
             <h3 class="project-title">Building a Bank from Scratch</h3>
@@ -1073,7 +1291,16 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
         <a class="project-card project-card--coming-soon" href="case-study-template.html" aria-label="View BRImo Homepage case study template">
           <span class="project-sticker project-sticker--incoming">Coming soon</span>
           <div class="project-visual project-visual--image" aria-hidden="true">
-            <div class="placeholder-visual"><span></span><span></span></div>
+            <div class="placeholder-visual placeholder-visual--dash">
+              <img class="project-thumbnail-image" alt="" />
+              <div class="placeholder-browser">
+                <span class="placeholder-toolbar"></span>
+                <span class="placeholder-line placeholder-line--title"></span>
+                <span class="placeholder-line placeholder-line--copy"></span>
+                <span class="placeholder-line placeholder-line--field"></span>
+                <span class="placeholder-line placeholder-line--action"></span>
+              </div>
+            </div>
           </div>
           <div>
             <h3 class="project-title">BRImo Homepage</h3>
@@ -1122,6 +1349,35 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
       </div>
     </section>
 
+    <section class="section" aria-labelledby="testimonials-heading">
+      <h2 class="section-heading" id="testimonials-heading">Testimonials</h2>
+
+      <!-- Testimonial names, titles, and profile photos remain placeholders until provided. -->
+      <div class="testimonial-list">
+        <figure class="testimonial-list-item">
+          <figcaption class="testimonial-person">
+            <span class="testimonial-avatar" aria-hidden="true">01</span>
+            <span class="testimonial-person-copy">
+              <span class="testimonial-name">Reza R.</span>
+              <span class="testimonial-title">Product Designer</span>
+            </span>
+          </figcaption>
+          <blockquote class="testimonial-quote">I had a great experience working under his leadership during my time at BRI Bank. He’s a true Product Design Lead with strong critical thinking and problem-solving skills. We worked together on a mobile banking revamp project and collaborated closely to build a multi-brand design system from scratch in banking. He would definitely be a great asset to any company or team.</blockquote>
+        </figure>
+
+        <figure class="testimonial-list-item">
+          <figcaption class="testimonial-person">
+            <span class="testimonial-avatar" aria-hidden="true">02</span>
+            <span class="testimonial-person-copy">
+              <span class="testimonial-name">Annisa Permatasari</span>
+              <span class="testimonial-title">Head of Product · Superbank</span>
+            </span>
+          </figcaption>
+          <blockquote class="testimonial-quote">I’ve worked with Firzan as a design lead and it’s been refreshing. He doesn’t just execute, he thinks deeply and designs with intention. From “Pensil Ajaib” to “Sanggar,” he builds with real purpose. A rare mix of craft, curiosity, and collaboration.</blockquote>
+        </figure>
+      </div>
+    </section>
+
     <section class="section notes-card" aria-labelledby="notes-heading">
       <h2 id="notes-heading">Notes from the messy middle</h2>
       <p>
@@ -1143,6 +1399,7 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
     </footer>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/feather.min.js"></script>
   <script src="design-system/behaviors.js"></script>
 
 </body>

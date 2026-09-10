@@ -14,8 +14,8 @@
 <body>
   <input class="theme-toggle-input" type="checkbox" id="theme-toggle" aria-label="Use light mode" />
   <label class="theme-toggle" for="theme-toggle" title="Switch light and dark mode">
-    <span class="theme-icon theme-icon--sun" aria-hidden="true">☀</span>
-    <span class="theme-icon theme-icon--moon" aria-hidden="true">☾</span>
+    <span class="theme-icon theme-icon--sun" aria-hidden="true"><i class="icon icon--sm" data-feather="sun">☀</i></span>
+    <span class="theme-icon theme-icon--moon" aria-hidden="true"><i class="icon icon--sm" data-feather="moon">☾</i></span>
     <span class="visually-hidden">Switch light and dark mode</span>
   </label>
 
@@ -44,7 +44,16 @@
         <a class="project-card" href="#">
           <span class="project-sticker">New</span>
           <div class="project-visual" aria-hidden="true">
-            <div class="placeholder-visual"></div>
+            <div class="placeholder-visual placeholder-visual--pencil">
+              <img class="project-thumbnail-image" alt="" />
+              <div class="placeholder-browser">
+                <span class="placeholder-toolbar"></span>
+                <span class="placeholder-line placeholder-line--title"></span>
+                <span class="placeholder-line placeholder-line--copy"></span>
+                <span class="placeholder-line placeholder-line--field"></span>
+                <span class="placeholder-line placeholder-line--action"></span>
+              </div>
+            </div>
           </div>
           <div>
             <h3 class="project-title">Card title</h3>
@@ -60,6 +69,7 @@
     </footer>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/feather.min.js"></script>
   <script src="behaviors.js"></script>
 </body>
 </html>
