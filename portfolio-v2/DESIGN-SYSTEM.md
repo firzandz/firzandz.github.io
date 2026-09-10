@@ -7,8 +7,8 @@ This package captures the visual language of the accepted `portfolio-v2` homepag
 | File | Purpose |
 | --- | --- |
 | `design-system/tokens.css` | Semantic color, type, spacing, radius, layout, and motion tokens. |
-| `design-system/components.css` | Reusable page shell, typography, cards, writing rows, form, theme switcher, and footer. |
-| `design-system/behaviors.js` | Optional typing headline and live local greeting. |
+| `design-system/components.css` | Reusable page shell, typography, icons, cards, writing rows, form, theme switcher, and footer. |
+| `design-system/behaviors.js` | Feather icon setup, optional typing headline, and live local greeting. |
 | `design-system/starter.html` | Copy-ready page scaffold using the system. |
 | `design-system/case-study.css` | Shared case-study layout, typography, navigation, sections, and responsive rules. |
 | `design-system/case-study.js` | Shared case-study navigation, progressive disclosure, and anchor behavior. |
@@ -25,7 +25,12 @@ Use the same font request, then load tokens before components:
 <link rel="stylesheet" href="design-system/components.css" />
 ```
 
-Add `design-system/behaviors.js` only when the page uses the typing headline or local greeting.
+Load the pinned Feather script before `design-system/behaviors.js` when the page uses icons, the typing headline, or the local greeting:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/feather.min.js"></script>
+<script src="design-system/behaviors.js"></script>
+```
 
 ## Foundations
 
@@ -84,6 +89,16 @@ Do not tighten paragraph line-height to solve vertical spacing. Adjust paragraph
 
 ## Components
 
+### Icons
+
+Feather is the system icon set. Use `.icon` for the shared stroke treatment and `.icon--sm` for compact controls:
+
+```html
+<i class="icon icon--sm" data-feather="sun" aria-hidden="true">☀</i>
+```
+
+Keep a simple text glyph inside the element as a fallback if the CDN is unavailable. Icons that do not add meaning should be hidden from assistive technology; meaningful icon-only controls still need an accessible label.
+
 ### Theme switcher
 
 Classes: `.theme-toggle-input`, `.theme-toggle`, `.theme-icon`.
@@ -112,7 +127,10 @@ Classes: `.projects-grid`, `.project-card`, `.project-visual`, `.placeholder-vis
 - Desktop uses a two-column grid; mobile collapses to one column.
 - Cards dim their siblings on hover/focus to make the selected work clearer.
 - The visual region is larger than the copy region.
-- Until final artwork exists, use the same neutral placeholder structure for every project.
+- Until final artwork exists, use the same neutral browser-frame placeholder for every project. One visible frame sits over a horizontal guide, two vertical guides, circular intersections, and a lower fade—suggesting an interface without creating a second card inside the project card.
+- Every placeholder includes an empty `.project-thumbnail-image`. Add its `src` when artwork is ready; the image replaces the browser sketch while retaining the frame and lower fade.
+- Use `.placeholder-visual--dash` for a measured wireframe or `.placeholder-visual--pencil` for a rougher early-stage sketch. Alternate only when it helps distinguish the nature of the work.
+- The lower fade retreats on hover or keyboard focus so the interface becomes fully legible; construction lines strengthen slightly at the same time.
 - Add `.project-card--coming-soon` for unavailable work.
 
 Sticker variants:

@@ -1,5 +1,9 @@
 /* Reusable progressive enhancements. The page remains readable without JS. */
 (() => {
+  if (window.feather) {
+    window.feather.replace();
+  }
+
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   document.querySelectorAll("[data-typing-text]").forEach((headline) => {

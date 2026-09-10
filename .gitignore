@@ -1,0 +1,18 @@
+# OpenKnowledge regenerates its built-in project skill on every open, and
+# different app builds version-stamp it differently. It is a per-machine
+# artifact — keep it out of git so teammates don't collide under auto-sync.
+.claude/skills/open-knowledge/
+.cursor/skills/open-knowledge/
+.codex/skills/open-knowledge/
+.github/skills/open-knowledge/
+.opencode/skills/open-knowledge/
+.pi/skills/open-knowledge/
+
+# Private/local working material. Public-safe outputs are copied into the site.
+external-sources/
+.DS_Store
+**/.DS_Store
+
+# Personal agent skills belong in global Codex storage, outside this website.
+.agents/skills/
+skills-lock.json
