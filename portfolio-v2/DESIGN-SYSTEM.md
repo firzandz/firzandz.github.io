@@ -8,7 +8,7 @@ This package captures the visual language of the accepted `portfolio-v2` homepag
 | --- | --- |
 | `design-system/tokens.css` | Semantic color, type, spacing, radius, layout, and motion tokens. |
 | `design-system/components.css` | Reusable page shell, typography, icons, cards, writing rows, form, theme switcher, and footer. |
-| `design-system/behaviors.js` | Feather icon setup, optional typing headline, and live local greeting. |
+| `design-system/behaviors.js` | Feather icon setup, same-page smooth scrolling, optional typing headline, and live local greeting. |
 | `design-system/starter.html` | Copy-ready page scaffold using the system. |
 | `design-system/case-study.css` | Shared case-study layout, typography, navigation, sections, and responsive rules. |
 | `design-system/case-study.js` | Shared case-study navigation, progressive disclosure, and anchor behavior. |
@@ -173,6 +173,10 @@ Classes: `.footer`, `.footer-javanese`; behavior attribute: `data-local-greeting
 - The footer sits flush with the page bottom.
 
 ## Behaviors
+
+### Smooth scrolling
+
+Same-page anchor links scroll to their target through the shared behavior script. Modified clicks, downloads, external links, links opening a new tab, and empty `#` placeholders retain their normal behavior. Visitors who prefer reduced motion move to the target immediately.
 
 ### Typing headline
 

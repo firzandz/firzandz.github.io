@@ -1,4 +1,4 @@
-// Shared case-study navigation, progressive disclosure, and anchor behavior.
+// Shared case-study navigation and progressive disclosure.
 const sectionNavigation = document.querySelector("#section-navigation");
     const caseDetails = document.querySelector(".case-details");
     const summaryHeadings = [...document.querySelectorAll(".summary-section[id] > h2")];
@@ -53,20 +53,3 @@ const sectionNavigation = document.querySelector("#section-navigation");
     updateCurrentSection();
     window.addEventListener("scroll", updateCurrentSection, { passive: true });
     caseDetails.addEventListener("toggle", updateCurrentSection);
-
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    document.addEventListener("click", (event) => {
-      const link = event.target.closest('a[href^="#"]');
-      if (!link) return;
-
-      const target = document.querySelector(link.hash);
-      if (!target) return;
-
-      event.preventDefault();
-      target.scrollIntoView({
-        behavior: prefersReducedMotion.matches ? "auto" : "smooth",
-        block: "start"
-      });
-      history.pushState(null, "", link.hash);
-    });

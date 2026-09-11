@@ -61,6 +61,7 @@
       box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
       cursor: pointer;
       transition: background-color 220ms ease, border-color 220ms ease;
+      animation: homepage-control-enter 420ms ease-out 140ms both;
     }
 
     .theme-toggle::before {
@@ -146,6 +147,31 @@
       width: min(calc(100% - 40px), var(--content-width));
       margin: 0 auto;
       padding: 96px 0 0;
+      animation: homepage-enter 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes homepage-enter {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes homepage-control-enter {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
     }
 
     /* ── Intro ── */
@@ -1038,9 +1064,29 @@
       text-align: center;
     }
 
-    #local-greeting {
+    .footer-greeting {
       position: relative;
       z-index: 1;
+      display: inline-flex;
+      align-self: flex-start;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .footer-greeting-icon {
+      display: grid;
+      width: 14px;
+      height: 14px;
+      flex: none;
+      place-items: center;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .footer-greeting-icon svg {
+      display: block;
+      width: 14px;
+      height: 14px;
     }
 
 .footer-javanese {
@@ -1178,6 +1224,8 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
 
       *, *::before, *::after {
         transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
       }
     }
   </style>
@@ -1359,7 +1407,7 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
             <span class="testimonial-avatar" aria-hidden="true">01</span>
             <span class="testimonial-person-copy">
               <span class="testimonial-name">Reza R.</span>
-              <span class="testimonial-title">Product Designer</span>
+              <span class="testimonial-title">Product Designer · Qatar Airways</span>
             </span>
           </figcaption>
           <blockquote class="testimonial-quote">I had a great experience working under his leadership during my time at BRI Bank. He’s a true Product Design Lead with strong critical thinking and problem-solving skills. We worked together on a mobile banking revamp project and collaborated closely to build a multi-brand design system from scratch in banking. He would definitely be a great asset to any company or team.</blockquote>
@@ -1369,32 +1417,21 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
           <figcaption class="testimonial-person">
             <span class="testimonial-avatar" aria-hidden="true">02</span>
             <span class="testimonial-person-copy">
-              <span class="testimonial-name">Annisa Permatasari</span>
-              <span class="testimonial-title">Head of Product · Superbank</span>
+              <span class="testimonial-name">Melin Ayundai</span>
+              <span class="testimonial-title">Research Lead · BRI</span>
             </span>
           </figcaption>
-          <blockquote class="testimonial-quote">I’ve worked with Firzan as a design lead and it’s been refreshing. He doesn’t just execute, he thinks deeply and designs with intention. From “Pensil Ajaib” to “Sanggar,” he builds with real purpose. A rare mix of craft, curiosity, and collaboration.</blockquote>
+          <blockquote class="testimonial-quote">I had the chance to work closely with Firzan during the BRImo Revamp project at BRI, where I was part of the UX Research team and he led the Product Design. Firzan is one of those designers who brings a clear design vision while staying deeply grounded in user insights. He translates complex research findings into practical, elegant design solutions that truly improve the user experience.
+</blockquote>
         </figure>
       </div>
     </section>
 
-    <section class="section notes-card" aria-labelledby="notes-heading">
-      <h2 id="notes-heading">Notes from the messy middle</h2>
-      <p>
-        Occasional reflections on product craft, teams, and turning uncertain problems
-        into useful things.
-      </p>
-
-      <form class="signup" action="#" method="post">
-        <label for="email" style="position:absolute;left:-9999px;">Email address</label>
-        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" />
-        <button type="submit">Subscribe</button>
-      </form>
-      <span class="form-note">Demo only — this form is not connected yet.</span>
-    </section>
-
     <footer class="footer">
-      <span id="local-greeting" data-local-greeting>It’s a good time to say hello.</span>
+      <span class="footer-greeting">
+        <span class="footer-greeting-icon" data-local-greeting-icon aria-hidden="true">☀</span>
+        <span id="local-greeting" data-local-greeting>It’s a good time to say hello.</span>
+      </span>
       <span class="footer-javanese" lang="jv-Java" aria-label="Cetha">ꦕꦼꦛ</span>
     </footer>
   </main>
