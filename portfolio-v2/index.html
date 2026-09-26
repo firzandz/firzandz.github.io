@@ -364,38 +364,38 @@
 
     .list-item--card .list-item-title {
       color: var(--text);
-      font-size: 15px;
+      font-size: var(--type-md);
       font-weight: 500;
       letter-spacing: -0.0064em;
-      line-height: 1.4;
+      line-height: var(--leading-md);
     }
 
     .list-item--card .list-item-subtitle {
       margin-top: 4px;
       color: var(--text-secondary);
-      font-size: 14px;
+      font-size: var(--type-xs);
       font-weight: 460;
       letter-spacing: -0.003em;
-      line-height: 1.43;
+      line-height: var(--leading-sm);
       text-wrap: pretty;
     }
 
     /* List component — row variant is shared by writing and testimonial attribution. */
     .list-item--row .list-item-title {
       color: var(--text);
-      font-size: 14px;
+      font-size: var(--type-md);
       font-weight: 500;
       letter-spacing: -0.0064em;
-      line-height: 1.43;
+      line-height: var(--leading-md);
     }
 
     .list-item--row .list-item-subtitle {
       margin-top: 2px;
       color: var(--text-secondary);
-      font-size: 13px;
+      font-size: var(--type-xs);
       font-weight: 460;
       letter-spacing: -0.003em;
-      line-height: 1.38;
+      line-height: var(--leading-sm);
       text-wrap: pretty;
     }
 
@@ -810,15 +810,15 @@
     }
 
     .project-sticker--ecosystem {
-      background: #b8dfd0;
-      color: #14332d;
+      background: #f2c94c;
+      color: #20170e;
       font-size: 10px;
       transform: rotate(2deg);
     }
 
     .project-sticker--strategy {
-      background: #d8c9ff;
-      color: #251d3c;
+      background: #f2c94c;
+      color: #20170e;
       font-size: 10px;
       transform: rotate(-2deg);
     }
@@ -900,9 +900,9 @@
       max-width: none;
       margin: 0;
       color: var(--text);
-      font-size: clamp(17px, 2vw, 20px);
+      font-size: 18px;
       font-weight: 460;
-      letter-spacing: -0.018em;
+      letter-spacing: -0.012em;
       line-height: 1.5;
       text-wrap: pretty;
     }
@@ -1215,11 +1215,6 @@ body[data-theme="light"] .footer-javanese {
 
       .testimonial-stage {
         padding-top: 20px;
-      }
-
-      .testimonial-quote {
-        font-size: 17px;
-        line-height: 1.5;
       }
 
       .project-row {
