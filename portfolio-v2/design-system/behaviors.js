@@ -6,6 +6,68 @@
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  const themeOptions = Array.from(document.querySelectorAll("[name=theme]"));
+  const themeToggle = document.querySelector(".theme-toggle-input");
+  const colorScheme = window.matchMedia("(prefers-color-scheme: light)");
+
+  function readSavedTheme() {
+    try {
+      const savedTheme = window.localStorage.getItem("portfolio-theme");
+      return ["system", "light", "dark"].includes(savedTheme) ? savedTheme : "system";
+    } catch {
+      return "system";
+    }
+  }
+
+  function setTheme(theme, save = false) {
+    if (save) {
+      const transitionBlocker = document.createElement("style");
+      transitionBlocker.textContent = "*,*::before,*::after{transition:none!important}";
+      document.head.append(transitionBlocker);
+      void document.documentElement.offsetWidth;
+      window.requestAnimationFrame(() => transitionBlocker.remove());
+    }
+
+    document.body.dataset.theme = theme;
+    themeOptions.forEach((option) => {
+      option.checked = option.value === theme;
+    });
+
+    if (themeToggle) {
+      const isLight = theme === "light" || (theme === "system" && colorScheme.matches);
+      themeToggle.checked = isLight;
+      themeToggle.setAttribute("aria-label", isLight ? "Use dark mode" : "Use light mode");
+    }
+
+    if (save) {
+      try {
+        window.localStorage.setItem("portfolio-theme", theme);
+      } catch {
+        // The chosen theme still applies for this visit if storage is unavailable.
+      }
+    }
+  }
+
+  if (themeOptions.length || themeToggle) {
+    setTheme(readSavedTheme());
+  }
+
+  if (themeOptions.length) {
+    themeOptions.forEach((option) => {
+      option.addEventListener("change", () => setTheme(option.value, true));
+    });
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("change", () => {
+      setTheme(themeToggle.checked ? "light" : "dark", true);
+    });
+
+    colorScheme.addEventListener("change", () => {
+      if (readSavedTheme() === "system") setTheme("system");
+    });
+  }
+
   document.addEventListener("click", (event) => {
     if (
       event.defaultPrevented ||
@@ -71,6 +133,83 @@
     }
 
     window.setTimeout(type, 600);
+  });
+
+  document.querySelectorAll("[data-testimonials]").forEach((testimonialStage) => {
+    const slides = Array.from(testimonialStage.querySelectorAll("[data-testimonial]"));
+    const status = testimonialStage.querySelector("[data-testimonial-status]");
+    const steps = Array.from(testimonialStage.querySelectorAll("[data-testimonial-step]"));
+    const rotationDelay = 6500;
+    let activeIndex = 0;
+    let rotationTimer;
+
+    if (!slides.length || steps.length !== slides.length) return;
+
+    function renderTestimonial(announce = false, animate = false) {
+      slides.forEach((slide, index) => {
+        slide.hidden = index !== activeIndex;
+        slide.classList.remove("testimonial-slide--enter");
+      });
+
+      steps.forEach((step, index) => {
+        step.setAttribute("aria-current", String(index === activeIndex));
+      });
+
+      if (animate && !reducedMotion) {
+        const activeSlide = slides[activeIndex];
+        // Restart the entrance animation after the previous slide has left the flow.
+        void activeSlide.offsetWidth;
+        activeSlide.classList.add("testimonial-slide--enter");
+      }
+
+      if (announce && status) {
+        const person = slides[activeIndex].querySelector(".testimonial-name")?.textContent;
+        status.textContent = `Showing testimonial ${activeIndex + 1} of ${slides.length}${person ? `, from ${person}` : ""}.`;
+      }
+    }
+
+    function stopRotation() {
+      window.clearTimeout(rotationTimer);
+    }
+
+    function startRotation() {
+      stopRotation();
+      if (reducedMotion || document.hidden) return;
+
+      rotationTimer = window.setTimeout(() => {
+        activeIndex = (activeIndex + 1) % slides.length;
+        renderTestimonial(false, true);
+        startRotation();
+      }, rotationDelay);
+    }
+
+    steps.forEach((step, index) => {
+      step.addEventListener("click", () => {
+        if (activeIndex !== index) {
+          activeIndex = index;
+          renderTestimonial(true, true);
+        }
+        startRotation();
+      });
+    });
+
+    testimonialStage.addEventListener("mouseenter", stopRotation);
+    testimonialStage.addEventListener("mouseleave", startRotation);
+    testimonialStage.addEventListener("focusin", stopRotation);
+    testimonialStage.addEventListener("focusout", () => {
+      window.setTimeout(() => {
+        if (!testimonialStage.matches(":focus-within")) startRotation();
+      });
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stopRotation();
+      else startRotation();
+    });
+
+    testimonialStage.dataset.testimonialsReady = "";
+    renderTestimonial();
+    startRotation();
   });
 
   const greetings = document.querySelectorAll("[data-local-greeting]");

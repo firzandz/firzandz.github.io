@@ -103,7 +103,7 @@ Keep a simple text glyph inside the element as a fallback if the CDN is unavaila
 
 Classes: `.theme-toggle-input`, `.theme-toggle`, `.theme-icon`.
 
-The checkbox changes semantic tokens through `:has()`. Keep it near the start of `<body>` so it can theme the whole page.
+The case-study checkbox is connected by `behaviors.js`. It resolves the saved system theme on load, then saves an explicit light or dark choice when toggled. Keep it near the start of `<body>` so it initializes before the page controls.
 
 ### Identity and page opening
 
@@ -156,11 +156,14 @@ The card uses neutral radial light rather than an orange gradient. Inputs use th
 
 ### Case study components
 
-Classes: `.case-study-highlight`, `.case-decision-label`, `.case-study-card`.
+Classes: `.case-study-quote`, `.case-decision-label`, `.case-study-card`, `.case-study-references`.
 
-- Use `.case-study-highlight` for the single framing question or pivotal insight. It combines an accent edge with `--accent-soft`; do not use it for ordinary paragraphs.
+- Keep case-study typography to three families: Inter for titles and reading, DM Mono for quiet utility labels, and Noto Sans Javanese only for the footer mark.
+- Use five size roles: 13px annotation, 14px label, 16px body, the shared responsive story heading, and the shared responsive hero title. Do not add page-specific prose sizes.
+- Use `.case-study-quote` for the single framing question or pivotal insight. It combines an accent edge with `--accent-soft`; do not use it for ordinary paragraphs. `.case-study-highlight` remains a compatibility alias for existing case studies.
 - Use `.case-decision-label` for compact decision indexes. Decision labels use Inter—not DM Mono—so they remain part of the editorial narrative.
 - Use `.case-study-card` for reflection, learning, and closing synthesis. It is intentionally plain: a solid surface, one-pixel border, six-pixel radius, and no homepage notes-card glow.
+- Use `.case-study-references` as the quiet citation footer after the case-study narrative. Keep references in Inter at annotation size and separate them from the story with one subtle rule.
 - Keep homepage `.notes-card` and `.case-study-card` separate. They serve different contexts and should not be visually merged.
 
 ### Footer

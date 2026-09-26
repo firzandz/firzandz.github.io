@@ -73,7 +73,10 @@ a { color: inherit; }
   background: var(--surface);
   box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
   cursor: pointer;
+  transition: scale var(--duration-fast) cubic-bezier(0.2, 0, 0, 1);
 }
+
+.theme-toggle:active { scale: 0.96; }
 
 .theme-toggle::before {
   content: "";
@@ -379,13 +382,139 @@ header + .section { margin-top: var(--space-section-first); }
 .form-note { display: block; margin-top: 10px; color: var(--text-tertiary); font-size: var(--type-xs); }
 
 /* ── Case study components ── */
+/* Per case study, set the accent, border, surface, padding, or width variables below. */
+.diagram-panel {
+  --diagram-panel-accent: var(--accent);
+  --diagram-panel-border: var(--line);
+  --diagram-panel-surface: var(--surface);
+  --diagram-panel-padding: var(--space-6);
+  --diagram-panel-width: 100%;
+  display: grid;
+  width: min(100%, var(--diagram-panel-width));
+  gap: var(--space-4);
+  margin: var(--space-8) 0 34px;
+  padding: var(--diagram-panel-padding);
+  border: 1px solid var(--diagram-panel-border);
+  border-radius: var(--radius-case-study);
+  background: var(--diagram-panel-surface);
+}
+
+.dotted-grid-surface,
+.diagram-panel--grid {
+  --diagram-grid-dot: color-mix(in srgb, var(--text) 5%, transparent);
+  background-color: var(--diagram-panel-surface, var(--surface));
+  background-image: radial-gradient(circle, var(--diagram-grid-dot) 0 1px, transparent 1.2px);
+  background-position: 0 0;
+  background-size: 9px 9px;
+}
+
+.diagram-panel__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.diagram-panel__title {
+  color: var(--text);
+  font-size: var(--type-body);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.diagram-panel__meta {
+  color: var(--text-tertiary);
+  font-family: var(--font-utility);
+  font-size: var(--type-annotation);
+  text-align: end;
+}
+
+.diagram-panel__body { min-width: 0; }
+
+/* Card interface: override the four color variables; use --dashed for secondary branches. */
+.diagram-card {
+  --diagram-card-surface: color-mix(in srgb, var(--surface) 97%, var(--text));
+  --diagram-card-border: color-mix(in srgb, var(--text) 5%, transparent);
+  --diagram-card-text: var(--text);
+  --diagram-card-label: var(--text-tertiary);
+  display: grid;
+  min-width: 0;
+  min-height: 50px;
+  align-content: center;
+  justify-items: center;
+  gap: 0;
+  padding: 8px 16px;
+  border: 1px solid var(--diagram-card-border);
+  border-radius: var(--radius-sm);
+  background: var(--diagram-card-surface);
+  color: var(--diagram-card-text);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: center;
+}
+
+.diagram-card > span {
+  color: var(--diagram-card-label);
+  font-family: var(--font-body);
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.diagram-card > strong {
+  color: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.diagram-card--dashed { border-style: dashed; }
+
+/* Connector interface: set --diagram-connector-color on the containing SVG. */
+.diagram-connectors {
+  --diagram-connector-color: var(--accent);
+  pointer-events: none;
+}
+
+.diagram-connectors use {
+  fill: none;
+  stroke: var(--diagram-connector-color);
+  vector-effect: non-scaling-stroke;
+}
+
+.diagram-connectors__base use {
+  stroke-width: 1;
+  opacity: 0.52;
+}
+
+.diagram-connectors__motion use {
+  stroke-width: 1.5;
+  stroke-dasharray: 2 9;
+  stroke-linecap: round;
+  opacity: 0.95;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .diagram-connectors__motion use {
+    animation: diagram-connector-flow 1.8s linear infinite;
+  }
+}
+
+@keyframes diagram-connector-flow {
+  to { stroke-dashoffset: -22px; }
+}
+
+.case-study-quote,
 .case-study-highlight {
   padding: 20px 22px;
   border-left: 2px solid var(--accent);
   background: var(--accent-soft);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: var(--type-lg);
+  font-size: var(--type-body);
   font-weight: 500;
   line-height: var(--leading-copy);
 }
@@ -444,6 +573,9 @@ header + .section { margin-top: var(--space-section-first); }
   .signup { flex-direction: column; }
   .signup button { min-height: 44px; }
   .case-study-card { padding: var(--space-7); }
+  .diagram-panel { --diagram-panel-padding: var(--space-4); }
+  .diagram-panel__header { display: block; }
+  .diagram-panel__meta { display: block; margin-top: var(--space-1); text-align: start; }
   .footer { min-height: 220px; }
   .footer-javanese { bottom: -0.5em; }
 }
