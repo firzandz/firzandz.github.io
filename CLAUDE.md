@@ -137,10 +137,62 @@ Fonts are loaded via Google Fonts CDN in the `<head>`.
 
 - **No build tooling** — do not create a `package.json`, install npm packages, add a bundler (Webpack, Vite, Parcel, Rollup), or introduce any compilation step. The site is edited and shipped as raw files. Anyone with a text editor can contribute without any environment setup.
 
-- **Shared stylesheet** — all styles used by more than one page live in `assets/css/style.css`. Do not create additional CSS files for shared styles; extend this file instead. Page-specific one-off styles may go in a `<style>` block in the page's own `<head>`. Do not add CSS preprocessors or CSS-in-JS.
+- **Shared stylesheet** — all styles used by more than one page live in `assets/css/style.css`. Do not create additional CSS files for shared styles; extend this file instead. Page-specific one-off styles may go in a `<style>` block in that page's own `<head>`. Do not add CSS preprocessors or CSS-in-JS.
 
 - **Dark theme only** — the color system is built entirely around a black background (`--bg: #000`) with no light-mode counterpart. Do not add `prefers-color-scheme` media queries or a theme toggle.
 
 ## Deployment
 
 GitHub Pages serves the `master` branch automatically. Pushing to `master` triggers deployment with no additional configuration.
+
+---
+
+## User Profile & Preferences (from Codex memory)
+
+### Who you are
+
+Firzan is pursuing Staff/Principal Product Designer or Product Design Leader growth as a **"Systems-Oriented Product Builder."** You care about design-system leadership, systems thinking, product discovery, honest evidence, and clearer strategic/business communication.
+
+- Your live, private **Career OS** is `/Users/mothership/Documents/OpenKnowledge/Career OS` — separate from this public `firzandz.github.io` portfolio.
+- Portfolio v2 / BRIdex should emphasize **governance, adoption, and evidence boundaries**.
+- You write **Tinker Trails** as "an insecure designer thinking in public," moving through Self → Craft → Team → System → Business.
+- For personalization "based on what you know about me," ground it in validated context such as **"Systems-Oriented Product Builder"**; do not invent biographical claims.
+
+### How you work
+
+- **Career first** — for combined career and portfolio work, keep detailed portfolio critique separate, importing only validated conclusions, missing evidence, and agreed actions.
+- **Career OS is not part of portfolio** — inspect confusing or destructive-prone setups first, then delete only after comparison, backlink checks, and a recoverable checkpoint.
+- In career coaching, periodically **"break and recap context so far for this staff journey"**; never invent metrics, achievements, feedback, outcomes, or market evidence.
+- For iterative portfolio work, use **"Target / Change / Preserve / Reference / Done when"**; make the smallest edit, preserve checkpoints, avoid variants unless asked, separate content from visual revisions, and check both themes.
+- For portfolio milestones, use one primary task, explicit Next/In progress/Blocked/Done, concise Done/Blocked/Next updates, and plain-language small-step explanations; ask before multi-file changes.
+- For token audits, inventory and map first: "check code base for color," "match with Figma color token," then sync. Don't mark anything deprecated yet without verified usage, cross-platform agreement, and Figma/component evidence.
+- Tinker Trails research: return **3–5 ideas** with signal, tension, personal angle, title, why now, and sources. Apply "non ai-slop": genuine uncertainty and rough edges, no invented experiences or machine-smooth prose.
+- For sync/account troubleshooting, inspect read-only first; request confirmation before toggling settings, moving, or deleting user data.
+- Keep personal agent skills out of website repositories: "use this files only for web development"; report the exact global path and verification after relocation.
+
+### Research stance
+
+- Begin research with a **plan first**: research question, sampling, evidence standards, limitations, and intended decision before collecting sources.
+- For public-web workshop research, retain audience/tenure classifications and describe purposive scans as **non-representative**; validate a proposed promise with concrete attendee episodes.
+- For BRIdex, distinguish **implemented, piloted, researched, proposed, hypothesized, and unmeasured** work. Cloud tasks cannot verify or edit uncommitted local files without GitHub sync or supplied source.
+- `career-os` is an instruction layer; private Career OS documents are live evidence. Re-run the OpenKnowledge audit after batch writes because indexing can temporarily show dead links.
+
+### Budget & tooling notes
+
+- Portfolio repo is vanilla HTML/CSS: browser-check rendering, links, images, metadata, responsive/theme/keyboard/reduced-motion behavior; preserve uncommitted checkpoints before broad edits.
+- Managed desktop fallback: if `npx` is unavailable, use bundled Node plus fallback `pnpm dlx`; compare global skill copies with `diff -qr` and retain a recovery backup before moving originals.
+
+---
+
+## Cross-agent skills available in this repo
+
+When working here, the following skills may be loaded for specific tasks. Each is invoked explicitly, not assumed:
+
+- **career-os** — Staff Product Designer coaching; use `$career-os` for Staff-growth work
+- **research** — investigate against primary sources, write findings to Markdown (includes arxiv, competitor-news-monitor, grounded-citations, llm-wiki sub-skills)
+- **better-interface** — cross-discipline interface review (accessibility, layout, writing, typography, color, UI)
+- **interface-review** — change-scoped review of branches, PRs, uncommitted diffs
+- **code-review** — two-axis review (Standards + Spec) of code changes
+- **domain-modeling** — build/sharpen project domain model, ADRs
+- **handoff** — transfer context between agents or sessions
+- **writing-for-agents** — write documents that agents can act on
