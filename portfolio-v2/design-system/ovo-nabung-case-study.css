@@ -1,10 +1,8 @@
 /* OVO Nabung case-study media and outcome treatments. */
-.hero-visual,
 .case-figure {
   margin: var(--space-8) 0 0;
 }
 
-.hero-visual img,
 .case-figure img {
   display: block;
   width: 100%;
