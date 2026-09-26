@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A minimalist product design portfolio concept." />
-  <title>Firzan Aulia — Portfolio Draft</title>
+  <meta name="description" content="Product design portfolio of Firzan Aulia, featuring fintech product work, design systems, and selected writing." />
+  <title>Firzan Aulia — Product Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&amp;family=Inter:wght@400..600&amp;family=Jacquard+24&amp;family=Noto+Sans+Javanese:wght@400..700&amp;display=swap" rel="stylesheet" />
@@ -23,7 +23,6 @@
       margin: 0;
       background: var(--background);
       color: var(--text);
-      color-scheme: dark;
       font-family: "Inter", Arial, sans-serif;
       font-size: 14px;
       font-weight: 460;
@@ -37,96 +36,67 @@
       color: inherit;
     }
 
-    .theme-toggle-input {
-      position: fixed;
+    .theme-option-input {
+      position: absolute;
       width: 1px;
       height: 1px;
       opacity: 0;
       pointer-events: none;
     }
 
-    .theme-toggle {
+    .theme-switcher {
       position: fixed;
-      top: 24px;
-      right: 24px;
+      bottom: 24px;
+      left: 24px;
       z-index: 100;
       display: flex;
-      width: 56px;
-      height: 30px;
-      align-items: center;
-      justify-content: space-around;
+      width: max-content;
+      gap: 2px;
+      margin: 0;
+      padding: 3px;
       border: 1px solid var(--line);
       border-radius: 999px;
       background: var(--surface);
       box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
-      cursor: pointer;
       transition: background-color 220ms ease, border-color 220ms ease;
+      animation: homepage-control-enter 420ms ease-out 140ms both;
     }
 
-    .theme-toggle::before {
-      content: "";
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--text);
-      transform: translateX(26px);
-      transition: transform 220ms ease, background-color 220ms ease;
-    }
-
-    .theme-icon {
+    .theme-option {
       position: relative;
-      z-index: 1;
       display: grid;
+      width: 32px;
+      height: 32px;
       place-items: center;
-      width: 18px;
-      transition: color 220ms ease;
+      border-radius: 50%;
+      color: var(--text-tertiary);
+      cursor: pointer;
+      transition: background-color 220ms ease, color 220ms ease;
     }
 
-    .icon {
-      display: inline-block;
-      width: 1em;
-      height: 1em;
-      flex: none;
+    .theme-option-input:checked + .theme-option {
+      background: var(--text);
+      color: var(--background);
+    }
+
+    .theme-option .icon {
+      width: 15px;
+      height: 15px;
       stroke: currentColor;
       stroke-width: 1.75;
-      vertical-align: -0.125em;
     }
 
-    .icon--sm {
-      width: 13px;
-      height: 13px;
+    @media (hover: hover) {
+      .theme-option:hover {
+        color: var(--text);
+      }
+
+      .theme-option-input:checked + .theme-option:hover {
+        color: var(--background);
+      }
     }
 
-    .theme-icon [data-feather] {
-      font-style: normal;
-      font-size: 12px;
-      line-height: 1;
-    }
-
-    .theme-icon--sun {
-      color: var(--text-tertiary);
-    }
-
-    .theme-icon--moon {
-      color: var(--background);
-    }
-
-    .theme-toggle-input:checked + .theme-toggle::before {
-      transform: translateX(0);
-    }
-
-    .theme-toggle-input:checked + .theme-toggle .theme-icon--sun {
-      color: var(--background);
-    }
-
-    .theme-toggle-input:checked + .theme-toggle .theme-icon--moon {
-      color: var(--text-tertiary);
-    }
-
-    .theme-toggle-input:focus-visible + .theme-toggle {
+    .theme-option-input:focus-visible + .theme-option {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
     }
@@ -146,6 +116,31 @@
       width: min(calc(100% - 40px), var(--content-width));
       margin: 0 auto;
       padding: 96px 0 0;
+      animation: homepage-enter 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes homepage-enter {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes homepage-control-enter {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
     }
 
     /* ── Intro ── */
@@ -241,9 +236,18 @@
       transition: color 160ms ease, text-decoration-color 160ms ease;
     }
 
-    .text-link:hover {
-      color: var(--text);
-      text-decoration-color: var(--text-tertiary);
+    @media (hover: hover) {
+      .text-link:hover {
+        color: var(--accent);
+        text-decoration-color: var(--accent);
+      }
+    }
+
+    .text-link:focus-visible {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
 
     /* ── Shared sections ── */
@@ -277,7 +281,6 @@
       display: flex;
       min-height: 308px;
       flex-direction: column;
-      justify-content: space-between;
       overflow: hidden;
       padding: 18px;
       border: 1px solid var(--line);
@@ -337,10 +340,63 @@
     }
 
     .project-visual--image {
+      isolation: isolate;
+      flex: 1 1 auto;
       min-height: 198px;
       margin: -18px -18px 16px;
       overflow: hidden;
       border-bottom: 1px solid var(--line);
+    }
+
+    /* List component — card variant keeps project copy attached to its visual. */
+    .list-item {
+      min-width: 0;
+    }
+
+    .list-item-title,
+    .list-item-subtitle {
+      display: block;
+    }
+
+    .list-item--card {
+      padding-top: 0;
+    }
+
+    .list-item--card .list-item-title {
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.0064em;
+      line-height: 1.4;
+    }
+
+    .list-item--card .list-item-subtitle {
+      margin-top: 4px;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 460;
+      letter-spacing: -0.003em;
+      line-height: 1.43;
+      text-wrap: pretty;
+    }
+
+    /* List component — row variant is shared by writing and testimonial attribution. */
+    .list-item--row .list-item-title {
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.0064em;
+      line-height: 1.43;
+    }
+
+    .list-item--row .list-item-subtitle {
+      margin-top: 2px;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 460;
+      letter-spacing: -0.003em;
+      line-height: 1.38;
+      text-wrap: pretty;
     }
 
     .placeholder-visual {
@@ -387,6 +443,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .project-thumbnail-image--full {
+      object-position: center;
     }
 
     .project-thumbnail-image:not([src]) { display: none; }
@@ -492,22 +552,8 @@
       opacity: 0.45;
     }
 
-    .project-title {
-      margin: 0;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: -0.0064em;
-      line-height: 20px;
-    }
-
-    .project-description {
-      margin: 2px 0 0;
-      color: var(--text-secondary);
-      font-size: 13px;
-      font-weight: 460;
-      letter-spacing: -0.003em;
-      line-height: 18px;
-    }
+    .project-title,
+    .project-description { margin: 0; }
 
     /* Abstract, CSS-only placeholders for future project artwork. */
     .balance-orbit {
@@ -726,7 +772,7 @@
       content: "";
       position: absolute;
       inset: 14px;
-      border: 1px dashed rgba(255, 138, 101, 0.42);
+      border: 1px dashed color-mix(in srgb, var(--accent) 42%, transparent);
       border-radius: 8px;
     }
 
@@ -742,7 +788,7 @@
       padding: 4px 9px 5px;
       border: 2px solid #f7efe4;
       border-radius: 999px;
-      background: #ff9f43;
+      background: #f2c94c;
       color: #20170e;
       font-size: 12px;
       font-weight: 500;
@@ -810,11 +856,69 @@
     .project-row:hover .stacked-panels span:nth-child(3) { transform: translateX(4px) rotate(11deg); }
 
     /* ── Testimonials ── */
+    .testimonial-stage {
+      position: relative;
+      padding: 24px 0 12px;
+      border-top: 1px solid var(--line-soft);
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .testimonial-slide {
+      margin: 0;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .testimonial-slide--enter {
+        animation: testimonial-enter 360ms ease-out both;
+      }
+
+      @keyframes testimonial-enter {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+
+    .testimonial-stage:not([data-testimonials-ready]) .testimonial-slide + .testimonial-slide {
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .testimonial-stage[data-testimonials-ready] .testimonial-slide[hidden] {
+      display: none;
+    }
+
+    .testimonial-quote {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(17px, 2vw, 20px);
+      font-weight: 460;
+      letter-spacing: -0.018em;
+      line-height: 1.5;
+      text-wrap: pretty;
+    }
+
+    .testimonial-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
     .testimonial-avatar {
       display: grid;
-      width: 34px;
-      height: 34px;
-      flex: 0 0 34px;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
       place-items: center;
       border: 1px solid var(--line);
       border-radius: 9px;
@@ -823,7 +927,7 @@
         var(--surface-hover);
       color: var(--text-tertiary);
       font-family: "DM Mono", monospace;
-      font-size: 9px;
+      font-size: 10px;
       line-height: 1;
     }
 
@@ -831,53 +935,57 @@
       display: flex;
       min-width: 0;
       align-items: center;
+      justify-content: space-between;
       gap: 10px;
+      margin-top: 20px;
     }
 
     .testimonial-person-copy {
       min-width: 0;
+      text-align: start;
     }
 
-    .testimonial-name,
-    .testimonial-title {
+    .testimonial-indicator {
+      display: flex;
+      flex: none;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .testimonial-step {
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .testimonial-step::after {
       display: block;
+      width: 18px;
+      height: 2px;
+      margin: 0 auto;
+      border-radius: 999px;
+      background: var(--line);
+      content: "";
+      transition: width 180ms ease, background-color 180ms ease;
     }
 
-    .testimonial-name {
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 500;
-      line-height: 18px;
+    @media (hover: hover) {
+      .testimonial-step:hover::after {
+        background: var(--text-tertiary);
+      }
     }
 
-    .testimonial-title {
-      overflow: hidden;
-      color: var(--text-tertiary);
-      font-size: 11px;
-      line-height: 16px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+    .testimonial-step[aria-current="true"]::after {
+      width: 30px;
+      background: var(--text);
     }
 
-    .testimonial-quote {
-      margin: 0;
-      color: var(--text-secondary);
-      font-size: 13px;
-      line-height: 19px;
-    }
-
-    .testimonial-list {
-      border-top: 1px solid var(--line-soft);
-    }
-
-    .testimonial-list-item {
-      display: grid;
-      grid-template-columns: minmax(150px, 0.72fr) minmax(0, 1.8fr);
-      gap: 24px;
-      align-items: start;
-      margin: 0;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--line-soft);
+    .testimonial-step:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
 
     /* ── Writing ── */
@@ -901,23 +1009,7 @@
     }
 
     .writing-title {
-      display: block;
-      color: var(--text);
-      font-size: 14px;
-      font-weight: 460;
-      letter-spacing: -0.0064em;
-      line-height: 20px;
       transition: color 160ms ease;
-    }
-
-    .writing-summary {
-      display: block;
-      margin-top: 3px;
-      color: var(--text-secondary);
-      font-size: 13px;
-      font-weight: 460;
-      letter-spacing: -0.003em;
-      line-height: 18px;
     }
 
     .writing-year {
@@ -1038,9 +1130,29 @@
       text-align: center;
     }
 
-    #local-greeting {
+    .footer-greeting {
       position: relative;
       z-index: 1;
+      display: inline-flex;
+      align-self: flex-start;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .footer-greeting-icon {
+      display: grid;
+      width: 14px;
+      height: 14px;
+      flex: none;
+      place-items: center;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .footer-greeting-icon svg {
+      display: block;
+      width: 14px;
+      height: 14px;
     }
 
 .footer-javanese {
@@ -1061,19 +1173,32 @@
   mask-image: linear-gradient(to bottom, #000 0%, #000 28%, transparent 68%);
 }
 
-body:has(.theme-toggle-input:checked) .footer-javanese {
+body[data-theme="light"] .footer-javanese {
   opacity: 0.68;
 }
 
+@media (prefers-color-scheme: light) {
+  body[data-theme="system"] .footer-javanese {
+    opacity: 0.68;
+  }
+}
+
     @media (max-width: 560px) {
-      .theme-toggle {
+      .theme-switcher {
+        position: absolute;
         top: 16px;
         right: 16px;
+        bottom: auto;
+        left: auto;
       }
 
       .page {
         width: min(calc(100% - 32px), var(--content-width));
         padding-top: 56px;
+      }
+
+      .hero-headline {
+        font-size: clamp(28px, 9.4vw, 34px);
       }
 
       .section {
@@ -1088,9 +1213,13 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
         grid-template-columns: 1fr;
       }
 
-      .testimonial-list-item {
-        grid-template-columns: 1fr;
-        gap: 12px;
+      .testimonial-stage {
+        padding-top: 20px;
+      }
+
+      .testimonial-quote {
+        font-size: 17px;
+        line-height: 1.5;
       }
 
       .project-row {
@@ -1178,25 +1307,39 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
 
       *, *::before, *::after {
         transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
       }
     }
   </style>
 </head>
 
-<body>
-  <input class="theme-toggle-input" type="checkbox" id="theme-toggle" aria-label="Use light mode" />
-  <label class="theme-toggle" for="theme-toggle" title="Switch light and dark mode">
-    <span class="theme-icon theme-icon--sun" aria-hidden="true"><i class="icon icon--sm" data-feather="sun">☀</i></span>
-    <span class="theme-icon theme-icon--moon" aria-hidden="true"><i class="icon icon--sm" data-feather="moon">☾</i></span>
-    <span class="visually-hidden">Switch light and dark mode</span>
-  </label>
+<body data-theme="system">
+  <fieldset class="theme-switcher">
+    <legend class="visually-hidden">Color theme</legend>
+    <input class="theme-option-input" type="radio" name="theme" id="theme-system" value="system" checked />
+    <label class="theme-option" for="theme-system" title="Use system color theme">
+      <i class="icon icon--sm" data-feather="monitor" aria-hidden="true">◫</i>
+      <span class="visually-hidden">System color theme</span>
+    </label>
+    <input class="theme-option-input" type="radio" name="theme" id="theme-light" value="light" />
+    <label class="theme-option" for="theme-light" title="Use light color theme">
+      <i class="icon icon--sm" data-feather="sun" aria-hidden="true">☀</i>
+      <span class="visually-hidden">Light color theme</span>
+    </label>
+    <input class="theme-option-input" type="radio" name="theme" id="theme-dark" value="dark" />
+    <label class="theme-option" for="theme-dark" title="Use dark color theme">
+      <i class="icon icon--sm" data-feather="moon" aria-hidden="true">☾</i>
+      <span class="visually-hidden">Dark color theme</span>
+    </label>
+  </fieldset>
 
   <main class="page">
     <header>
       <div class="profile">
         <div class="profile-copy">
           <span class="profile-name">Firzan Aulia</span>
-          <span class="profile-role">Product designer and systems builder.</span>
+          <span class="profile-role">Updated at 16 Sept, 2026</span>
         </div>
       </div>
 
@@ -1215,7 +1358,7 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
           <span class="intro-emphasis">give it a form</span> people can use.
         </p>
         <p>
-          Ten years in product design. Five in fintech and banking from
+          Eight years in product design. Five in fintech and banking from
           <a class="text-link" href="https://www.bri.co.id/" target="_blank" rel="noopener noreferrer">BRI</a>,
           one of Indonesia's largest state owned banks, to building Grab-backed
           <a class="text-link" href="https://www.superbank.id/" target="_blank" rel="noopener noreferrer">Superbank</a>
@@ -1228,85 +1371,49 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
       <h2 class="section-heading" id="projects-heading">Selected work</h2>
 
       <div class="projects-grid projects-variant--a">
-        <a class="project-card" href="case-study-template.html" aria-label="View OVO Nabung case study template">
+        <a class="project-card" href="ovo-nabung-case-study.html" aria-label="View OVO Nabung case study">
           <span class="project-sticker">New</span>
           <div class="project-visual project-visual--image" aria-hidden="true">
-            <div class="placeholder-visual placeholder-visual--pencil">
-              <img class="project-thumbnail-image" alt="" />
-              <div class="placeholder-browser">
-                <span class="placeholder-toolbar"></span>
-                <span class="placeholder-line placeholder-line--title"></span>
-                <span class="placeholder-line placeholder-line--copy"></span>
-                <span class="placeholder-line placeholder-line--field"></span>
-                <span class="placeholder-line placeholder-line--action"></span>
-              </div>
-            </div>
+            <img class="project-thumbnail-image project-thumbnail-image--full" src="assets/ovo-nabung-thumbnail.png" alt="" />
           </div>
-          <div>
-            <h3 class="project-title">OVO Nabung</h3>
-            <p class="project-description">Turning an e-wallet ecosystem into a banking engine.</p>
+          <div class="list-item list-item--card">
+            <h3 class="project-title list-item-title">OVO Nabung</h3>
+            <p class="project-description list-item-subtitle">Turning an e-wallet ecosystem into a banking engine.</p>
           </div>
         </a>
 
         <a class="project-card" href="bridex-case-study.html" aria-label="View BRIDex case study">
           <span class="project-sticker project-sticker--strategy">Design Strategy</span>
           <div class="project-visual project-visual--image" aria-hidden="true">
-            <div class="placeholder-visual placeholder-visual--dash">
-              <img class="project-thumbnail-image" alt="" />
-              <div class="placeholder-browser">
-                <span class="placeholder-toolbar"></span>
-                <span class="placeholder-line placeholder-line--title"></span>
-                <span class="placeholder-line placeholder-line--copy"></span>
-                <span class="placeholder-line placeholder-line--field"></span>
-                <span class="placeholder-line placeholder-line--action"></span>
-              </div>
-            </div>
+            <img class="project-thumbnail-image project-thumbnail-image--full" src="assets/bridex-design-system-thumbnail.png" alt="" />
           </div>
-          <div>
-            <h3 class="project-title">BRIDex</h3>
-            <p class="project-description">A unified design system for Indonesia’s largest bank.</p>
+          <div class="list-item list-item--card">
+            <h3 class="project-title list-item-title">BRIDex</h3>
+            <p class="project-description list-item-subtitle">A unified design system for Indonesia’s largest bank.</p>
           </div>
         </a>
 
-        <a class="project-card" href="case-study-template.html" aria-label="View Building a Bank from Scratch case study template">
-          <span class="project-sticker project-sticker--ecosystem">Ecosystem</span>
-          <div class="project-visual project-visual--image" aria-hidden="true">
-            <div class="placeholder-visual placeholder-visual--pencil">
-              <img class="project-thumbnail-image" alt="" />
-              <div class="placeholder-browser">
-                <span class="placeholder-toolbar"></span>
-                <span class="placeholder-line placeholder-line--title"></span>
-                <span class="placeholder-line placeholder-line--copy"></span>
-                <span class="placeholder-line placeholder-line--field"></span>
-                <span class="placeholder-line placeholder-line--action"></span>
-              </div>
-            </div>
-          </div>
-          <div>
-            <h3 class="project-title">Building a Bank from Scratch</h3>
-            <p class="project-description">Designing a new digital bank from zero to launch.</p>
-          </div>
-        </a>
-
-        <a class="project-card project-card--coming-soon" href="case-study-template.html" aria-label="View BRImo Homepage case study template">
+        <article class="project-card">
           <span class="project-sticker project-sticker--incoming">Coming soon</span>
           <div class="project-visual project-visual--image" aria-hidden="true">
-            <div class="placeholder-visual placeholder-visual--dash">
-              <img class="project-thumbnail-image" alt="" />
-              <div class="placeholder-browser">
-                <span class="placeholder-toolbar"></span>
-                <span class="placeholder-line placeholder-line--title"></span>
-                <span class="placeholder-line placeholder-line--copy"></span>
-                <span class="placeholder-line placeholder-line--field"></span>
-                <span class="placeholder-line placeholder-line--action"></span>
-              </div>
-            </div>
+            <img class="project-thumbnail-image project-thumbnail-image--full" src="assets/superbank-thumbnail.png" alt="" />
           </div>
-          <div>
-            <h3 class="project-title">BRImo Homepage</h3>
-            <p class="project-description">Refreshing the homepage to improve usability and engagement.</p>
+          <div class="list-item list-item--card">
+            <h3 class="project-title list-item-title">Building a Bank from Scratch</h3>
+            <p class="project-description list-item-subtitle">Designing a new digital bank from zero to launch.</p>
           </div>
-        </a>
+        </article>
+
+        <article class="project-card project-card--coming-soon">
+          <span class="project-sticker project-sticker--incoming">Coming soon</span>
+          <div class="project-visual project-visual--image" aria-hidden="true">
+            <img class="project-thumbnail-image project-thumbnail-image--full" src="assets/brimo-homepage-thumbnail.png" alt="" />
+          </div>
+          <div class="list-item list-item--card">
+            <h3 class="project-title list-item-title">BRImo Homepage</h3>
+            <p class="project-description list-item-subtitle">Refreshing the homepage to improve usability and engagement.</p>
+          </div>
+        </article>
       </div>
 
     </section>
@@ -1316,33 +1423,33 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
 
       <div class="writing-list">
         <a class="writing-item" href="https://tinkertrails.substack.com/p/everyone-can-design-now-so-what" target="_blank" rel="noopener noreferrer">
-          <span>
-            <span class="writing-title">Everyone Can Design Now. So What?</span>
-            <span class="writing-summary">AI didn't make designers irrelevant. It made craft matter more.</span>
+          <span class="list-item list-item--row">
+            <span class="writing-title list-item-title">Everyone Can Design Now. So What?</span>
+            <span class="writing-summary list-item-subtitle">AI didn't make designers irrelevant. It made craft matter more.</span>
           </span>
           <span class="writing-year">2026</span>
         </a>
 
         <a class="writing-item" href="https://tinkertrails.substack.com/p/designing-through-uncertainty" target="_blank" rel="noopener noreferrer">
-          <span>
-            <span class="writing-title">Designing Through Uncertainty</span>
-            <span class="writing-summary">It's tough, but you need to face it.</span>
+          <span class="list-item list-item--row">
+            <span class="writing-title list-item-title">Designing Through Uncertainty</span>
+            <span class="writing-summary list-item-subtitle">It's tough, but you need to face it.</span>
           </span>
           <span class="writing-year">2025</span>
         </a>
 
         <a class="writing-item" href="https://tinkertrails.substack.com/p/proving-the-value-of-ux" target="_blank" rel="noopener noreferrer">
-          <span>
-            <span class="writing-title">Proving the Value of UX</span>
-            <span class="writing-summary">A reflection on trust, maturity, and the long game of design influence.</span>
+          <span class="list-item list-item--row">
+            <span class="writing-title list-item-title">Proving the Value of UX</span>
+            <span class="writing-summary list-item-subtitle">A reflection on trust, maturity, and the long game of design influence.</span>
           </span>
           <span class="writing-year">2025</span>
         </a>
 
         <a class="writing-item" href="https://tinkertrails.substack.com/p/rethinking-speed-in-design" target="_blank" rel="noopener noreferrer">
-          <span>
-            <span class="writing-title">Rethinking Speed in Design</span>
-            <span class="writing-summary">Have I simply become a yes-man?</span>
+          <span class="list-item list-item--row">
+            <span class="writing-title list-item-title">Rethinking Speed in Design</span>
+            <span class="writing-summary list-item-subtitle">Have I simply become a yes-man?</span>
           </span>
           <span class="writing-year">2025</span>
         </a>
@@ -1352,49 +1459,59 @@ body:has(.theme-toggle-input:checked) .footer-javanese {
     <section class="section" aria-labelledby="testimonials-heading">
       <h2 class="section-heading" id="testimonials-heading">Testimonials</h2>
 
-      <!-- Testimonial names, titles, and profile photos remain placeholders until provided. -->
-      <div class="testimonial-list">
-        <figure class="testimonial-list-item">
-          <figcaption class="testimonial-person">
-            <span class="testimonial-avatar" aria-hidden="true">01</span>
-            <span class="testimonial-person-copy">
-              <span class="testimonial-name">Reza R.</span>
-              <span class="testimonial-title">Product Designer</span>
-            </span>
-          </figcaption>
-          <blockquote class="testimonial-quote">I had a great experience working under his leadership during my time at BRI Bank. He’s a true Product Design Lead with strong critical thinking and problem-solving skills. We worked together on a mobile banking revamp project and collaborated closely to build a multi-brand design system from scratch in banking. He would definitely be a great asset to any company or team.</blockquote>
-        </figure>
+      <!-- Profile photos remain initial-based placeholders until final assets are provided. -->
+      <div class="testimonial-stage" data-testimonials>
+        <div class="testimonial-viewport">
+          <figure class="testimonial-slide" data-testimonial>
+            <blockquote class="testimonial-quote">“I had a great experience working under his leadership during my time at BRI Bank. He’s a true Product Design Lead with strong critical thinking and problem-solving skills. We worked together on a mobile banking revamp project and collaborated closely to build a multi-brand design system from scratch in banking. He would definitely be a great asset to any company or team.”</blockquote>
+            <figcaption class="testimonial-person">
+              <span class="testimonial-person-copy list-item list-item--row">
+                <span class="testimonial-name list-item-title">Reza R.</span>
+                <span class="testimonial-title list-item-subtitle">Product Designer · Qatar Airways</span>
+              </span>
+              <span class="testimonial-avatar" aria-hidden="true">RR</span>
+            </figcaption>
+          </figure>
 
-        <figure class="testimonial-list-item">
-          <figcaption class="testimonial-person">
-            <span class="testimonial-avatar" aria-hidden="true">02</span>
-            <span class="testimonial-person-copy">
-              <span class="testimonial-name">Annisa Permatasari</span>
-              <span class="testimonial-title">Head of Product · Superbank</span>
-            </span>
-          </figcaption>
-          <blockquote class="testimonial-quote">I’ve worked with Firzan as a design lead and it’s been refreshing. He doesn’t just execute, he thinks deeply and designs with intention. From “Pensil Ajaib” to “Sanggar,” he builds with real purpose. A rare mix of craft, curiosity, and collaboration.</blockquote>
-        </figure>
+          <figure class="testimonial-slide" data-testimonial>
+            <blockquote class="testimonial-quote">“I had the chance to work closely with Firzan during the BRImo Revamp project at BRI, where I was part of the UX Research team and he led the Product Design. Firzan is one of those designers who brings a clear design vision while staying deeply grounded in user insights. He translates complex research findings into practical, elegant design solutions that truly improve the user experience.”</blockquote>
+            <figcaption class="testimonial-person">
+              <span class="testimonial-person-copy list-item list-item--row">
+                <span class="testimonial-name list-item-title">Melin Ayundai</span>
+                <span class="testimonial-title list-item-subtitle">Research Lead · Bank Rakyat Indonesia</span>
+              </span>
+              <span class="testimonial-avatar" aria-hidden="true">MA</span>
+            </figcaption>
+          </figure>
+
+          <figure class="testimonial-slide" data-testimonial>
+            <blockquote class="testimonial-quote">“Firzan is a fast-learner who is very open to feedback, has a high initiative, and is able to collaborate with all stakeholders. He was the first Interaction Designer I collaborated with for my first big project at Ruangguru. He did not only help us deep-dive problems and craft solutions but also establish an effective working flow between the product owner and the designers. Anyone will be very lucky to work with Firzan on a project together!”</blockquote>
+            <figcaption class="testimonial-person">
+              <span class="testimonial-person-copy list-item list-item--row">
+                <span class="testimonial-name list-item-title">Amanda A.</span>
+                <span class="testimonial-title list-item-subtitle">Product Manager · Wego.com</span>
+              </span>
+              <span class="testimonial-avatar" aria-hidden="true">AA</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="testimonial-meta">
+          <span class="visually-hidden" role="status" aria-live="polite" data-testimonial-status></span>
+          <div class="testimonial-indicator" aria-label="Choose a testimonial">
+            <button class="testimonial-step" type="button" aria-label="Show testimonial 1" aria-current="true" data-testimonial-step="0"></button>
+            <button class="testimonial-step" type="button" aria-label="Show testimonial 2" data-testimonial-step="1"></button>
+            <button class="testimonial-step" type="button" aria-label="Show testimonial 3" data-testimonial-step="2"></button>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section notes-card" aria-labelledby="notes-heading">
-      <h2 id="notes-heading">Notes from the messy middle</h2>
-      <p>
-        Occasional reflections on product craft, teams, and turning uncertain problems
-        into useful things.
-      </p>
-
-      <form class="signup" action="#" method="post">
-        <label for="email" style="position:absolute;left:-9999px;">Email address</label>
-        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" />
-        <button type="submit">Subscribe</button>
-      </form>
-      <span class="form-note">Demo only — this form is not connected yet.</span>
-    </section>
-
     <footer class="footer">
-      <span id="local-greeting" data-local-greeting>It’s a good time to say hello.</span>
+      <span class="footer-greeting">
+        <span class="footer-greeting-icon" data-local-greeting-icon aria-hidden="true">☀</span>
+        <span id="local-greeting" data-local-greeting>It’s a good time to say hello.</span>
+      </span>
       <span class="footer-javanese" lang="jv-Java" aria-label="Cetha">ꦕꦼꦛ</span>
     </footer>
   </main>

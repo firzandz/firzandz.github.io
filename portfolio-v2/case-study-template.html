@@ -7,7 +7,7 @@
   <title>Case Study Template — Firzan Aulia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&amp;family=Inter:wght@400..600&amp;family=Jacquard+24&amp;family=Noto+Sans+Javanese:wght@400..700&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&amp;family=Inter:wght@400..600&amp;family=Noto+Sans+Javanese:wght@400..700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="design-system/tokens.css" />
   <link rel="stylesheet" href="design-system/components.css" />
   <link rel="stylesheet" href="design-system/case-study.css" />
@@ -23,7 +23,7 @@
   </label>
 
   <header class="mobile-nav">
-    <a href="index.html"><span class="mobile-back-icon" aria-hidden="true">←</span><span>Portfolio</span></a>
+    <a href="index.html" aria-label="Back to portfolio"><span class="mobile-back-icon" aria-hidden="true">←</span></a>
     <nav class="mobile-links" aria-label="Mobile case study navigation">
       <a href="#outcome">Summary</a>
       <a href="#read-full">Story</a>
@@ -43,10 +43,9 @@
     </aside>
 
     <main class="case-main">
-      <!-- Replace the title, company line, tags, and hero image. -->
+      <!-- Replace the title, tags, and hero image. -->
       <header class="hero reading-column">
         <h1>Project title goes here</h1>
-        <p class="project-meta">Company name · Year · Project duration · Your role</p>
         <div class="project-tags" aria-label="Project skills">
           <span>Product strategy</span>
           <span>Design research</span>
@@ -60,7 +59,7 @@
 
       <div class="reading-column">
         <!-- One memorable question that frames the project tension. -->
-        <blockquote class="hook case-study-highlight">
+        <blockquote class="hook case-study-quote">
           How might we create a meaningful change for users without compromising the business constraint?
         </blockquote>
 
@@ -148,6 +147,14 @@
             <p>End with the lesson you still use. Name what you would keep, what you would change, and how the project shaped your practice.</p>
             <p>Avoid generic lessons. The strongest reflection reveals a specific change in how you make product decisions.</p>
           </section>
+
+          <footer class="case-study-references" aria-labelledby="case-references-title">
+            <h2 id="case-references-title">References</h2>
+            <ol>
+              <li>Author or organization. “Source title.” Publication, year.</li>
+              <li>Research report, dataset, or interview synthesis. Month year.</li>
+            </ol>
+          </footer>
           </article>
         </details>
 
@@ -161,11 +168,6 @@
             <li>Finish with one honest reflection.</li>
           </ol>
         </details>
-
-        <nav class="case-ending" aria-label="End of case study">
-          <span>© 2026 Firzan Aulia</span>
-          <a href="index.html">Back to selected work ↑</a>
-        </nav>
 
         <footer class="footer">
           <span data-local-greeting>It’s a good time to say hello.</span>
