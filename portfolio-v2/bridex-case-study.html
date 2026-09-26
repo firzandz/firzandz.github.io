@@ -45,7 +45,7 @@
   <div class="case-layout">
     <aside class="side-nav" aria-label="Case study navigation">
       <a class="back-link" href="../index.html" aria-label="Back to portfolio">←</a>
-      <ol id="section-navigation">
+      <ol id="section-navigation" data-preserve-links>
         <li><a href="#overview">Overview</a></li>
         <li><a href="#shared-system">Shared system</a></li>
         <li><a href="#two-layers">Two layers</a></li>
@@ -82,7 +82,16 @@
           </ol>
         </section>
 
-        <article class="full-story">
+        <details class="case-details" id="full-story">
+          <summary class="expand-control" id="read-full">
+            <span class="teaser-content">
+              <span class="teaser-label">Full story preview</span>
+              <span class="teaser-title">A shared organization, but not a shared system</span>
+            </span>
+            <span class="read-more">See full case study ↓</span>
+          </summary>
+
+          <article class="full-story">
           <section class="story-section" id="shared-system">
             <h2>A shared organization, but not a shared system</h2>
             <p>BRI had five main product squads, along with other products, ad-hoc dashboards, and design contributors outside the department. The organization looked centralized, but each team had developed its own way of working.</p>
@@ -576,7 +585,8 @@
               </figure>
             </div>
           </section>
-        </article>
+          </article>
+        </details>
 
         <footer class="footer">
           <span data-local-greeting>It’s a good time to say hello.</span>
@@ -588,6 +598,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/feather.min.js"></script>
   <script src="design-system/behaviors.js"></script>
+  <script src="design-system/case-study.js"></script>
   <script src="design-system/bridex-case-study.js?v=20260920-foundation-inspector"></script>
 </body>
 </html>

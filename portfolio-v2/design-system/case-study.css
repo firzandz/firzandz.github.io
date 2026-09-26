@@ -66,10 +66,11 @@
     }
 
     .side-nav a:not(.back-link) {
+      position: relative;
       display: block;
       padding: 5px 0;
       color: var(--text-tertiary);
-      font-family: var(--font-utility);
+      font-family: var(--font-body);
       font-size: var(--type-annotation);
       line-height: var(--leading-sm);
       text-decoration: none;
@@ -83,9 +84,15 @@
     }
 
     .side-nav a[aria-current="location"]::before {
-      content: "—";
-      margin-right: 7px;
-      color: var(--accent);
+      content: "";
+      position: absolute;
+      top: calc(5px + var(--leading-sm) / 2);
+      left: -14px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      transform: translateY(-50%);
     }
 
     .story-nav-link a {

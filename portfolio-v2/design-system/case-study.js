@@ -24,11 +24,17 @@ const sectionNavigation = document.querySelector("#section-navigation");
     storyPreviewLink.textContent = "Full story";
     storyPreviewItem.append(storyPreviewLink);
 
-    sectionNavigation.replaceChildren(
+    if (!sectionNavigation.hasAttribute("data-preserve-links")) sectionNavigation.replaceChildren(
       ...summaryHeadings.map((heading) => createNavigationItem(heading)),
       storyPreviewItem,
       ...storyHeadings.map((heading) => createNavigationItem(heading, true))
     );
+
+    sectionNavigation.addEventListener("click", (event) => {
+      const link = event.target.closest("a");
+      const target = link && document.getElementById(link.hash.slice(1));
+      if (target && caseDetails.contains(target)) caseDetails.open = true;
+    });
 
     const updateCurrentSection = () => {
       const availableHeadings = caseDetails.open ? allSectionHeadings : summaryHeadings;
@@ -38,7 +44,7 @@ const sectionNavigation = document.querySelector("#section-navigation");
       availableHeadings.forEach((heading) => {
         const section = heading.parentElement;
         const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-        if (sectionTop <= readingLine) currentSection = section;
+        if (sectionTop <= readingLine && sectionNavigation.querySelector(`a[href="#${section.id}"]`)) currentSection = section;
       });
 
       sectionNavigation.querySelectorAll("a").forEach((link) => {
