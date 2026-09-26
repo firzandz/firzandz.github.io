@@ -32,19 +32,14 @@
   --architecture-product-c: #b54708;
 }
 
-.hero-visual {
-      margin: 34px 0 0;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      background: #f5f5f5;
-    }
+#people-and-moments {
+  padding-top: var(--space-7);
+  border-top: 1px solid var(--line-soft);
+}
 
-    .hero-visual img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
+#people-and-moments::before { content: none; }
+
+.bridex-case-study .story-section.reflection { margin-bottom: 48px; }
 
     .hook {
       margin: 0 0 48px;
@@ -1528,12 +1523,6 @@
 
     .foundation-audit > .figure-caption { margin-top: 8px !important; }
 
-
-    .decision-number {
-      color: var(--accent);
-      font-family: var(--font-utility);
-      font-size: var(--type-annotation);
-    }
 
     .decision-copy { color: var(--text-secondary); }
 

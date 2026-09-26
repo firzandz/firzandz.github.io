@@ -7,7 +7,7 @@
       --font-utility: var(--font-mono);
       --type-hero: var(--type-display);
       --type-quote: var(--type-body);
-      --type-story: clamp(24px, 3vw, 30px);
+      --type-story: clamp(18px, 2vw, 24px);
       --type-subtitle: var(--type-md);
       --type-body: 16px;
       --type-label: var(--type-md);
@@ -166,6 +166,19 @@
       color: var(--text-tertiary);
       font-family: var(--font-utility);
       font-size: var(--type-annotation);
+    }
+
+    .hero-visual {
+      margin: var(--space-8) 0 0;
+    }
+
+    .hero-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--surface);
     }
 
     .hero-caption {
@@ -371,9 +384,9 @@
       font-size: var(--type-story);
       font-weight: 500;
       letter-spacing: var(--tracking-body);
-      line-height: 1.1;
+      line-height: 1.25;
       overflow-wrap: break-word;
-      text-wrap: balance;
+      text-wrap: wrap;
     }
 
     .story-section h3 {
@@ -434,6 +447,12 @@
       grid-template-columns: 92px 1fr;
       gap: 22px;
       border-bottom: 1px solid var(--line);
+    }
+
+    .decision-number {
+      color: var(--accent);
+      font-family: var(--font-utility);
+      font-size: var(--type-annotation);
     }
 
     .decision-copy {
