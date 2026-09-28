@@ -156,11 +156,13 @@ The card uses neutral radial light rather than an orange gradient. Inputs use th
 
 ### Case study components
 
-Classes: `.case-study-quote`, `.case-decision-label`, `.case-study-card`, `.case-study-references`.
+Classes: `.case-study-quote`, `.project-details`, `.project-detail`, `.case-decision-label`, `.case-study-card`, `.case-study-references`.
 
 - Keep case-study typography to three families: Inter for titles and reading, DM Mono for quiet utility labels, and Noto Sans Javanese only for the footer mark.
 - Use five size roles: 13px annotation, 14px label, 16px body, the shared responsive story heading, and the shared responsive hero title. Do not add page-specific prose sizes.
 - Use `.case-study-quote` for the single framing question or pivotal insight. It combines an accent edge with `--accent-soft`; do not use it for ordinary paragraphs. `.case-study-highlight` remains a compatibility alias for existing case studies.
+- Use `.project-details` for Role, Timeline, Scope, and Team. Place it immediately after the framing quote and before the executive summary—not in the hero—so the context supports Outcome, Situation, and Approach without competing with the opening title.
+- Project details use stacked rows with a label column and a wrapping value column, separated by subtle rules. Match the existing facts treatment: accent-colored 13px DM Mono labels and secondary-colored 16px Inter values. Narrow screens reduce the label column and gap while retaining the row layout.
 - Use `.case-decision-label` for compact decision indexes. Decision labels use Inter—not DM Mono—so they remain part of the editorial narrative.
 - Use `.case-study-card` for reflection, learning, and closing synthesis. It is intentionally plain: a solid surface, one-pixel border, six-pixel radius, and no homepage notes-card glow.
 - Use `.case-study-references` as the quiet citation footer after the case-study narrative. Keep references in Inter at annotation size and separate them from the story with one subtle rule.
