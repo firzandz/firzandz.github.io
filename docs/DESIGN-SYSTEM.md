@@ -168,6 +168,14 @@ Classes: `.case-study-quote`, `.project-details`, `.project-detail`, `.case-deci
 - Use `.case-study-references` as the quiet citation footer after the case-study narrative. Keep references in Inter at annotation size and separate them from the story with one subtle rule.
 - Keep homepage `.notes-card` and `.case-study-card` separate. They serve different contexts and should not be visually merged.
 
+Case-study conventions:
+
+- Keep role, timeline, scope, and team in `.project-details`; do not repeat role or company metadata between the hero title and tags.
+- Use unnumbered story headings. Sequence comes from reading order and the compact navigation, not numeric prefixes in titles.
+- Keep desktop navigation to five concise labels. Add `data-preserve-links` to `#section-navigation` when the page supplies these labels directly; shared behavior still opens a collapsed story when a link targets content inside it.
+- Use `.figure-caption` directly after its visual. The shared component owns its inset, spacing, type, and wrapping across case studies.
+- For interactive audit figures, place `.audit-instruction` inside the bordered visual surface. Reuse the existing audit reveal controls and behavior instead of creating another instruction or disclosure component.
+
 ### Footer
 
 Classes: `.footer`, `.footer-javanese`; behavior attribute: `data-local-greeting`.

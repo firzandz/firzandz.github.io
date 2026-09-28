@@ -16,10 +16,6 @@
   margin-bottom: 32px;
 }
 
-.case-figure .figure-caption {
-  margin-top: var(--space-2) !important;
-}
-
 .journey-flow-diagram {
   box-sizing: border-box;
   margin: 0;

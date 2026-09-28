@@ -856,8 +856,6 @@
     }
 
     .migration-audit__heading {
-      display: grid;
-      gap: 5px;
       margin-bottom: 12px;
     }
 
@@ -868,11 +866,22 @@
       line-height: 1.35;
     }
 
-    .migration-audit__heading span {
-      color: var(--text-tertiary);
+    .audit-instruction {
+      width: 100%;
+      max-width: 60ch;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.72);
       font-family: var(--font-utility);
       font-size: var(--type-annotation);
       line-height: 1.5;
+      text-wrap: pretty;
+    }
+
+    .migration-audit__stage > .audit-instruction {
+      box-sizing: border-box;
+      max-width: none;
+      padding-inline: 28px;
+      justify-self: stretch;
     }
 
     .migration-audit__stage {
@@ -880,6 +889,7 @@
       display: grid;
       min-height: 0;
       place-items: center;
+      row-gap: 20px;
       padding: 28px 0;
       overflow: hidden;
       border: 1px solid var(--line);
@@ -1129,8 +1139,6 @@
       line-height: 1.5;
       text-align: center;
     }
-
-    .migration-audit > .figure-caption { margin-top: 8px !important; }
 
     .foundation-audit {
       --foundation-blue: #2f8df4;
@@ -1525,9 +1533,6 @@
 
     .foundation-audit__status:empty { display: none; }
 
-    .foundation-audit > .figure-caption { margin-top: 8px !important; }
-
-
     .decision-copy { color: var(--text-secondary); }
 
     .outcome-ledger {
@@ -1619,6 +1624,10 @@
       .migration-audit__stage {
         padding: 20px;
         overflow: visible;
+      }
+
+      .migration-audit__stage > .audit-instruction {
+        padding-inline: 0;
       }
 
       .migration-audit[data-revealed="false"] .migration-audit__stage {

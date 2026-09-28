@@ -123,18 +123,8 @@
       font-size: clamp(36px, 4.5vw, 44px);
       font-weight: 500;
       letter-spacing: -0.03em;
-      line-height: 1.08;
+      line-height: 1.14;
       text-wrap: balance;
-    }
-
-    .project-meta {
-      margin: 0;
-      color: var(--text-secondary);
-      font-family: var(--font-body);
-      font-size: var(--type-subtitle);
-      line-height: var(--leading-md);
-      overflow-wrap: break-word;
-      text-wrap: pretty;
     }
 
     .project-tags {
@@ -457,7 +447,8 @@
     }
 
     .figure-caption {
-      margin: 0 !important;
+      margin: var(--space-3) 0 0 !important;
+      padding-inline: var(--space-2);
       color: var(--text-tertiary) !important;
       font-family: var(--font-utility);
       font-size: var(--type-annotation);
