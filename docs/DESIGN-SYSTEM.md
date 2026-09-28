@@ -1,6 +1,6 @@
 # Firzan Portfolio Design System
 
-This package captures the visual language of the accepted `portfolio-v2` homepage so future pages can look related without copying the homepage file.
+This package captures the visual language of the current [homepage](../index.html) so future pages can look related without copying the homepage file. File paths and HTML examples below are relative to the repository root.
 
 ## Files
 

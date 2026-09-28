@@ -7,11 +7,11 @@ tags:
   - content-review
   - ovo-nabung
 status: draft
-source_file: portfolio-v2/ovo-nabung-case-study.html
+source_file: ovo-nabung-case-study.html
 ---
 # OVO Nabung
 
-> Content-first review copy extracted from the [rendered case study](./ovo-nabung-case-study.html). Product claims and metrics should be validated before publication.
+> Content-first review copy extracted from the [rendered case study](../ovo-nabung-case-study.html). Product claims and metrics should be validated before publication.
 
 ## Project overview
 
@@ -21,13 +21,13 @@ source_file: portfolio-v2/ovo-nabung-case-study.html
 - **Scope:** End-to-end UX, onboarding, co-branding, and payments
 - **Hero visual:** [OVO Nabung product overview](../assets/ovo-case/hero-image.png)
 
-[Source: rendered case study](./ovo-nabung-case-study.html)
+[Source: rendered case study](../ovo-nabung-case-study.html)
 
 ## Framing question
 
 > How might we design a banking upgrade inside OVO that feels like a natural next step—not a whole new product?
 
-[Source: rendered case study](./ovo-nabung-case-study.html)
+[Source: rendered case study](../ovo-nabung-case-study.html)
 
 ## Executive summary
 
@@ -37,7 +37,7 @@ source_file: portfolio-v2/ovo-nabung-case-study.html
 2. Helped Superbank reach its first 1 million users in under one year; as of 2026, 60% of Superbank users originate from OVO Nabung.
 3. Created an onboarding foundation that could scale to future ecosystem partners.
 
-[Source: rendered case study](./ovo-nabung-case-study.html)
+[Source: rendered case study](../ovo-nabung-case-study.html)
 
 ### Situation
 
@@ -45,13 +45,13 @@ OVO had millions of active users. Superbank had zero. Converting one into the ot
 
 The visible registration form was only part of the problem. The experience also had to establish a compelling reason to upgrade and maintain continuity across two apps, systems, and design languages.
 
-[Source: rendered case study](./ovo-nabung-case-study.html)
+[Source: rendered case study](../ovo-nabung-case-study.html)
 
 ### Approach and contribution
 
 I owned the end-to-end journey within Superbank, collaborated with designers and stakeholders across Grab and OVO, translated regulatory and technical requirements into product flows, and shaped the experience to support future ecosystem partners.
 
-[Source: rendered case study](./ovo-nabung-case-study.html)
+[Source: rendered case study](../ovo-nabung-case-study.html)
 
 ## Full story
 
@@ -68,7 +68,7 @@ Superbank, Grab, and OVO operated with different structures, priorities, and tim
 - [Existing registration screens and drop-off annotations](../assets/ovo-case/regular-flow.png)
 - The CSS journey graphic in the rendered case study groups the experience into quick setup, identity and profile, and final verification.
 
-[Source: rendered case study](./ovo-nabung-case-study.html)
+[Source: rendered case study](../ovo-nabung-case-study.html)
 
 ### 02. Make the value immediate and the change feel small
 
@@ -83,7 +83,7 @@ Converting passive OVO users into active Superbank customers came down to two le
 - [Value-proposition screen](../assets/ovo-case/cvp.png)
 - [OVO and Superbank co-branding strategy](../assets/ovo-case/co-brand.png)
 
-[Source: rendered case study](./ovo-nabung-case-study.html)
+[Source: rendered case study](../ovo-nabung-case-study.html)
 
 ### 03. Separate savings access from lending compliance
 
@@ -97,7 +97,7 @@ I mapped each field to the product it actually served. Identity and address data
 
 - [Savings and lending field map](../assets/ovo-case/compliance%20challenge.png)
 
-[Source: rendered case study](./ovo-nabung-case-study.html)
+[Source: rendered case study](../ovo-nabung-case-study.html)
 
 ### 04. Unlock savings first, then complete compliance progressively
 
@@ -114,7 +114,7 @@ The remaining data was collected only when the user applied for a loan. At that 
 
 - [Progressive compliance touchpoints](../assets/ovo-case/progressive-upgrade.png)
 
-[Source: rendered case study](./ovo-nabung-case-study.html)
+[Source: rendered case study](../ovo-nabung-case-study.html)
 
 ### 05. Design for every path between two apps
 
@@ -124,7 +124,7 @@ The mapping shaped fallback logic, push-notification triggers, and the cross-app
 
 - [Multi-path journey map](../assets/ovo-case/multiple-path.png)
 
-[Source: rendered case study](./ovo-nabung-case-study.html)
+[Source: rendered case study](../ovo-nabung-case-study.html)
 
 ### 06. Connect onboarding to the everyday banking experience
 
@@ -141,7 +141,7 @@ Transaction history and payments needed a shared framework that both partners co
 
 The team delivered the end-to-end experience on time for regulatory requirements, covering onboarding, savings, payment continuity, and edge cases. The work also established a scalable onboarding foundation for future ecosystem partners.
 
-[Source: rendered case study](./ovo-nabung-case-study.html)
+[Source: rendered case study](../ovo-nabung-case-study.html)
 
 ## Reflection
 
@@ -151,7 +151,7 @@ Post-MVP feedback showed that users still struggled to understand the interest r
 
 The project reinforced that removing form fields is not enough. A lower-friction journey still needs clear value and trust at the moment a user decides to become a bank customer.
 
-[Source: rendered case study](./ovo-nabung-case-study.html)
+[Source: rendered case study](../ovo-nabung-case-study.html)
 
 ## Content review checklist
 

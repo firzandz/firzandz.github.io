@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A clean, reusable product design case study template for Firzan Aulia." />
+  <title>Case Study Template — Firzan Aulia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&amp;family=Inter:wght@400..600&amp;family=Noto+Sans+Javanese:wght@400..700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="design-system/tokens.css" />
+  <link rel="stylesheet" href="design-system/components.css" />
+  <link rel="stylesheet" href="design-system/case-study.css" />
+
+</head>
+
+<body>
+  <input class="theme-toggle-input" type="checkbox" id="theme-toggle" aria-label="Use light mode" />
+  <label class="theme-toggle" for="theme-toggle" title="Switch light and dark mode">
+    <span class="theme-icon theme-icon--sun" aria-hidden="true"><i class="icon icon--sm" data-feather="sun">☀</i></span>
+    <span class="theme-icon theme-icon--moon" aria-hidden="true"><i class="icon icon--sm" data-feather="moon">☾</i></span>
+    <span class="visually-hidden">Switch light and dark mode</span>
+  </label>
+
+  <header class="mobile-nav">
+    <a href="index.html" aria-label="Back to portfolio"><span class="mobile-back-icon" aria-hidden="true">←</span></a>
+    <nav class="mobile-links" aria-label="Mobile case study navigation">
+      <a href="#outcome">Summary</a>
+      <a href="#read-full">Story</a>
+      <a class="detail-link" href="#reflection">Reflection</a>
+    </nav>
+  </header>
+
+  <div class="case-layout">
+    <aside class="side-nav" aria-label="Case study navigation">
+      <a class="back-link" href="index.html" aria-label="Back to portfolio">←</a>
+      <ol id="section-navigation">
+        <li><a href="#outcome">Outcome</a></li>
+        <li><a href="#situation">Situation</a></li>
+        <li><a href="#contribution">Approach &amp; contribution</a></li>
+        <li class="story-preview-link"><a href="#read-full">Full story</a></li>
+      </ol>
+    </aside>
+
+    <main class="case-main">
+      <!-- Replace the title, tags, and hero image. -->
+      <header class="hero reading-column">
+        <h1>Project title goes here</h1>
+        <div class="project-tags" aria-label="Project skills">
+          <span>Product strategy</span>
+          <span>Design research</span>
+          <span>Systems thinking</span>
+        </div>
+        <div class="hero-placeholder" role="img" aria-label="Placeholder for the project hero image">
+          Project hero · 16:9
+        </div>
+        <p class="hero-caption">Add one sentence explaining what the reader should notice in this image.</p>
+      </header>
+
+      <div class="reading-column">
+        <!-- One memorable question that frames the project tension. -->
+        <blockquote class="hook case-study-quote">
+          How might we create a meaningful change for users without compromising the business constraint?
+        </blockquote>
+
+        <!-- PROJECT DETAILS: factual context follows the framing question. -->
+        <dl class="project-details" aria-label="Project details">
+          <div class="project-detail">
+            <dt>Role</dt>
+            <dd>Your role and level</dd>
+          </div>
+          <div class="project-detail">
+            <dt>Timeline</dt>
+            <dd>Month year — Month year</dd>
+          </div>
+          <div class="project-detail">
+            <dt>Scope</dt>
+            <dd>What part of the product you owned</dd>
+          </div>
+          <div class="project-detail">
+            <dt>Team</dt>
+            <dd>Functions and collaborators</dd>
+          </div>
+        </dl>
+
+        <!-- TRAILER: a reader should understand the case study before continuing. -->
+        <section class="trailer" aria-label="Executive summary">
+          <section class="summary-section" id="outcome">
+            <h2 class="section-label">Outcome</h2>
+            <ol class="outcome-list">
+              <li>Primary measurable result and why it mattered.</li>
+              <li>Secondary result that shows product, business, or organizational impact.</li>
+            </ol>
+          </section>
+
+          <section class="summary-section" id="situation">
+            <h2 class="section-label">Situation</h2>
+            <p>Explain the user problem and business tension in one short paragraph. Focus on what made this problem worth solving now.</p>
+            <p>End with the insight that changed how the team understood the problem.</p>
+          </section>
+
+          <section class="summary-section" id="contribution">
+            <h2 class="section-label">Approach &amp; contribution</h2>
+            <p>State what you personally owned, the strategic move you introduced, and how you worked with the team to deliver it.</p>
+          </section>
+        </section>
+
+        <!-- FULL STORY: include only evidence and decisions that support the trailer. -->
+        <details class="case-details" id="full-story">
+          <summary class="expand-control" id="read-full">
+            <span class="teaser-content">
+              <span class="teaser-label">Full story preview</span>
+              <span class="teaser-title">01. Frame the real problem</span>
+              <span class="teaser-copy">Give the minimum context required to understand the challenge. Avoid a long company introduction or a chronological diary of activities.</span>
+              <span class="teaser-copy">Use the behavior, data, or operational constraint that proved the visible interface problem was only a symptom.</span>
+            </span>
+            <span class="read-more">See full case study ↓</span>
+          </summary>
+
+          <article class="full-story">
+          <header class="full-story-intro">
+            <h2>The full story</h2>
+            <p>The evidence, decisions, and tradeoffs behind the executive summary.</p>
+          </header>
+
+          <section class="story-section" id="problem">
+            <h2>01. Frame the real problem</h2>
+            <p>Give the minimum context required to understand the challenge. Avoid a long company introduction or a chronological diary of activities.</p>
+            <p><strong>Use evidence.</strong> Include the behavior, data, or operational constraint that proved the visible interface problem was only a symptom.</p>
+            <figure style="margin:0;">
+              <div class="figure-placeholder" role="img" aria-label="Placeholder for research evidence">Research evidence or journey</div>
+              <figcaption class="figure-caption">Explain what the reader should notice in this artifact.</figcaption>
+            </figure>
+          </section>
+
+          <section class="story-section" id="direction">
+            <h2>02. Choose a direction</h2>
+            <p>Show the model, principle, or insight that gave the team a shared direction. This section should make your judgment visible.</p>
+            <ul class="decision-list">
+              <li><span class="decision-number case-decision-label">Decision 01</span><span class="decision-copy">Name the move and explain the tradeoff it resolved.</span></li>
+              <li><span class="decision-number case-decision-label">Decision 02</span><span class="decision-copy">Connect the design choice to user and business evidence.</span></li>
+              <li><span class="decision-number case-decision-label">Decision 03</span><span class="decision-copy">Explain how the solution could scale beyond the first release.</span></li>
+            </ul>
+          </section>
+
+          <section class="story-section" id="design">
+            <h2>03. Make the change tangible</h2>
+            <p>Use a small number of annotated product artifacts. Each visual should prove a decision rather than simply decorate the page.</p>
+            <figure style="margin:0;">
+              <div class="figure-placeholder" role="img" aria-label="Placeholder for final product design">Final design or before / after</div>
+              <figcaption class="figure-caption">Describe the change and why it mattered.</figcaption>
+            </figure>
+          </section>
+
+          <section class="story-section" id="results">
+            <h2>04. Close the loop</h2>
+            <p>Return to the outcomes from the trailer and explain what changed for users, the business, and the team.</p>
+            <ol class="outcome-list">
+              <li><strong>XX%</strong> — primary product or user result.</li>
+              <li><strong>X×</strong> — business, operational, or efficiency result.</li>
+              <li><strong>Y months</strong> — adoption, rollout, or delivery evidence.</li>
+            </ol>
+          </section>
+
+          <section class="story-section reflection case-study-card" id="reflection">
+            <h2>My reflection</h2>
+            <p>End with the lesson you still use. Name what you would keep, what you would change, and how the project shaped your practice.</p>
+            <p>Avoid generic lessons. The strongest reflection reveals a specific change in how you make product decisions.</p>
+          </section>
+
+          <footer class="case-study-references" aria-labelledby="case-references-title">
+            <h2 id="case-references-title">References</h2>
+            <ol>
+              <li>Author or organization. “Source title.” Publication, year.</li>
+              <li>Research report, dataset, or interview synthesis. Month year.</li>
+            </ol>
+          </footer>
+          </article>
+        </details>
+
+        <details class="framework-note">
+          <summary>Template writing order</summary>
+          <ol>
+            <li>Write the outcomes first.</li>
+            <li>Summarize the situation and your contribution.</li>
+            <li>Select two or three decisions that prove the summary.</li>
+            <li>Add only the artifacts required to explain those decisions.</li>
+            <li>Finish with one honest reflection.</li>
+          </ol>
+        </details>
+
+        <footer class="footer">
+          <span data-local-greeting>It’s a good time to say hello.</span>
+          <span class="footer-javanese" lang="jv-Java" aria-label="Cetha">ꦕꦼꦛ</span>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/feather.min.js"></script>
+  <script src="design-system/behaviors.js"></script>
+  <script src="design-system/case-study.js"></script>
+</body>
+</html>

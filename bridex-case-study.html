@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="How BRIdex revealed that BRI's design-system challenge was also a problem of capacity, trust, and ownership." />
+  <title>BRIdex Case Study — Firzan Aulia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&amp;family=Inter:wght@400..600&amp;family=Noto+Sans+Javanese:wght@400..700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="design-system/tokens.css" />
+  <link rel="stylesheet" href="design-system/components.css" />
+  <link rel="stylesheet" href="design-system/bridex-case-study.css?v=20260927-layout" />
+  <link rel="stylesheet" href="design-system/case-study.css" />
+</head>
+
+<body class="bridex-case-study">
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <defs>
+      <filter id="pencil-line" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="1" seed="7" result="pencil-noise"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="pencil-noise" scale="0.55" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+      </filter>
+    </defs>
+  </svg>
+
+  <input class="theme-toggle-input" type="checkbox" id="theme-toggle" aria-label="Use light mode" />
+  <label class="theme-toggle" for="theme-toggle" title="Switch light and dark mode">
+    <span class="theme-icon theme-icon--sun" aria-hidden="true"><i class="icon icon--sm" data-feather="sun">☀</i></span>
+    <span class="theme-icon theme-icon--moon" aria-hidden="true"><i class="icon icon--sm" data-feather="moon">☾</i></span>
+    <span class="visually-hidden">Switch light and dark mode</span>
+  </label>
+
+  <header class="mobile-nav">
+    <a href="index.html" aria-label="Back to portfolio"><span class="mobile-back-icon" aria-hidden="true">←</span></a>
+    <nav class="mobile-links" aria-label="Mobile case study navigation">
+      <a href="#overview">Overview</a>
+      <a href="#shared-system" aria-label="Shared system">Shared</a>
+      <a href="#two-layers">Layers</a>
+      <a href="#shared-core">Core</a>
+      <a href="#outcomes">Outcome</a>
+    </nav>
+  </header>
+
+  <div class="case-layout">
+    <aside class="side-nav" aria-label="Case study navigation">
+      <a class="back-link" href="index.html" aria-label="Back to portfolio">←</a>
+      <ol id="section-navigation" data-preserve-links>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#shared-system">Shared system</a></li>
+        <li><a href="#two-layers">Two layers</a></li>
+        <li><a href="#shared-core">Shared core</a></li>
+        <li><a href="#outcomes">Outcome</a></li>
+      </ol>
+    </aside>
+
+    <main class="case-main">
+      <header class="hero reading-column">
+        <h1>BRIdex: Building the system around the library</h1>
+        <p class="project-meta">BRI · Lead Product Designer</p>
+        <div class="project-tags" aria-label="Project themes">
+          <span>Design systems</span>
+          <span>Organizational design</span>
+          <span>Operating models</span>
+        </div>
+        <figure class="hero-visual">
+          <img src="assets/thumb-bridex.png" alt="BRIdex design-system foundations showing typography, color, icons, and component anatomy" />
+        </figure>
+        <p class="hero-caption">BRIdex foundations: typography, color, icons, and component anatomy.</p>
+      </header>
+
+      <div class="reading-column">
+        <section class="summary-section" id="overview" aria-labelledby="overview-title">
+          <h2 class="section-label" id="overview-title">Overview</h2>
+          <p>I first treated BRIdex as a library problem: clean up the components, fix the documentation, and publish something designers could trust.</p>
+          <p><strong>That was only part of it.</strong></p>
+          <p>As I spoke with designers across BRI, I found a wider problem. Teams needed time to maintain the system, a clear way to contribute, and support to move away from their existing components.</p>
+
+        </section>
+
+        <dl class="project-details" aria-label="Project details">
+          <div class="project-detail"><dt>Role</dt><dd>Lead Product Designer</dd></div>
+          <div class="project-detail"><dt>Timeline</dt><dd>2021–2022</dd></div>
+          <div class="project-detail"><dt>Scope</dt><dd>Workflow, component architecture, design strategy</dd></div>
+          <div class="project-detail"><dt>Team</dt><dd>2 designers, 4 UI designers</dd></div>
+        </dl>
+
+        <details class="case-details" id="full-story">
+          <summary class="expand-control" id="read-full">
+            <span class="teaser-content">
+              <span class="teaser-label">Full story preview</span>
+              <span class="teaser-title">A shared organization, but not a shared system</span>
+            </span>
+            <span class="read-more">See full case study ↓</span>
+          </summary>
+
+          <article class="full-story">
+          <section class="story-section" id="shared-system">
+            <h2>A shared organization, but not a shared system</h2>
+            <p>BRI had five main product squads, along with other products, ad-hoc dashboards, and design contributors outside the department. The organization looked centralized, but each team had developed its own way of working.</p>
+
+            <figure class="diagram-panel diagram-panel--grid bridex-diagram product-landscape" aria-labelledby="product-landscape-title">
+              <figcaption class="diagram-panel__header" id="product-landscape-title">
+                <strong class="diagram-panel__title">BRI product-design landscape</strong>
+              </figcaption>
+              <div class="diagram-panel__body product-landscape__body">
+                <div class="landscape-parent diagram-card">
+                  <span>Design organization</span>
+                  <strong>BRI Product Design</strong>
+                </div>
+                <div class="landscape-squads" aria-label="Examples of main product squads">
+                  <div class="landscape-node diagram-card"><span>Product</span><strong>BRImo</strong></div>
+                  <div class="landscape-node diagram-card"><span>Product</span><strong>AI dashboard</strong></div>
+                  <div class="landscape-node diagram-card"><span>Product</span><strong>B2B lending</strong></div>
+                  <div class="landscape-node diagram-card"><span>Product</span><strong>Consumer lending</strong></div>
+                </div>
+                <div class="landscape-others diagram-card diagram-card--dashed">
+                  <span>Beyond the main squads</span>
+                  <strong>Other products and dashboards</strong>
+                </div>
+
+                <svg class="landscape-connectors diagram-connectors" viewBox="0 0 1000 420" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                  <defs>
+                    <path id="landscape-branches" d="M500 58 V112 M500 112 H250 V355 M500 112 H750 V355 M250 355 H500 M750 355 H500"></path>
+                  </defs>
+                  <g class="diagram-connectors__base">
+                    <use href="#landscape-branches"></use>
+                  </g>
+                  <g class="diagram-connectors__motion">
+                    <use href="#landscape-branches"></use>
+                  </g>
+                </svg>
+              </div>
+            </figure>
+
+            <p>Common components existed in several versions. Documentation was incomplete. Designers could not always trust the components they inherited, so rebuilding often felt safer than reusing. BRImo and Consumer Lending had also developed separate design systems, even though both belonged to BRI.</p>
+
+            <figure class="product-comparison dotted-grid-surface" aria-labelledby="product-comparison-title">
+              <figcaption class="comparison-heading" id="product-comparison-title">
+                <strong>Two hero products, two design systems</strong>
+                <span>BRImo × Consumer Lending</span>
+              </figcaption>
+
+              <div class="product-screens">
+                <figure class="product-screen">
+                  <img src="assets/bridex-brimo-home.png" alt="BRImo mobile-banking home screen" width="360" height="800" loading="lazy" />
+                  <figcaption>BRImo</figcaption>
+                </figure>
+                <figure class="product-screen">
+                  <img src="assets/bridex-ceria-home.png" alt="Consumer Lending home screen" width="360" height="800" loading="lazy" />
+                  <figcaption>Consumer Lending</figcaption>
+                </figure>
+              </div>
+
+              <p class="comparison-takeaway insight-callout">These two hero products show how teams built separate design libraries, resulting in different visual foundations inside the same organization.</p>
+            </figure>
+
+            <p>A stronger library seemed like the answer. Before committing to it, I ran a workshop with product designers from different products and streams.</p>
+
+            <section class="workshop-evidence dotted-grid-surface" aria-labelledby="workshop-heading">
+              <h3 id="workshop-heading">The workshop exposed three tensions</h3>
+              <p class="workshop-intro">The discussion shifted the problem from component quality to the conditions surrounding the work.</p>
+
+              <div class="workshop-layer">
+                <ol class="finding-grid">
+                  <li>
+                    <strong>Capacity</strong>Designers created local components to meet deadlines but rarely had time to maintain them.
+                  </li>
+                  <li>
+                    <strong>Trust</strong>Components and documentation were inconsistent, and the implementation did not always match Figma.
+                  </li>
+                  <li>
+                    <strong>Ownership</strong>Teams did not know when to contribute, who should decide, or whether system work should take priority over product delivery.
+                  </li>
+                </ol>
+              </div>
+
+              <div class="workshop-layer workshop-evidence-media">
+                <figure class="workshop-evidence-image">
+                  <img class="workshop-evidence-photo" src="assets/bridex-workshop.jpg" alt="Product designers in a BRIdex workshop discussing design-system work around a table." width="1280" height="960" loading="lazy" />
+                </figure>
+              </div>
+
+            </section>
+
+            <p>The workshop changed the brief. The library still needed work, but better components alone would not fix the conditions that had allowed the old system to decay.</p>
+
+            <blockquote class="story-callout insight-callout">The underlying question was no longer what to build, but how the organization would maintain it.</blockquote>
+          </section>
+
+          <section class="story-section" id="two-layers">
+            <h2>Two layers of the same system</h2>
+            <p>To answer that question, I organized BRIdex into two connected layers.</p>
+
+            <figure class="two-layer-framework" aria-labelledby="two-layer-framework-title">
+              <figcaption class="two-layer-heading" id="two-layer-framework-title">
+                <strong>BRIdex, two connected layers</strong>
+                <span>Project framework</span>
+              </figcaption>
+
+              <div class="two-layer-grid">
+                <section class="layer-card" aria-labelledby="system-layer-title">
+                  <p class="layer-purpose">What lived in Figma and code</p>
+                  <h3 id="system-layer-title">System layer</h3>
+                  <ul>
+                    <li>Foundations</li>
+                    <li>Components</li>
+                    <li>Documentation</li>
+                  </ul>
+                </section>
+
+                <section class="layer-card" aria-labelledby="operating-layer-title">
+                  <p class="layer-purpose">How the organization maintained it</p>
+                  <h3 id="operating-layer-title">Operating layer</h3>
+                  <ul>
+                    <li>Component workflow</li>
+                    <li>Reliability and maintenance</li>
+                    <li>Clear ownership</li>
+                  </ul>
+                </section>
+              </div>
+
+              <p class="layer-connection"><strong>Both layers were necessary.</strong> Together, they connected the design assets to the people and decisions required to sustain them.</p>
+            </figure>
+
+            <p>This reframed BRIdex from a library project into organizational work with time, ownership, and accountability.</p>
+          </section>
+
+          <section class="story-section" id="shared-core">
+            <h2>A shared core with room for product needs</h2>
+            <p>The two-layer framework now needed a practical structure. The system layer became the design-system architecture: a shared core for common foundations and components, connected to local libraries for product-specific needs. The operating layer defined who would maintain each part and support adoption. With the mandate and design capacity in place, I could put that structure into practice.</p>
+
+            <figure class="diagram-panel diagram-panel--grid bridex-diagram architecture-map" aria-labelledby="architecture-map-title">
+              <figcaption class="diagram-panel__header" id="architecture-map-title">
+                <strong class="diagram-panel__title">BRIdex architecture</strong>
+              </figcaption>
+
+              <div class="diagram-panel__body architecture-map__body">
+                <div class="architecture-diagram">
+                <section class="architecture-stage architecture-stage--principles" aria-label="Design principles">
+                  <p class="architecture-stage-label">Shared direction</p>
+                  <div class="architecture-node architecture-node--principles diagram-card diagram-card--dashed">
+                    <strong>Design Principles</strong>
+                  </div>
+                </section>
+
+                <section class="architecture-stage architecture-stage--core" aria-label="Shared system">
+                  <p class="architecture-stage-label">Shared system</p>
+                  <ol class="architecture-list architecture-list--core">
+                    <li class="architecture-node architecture-node--foundation diagram-card">
+                      <strong>Foundation</strong>
+                    </li>
+                    <li class="architecture-node architecture-node--components diagram-card">
+                      <strong>Core Components</strong>
+                    </li>
+                  </ol>
+                </section>
+
+                <section class="architecture-stage architecture-stage--local" aria-label="Local product libraries">
+                  <p class="architecture-stage-label">Local adaptation</p>
+                  <ol class="architecture-list architecture-list--local">
+                    <li class="architecture-node architecture-node--local architecture-node--a diagram-card diagram-card--dashed">
+                      <strong>Local Library A</strong>
+                    </li>
+                    <li class="architecture-node architecture-node--local architecture-node--b diagram-card diagram-card--dashed">
+                      <strong>Local Library B</strong>
+                    </li>
+                    <li class="architecture-node architecture-node--local architecture-node--c diagram-card diagram-card--dashed">
+                      <strong>Local Library C</strong>
+                    </li>
+                  </ol>
+                </section>
+
+                <section class="architecture-stage architecture-stage--products" aria-label="Product experiences">
+                  <p class="architecture-stage-label">Product experience</p>
+                  <ol class="architecture-list architecture-list--products">
+                    <li class="architecture-node architecture-node--product architecture-node--a diagram-card">
+                      <strong>Product A</strong>
+                    </li>
+                    <li class="architecture-node architecture-node--product architecture-node--b diagram-card">
+                      <strong>Product B</strong>
+                    </li>
+                    <li class="architecture-node architecture-node--product architecture-node--c diagram-card">
+                      <strong>Product C</strong>
+                    </li>
+                  </ol>
+                </section>
+
+                <svg class="architecture-connectors diagram-connectors" viewBox="0 0 1000 430" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                  <defs>
+                    <path id="principles-to-foundation" d="M182 128 H270"></path>
+                    <path id="principles-to-components" d="M182 328 H270"></path>
+                    <path id="foundation-to-components" d="M365 178 V278"></path>
+                    <path id="shared-core-to-libraries" d="M455 128 H490 M455 328 H490 M490 90 V346 M490 90 H565 M490 218 H565 M490 346 H565"></path>
+                    <path id="local-a-to-product-a" d="M745 90 H825"></path>
+                    <path id="local-b-to-product-b" d="M745 218 H825"></path>
+                    <path id="local-c-to-product-c" d="M745 346 H825"></path>
+                  </defs>
+
+                  <g class="architecture-connector-base diagram-connectors__base">
+                    <use class="architecture-connector--principles" href="#principles-to-foundation"></use>
+                    <use class="architecture-connector--principles" href="#principles-to-components"></use>
+                    <use class="architecture-connector--shared" href="#foundation-to-components"></use>
+                    <use class="architecture-connector--shared" href="#shared-core-to-libraries"></use>
+                    <use class="architecture-connector--a" href="#local-a-to-product-a"></use>
+                    <use class="architecture-connector--b" href="#local-b-to-product-b"></use>
+                    <use class="architecture-connector--c" href="#local-c-to-product-c"></use>
+                  </g>
+
+                  <g class="architecture-connector-motion diagram-connectors__motion">
+                    <use class="architecture-connector--principles" href="#principles-to-foundation"></use>
+                    <use class="architecture-connector--principles" href="#principles-to-components"></use>
+                    <use class="architecture-connector--shared" href="#foundation-to-components"></use>
+                    <use class="architecture-connector--shared" href="#shared-core-to-libraries"></use>
+                    <use class="architecture-connector--a" href="#local-a-to-product-a"></use>
+                    <use class="architecture-connector--b" href="#local-b-to-product-b"></use>
+                    <use class="architecture-connector--c" href="#local-c-to-product-c"></use>
+                  </g>
+
+                  </svg>
+                </div>
+
+                <div class="architecture-ownership" aria-label="Team ownership">
+                  <p class="architecture-ownership__group architecture-ownership__group--central">
+                    <span>Maintained by</span>
+                    <strong>Core Component Team + Experience Team</strong>
+                  </p>
+                  <p class="architecture-ownership__group architecture-ownership__group--embedded">
+                    <span>Maintained by</span>
+                    <strong>Embedded maintainers</strong>
+                  </p>
+                </div>
+              </div>
+            </figure>
+
+            <p>Shared foundations and components gave BRI Group a common base, while local libraries preserved product-specific patterns.</p>
+
+            <p>I divided ownership across three groups.</p>
+
+            <div class="ownership-team-grid" id="ownership-team-grid">
+              <section class="ownership-team" id="core-component-team">
+                <div class="ownership-team__identity">
+                  <i class="ownership-team__icon icon" data-feather="layers" aria-hidden="true">▤</i>
+                  <h3>Core Component Team</h3>
+                </div>
+                <p>Four UI designers worked on the shared foundation, components, documentation, and design quality. At the time, the group was called the Development Team, despite being a design function.</p>
+              </section>
+
+              <section class="ownership-team" id="experience-team">
+                <div class="ownership-team__identity">
+                  <i class="ownership-team__icon icon" data-feather="message-circle" aria-hidden="true">◌</i>
+                  <h3>Experience Team</h3>
+                </div>
+                <p>Two product designers handled documentation, release communication, migration support, and adoption. I led the team.</p>
+              </section>
+
+              <section class="ownership-team" id="embedded-maintainers">
+                <div class="ownership-team__identity">
+                  <i class="ownership-team__icon icon" data-feather="share-2" aria-hidden="true">↗</i>
+                  <h3>Embedded maintainers</h3>
+                </div>
+                <p>Product designers were expected to maintain local libraries, connect them to the shared foundation, and bring product needs back to BRIdex.</p>
+              </section>
+            </div>
+
+            <p>This extended responsibility beyond the central team, but could not guarantee enough time for maintainers when product roadmaps became busy.</p>
+
+            <p>The token architecture remained under research and was not implemented. The working principle was to share components across BRI Group while allowing for different product needs.</p>
+          </section>
+
+          <section class="story-section" id="brimo-pilot">
+            <h2>BRImo as the pilot</h2>
+            <p>BRImo was the first hero product to implement BRIdex. Its end-to-end revamp already required a new visual language across multiple streams, making it the right place to test the shared system.</p>
+
+            <p>I led a phased migration instead of replacing the legacy library at once. Designers and engineers audited existing components together. All design streams adopted BRIdex foundations, while coded migration began with Home, Payment, and Savings. Profile, Settings, and Help Center remained on legacy components until their turn.</p>
+
+            <figure class="diagram-panel diagram-panel--grid bridex-diagram pilot-flow" aria-labelledby="pilot-flow-title">
+              <figcaption class="diagram-panel__header" id="pilot-flow-title">
+                <strong class="diagram-panel__title">BRImo phased implementation flow</strong>
+              </figcaption>
+              <ol class="diagram-panel__body pilot-flow__steps">
+                <li class="diagram-card">BRIdex foundations</li>
+                <li class="diagram-card">BRImo local components</li>
+                <li class="diagram-card">Revamped customer flows</li>
+                <li class="diagram-card">Reusable components contributed to BRIdex core</li>
+              </ol>
+            </figure>
+
+            <p>The transfer flow shows how both systems coexisted. Blue labels mark BRIdex components; black labels mark components kept in BRImo’s local library.</p>
+
+            <figure class="pilot-evidence migration-audit" data-migration-audit data-library="bridex" data-revealed="false" aria-labelledby="transfer-audit-title">
+              <div class="migration-audit__heading">
+                <strong id="transfer-audit-title">Transfer migration audit</strong>
+                <span>Reveal the audit, switch libraries, or choose a component to isolate its redline.</span>
+              </div>
+
+              <div class="migration-audit__stage dotted-grid-surface">
+                <div class="migration-audit__phone">
+                  <div class="migration-audit__screen" id="transfer-audit-screen">
+                    <img src="assets/bridex-transfer-audit.png" alt="BRImo transfer screen for entering an amount" width="360" height="792" loading="lazy" />
+
+                    <button class="migration-audit__reveal" type="button" data-audit-reveal aria-expanded="false" aria-controls="transfer-audit-controls">
+                      <span>Tap to reveal</span>
+                    </button>
+
+                    <span class="migration-redline" data-library-item="brimo" data-component="navigation" style="--redline-x: 0%; --redline-y: 0%; --redline-width: 100%; --redline-height: 10.1%;" hidden aria-hidden="true"></span>
+                    <span class="migration-redline" data-library-item="bridex" data-component="avatar" style="--redline-x: 4.45%; --redline-y: 13.65%; --redline-width: 11.1%; --redline-height: 5.05%;" hidden aria-hidden="true"></span>
+                    <span class="migration-redline" data-library-item="bridex" data-component="typography" style="--redline-x: 17.8%; --redline-y: 12.4%; --redline-width: 75.55%; --redline-height: 7.58%;" hidden aria-hidden="true"></span>
+                    <span class="migration-redline" data-library-item="bridex" data-component="toggle" style="--redline-x: 80.85%; --redline-y: 23.5%; --redline-width: 10.3%; --redline-height: 2.53%;" hidden aria-hidden="true"></span>
+                    <span class="migration-redline" data-library-item="bridex" data-component="dropdown" style="--redline-x: 4.45%; --redline-y: 32.35%; --redline-width: 91.1%; --redline-height: 9.1%;" hidden aria-hidden="true"></span>
+                    <span class="migration-redline" data-library-item="brimo" data-component="input-amount" style="--redline-x: 4.45%; --redline-y: 50%; --redline-width: 91.1%; --redline-height: 10.1%;" hidden aria-hidden="true"></span>
+                    <span class="migration-redline" data-library-item="bridex" data-component="icon" style="--redline-x: 7.8%; --redline-y: 61.1%; --redline-width: 6.7%; --redline-height: 3.05%;" hidden aria-hidden="true"></span>
+                    <span class="migration-redline" data-library-item="brimo" data-component="source-of-fund" style="--redline-x: 4.45%; --redline-y: 76.5%; --redline-width: 91.1%; --redline-height: 11.36%;" hidden aria-hidden="true"></span>
+                    <span class="migration-redline" data-library-item="bridex" data-component="button" style="--redline-x: 4.45%; --redline-y: 91.9%; --redline-width: 91.1%; --redline-height: 6.06%;" hidden aria-hidden="true"></span>
+                  </div>
+
+                  <div class="migration-audit__callouts" role="group" aria-label="Transfer screen components">
+                    <button class="migration-callout migration-callout--left" type="button" data-library-item="brimo" data-component="navigation" style="--callout-y: 3.3%;" hidden>Navigation Bar</button>
+                    <button class="migration-callout migration-callout--left" type="button" data-library-item="bridex" data-component="avatar" style="--callout-y: 14.4%;" hidden>Avatar</button>
+                    <button class="migration-callout migration-callout--right" type="button" data-library-item="bridex" data-component="typography" style="--callout-y: 14.4%;" hidden>Typography</button>
+                    <button class="migration-callout migration-callout--right" type="button" data-library-item="bridex" data-component="toggle" style="--callout-y: 23%;" hidden>Toggle</button>
+                    <button class="migration-callout migration-callout--right" type="button" data-library-item="bridex" data-component="dropdown" style="--callout-y: 35.1%;" hidden>Dropdown</button>
+                    <button class="migration-callout migration-callout--right" type="button" data-library-item="brimo" data-component="input-amount" style="--callout-y: 53.3%;" hidden>Input Amount</button>
+                    <button class="migration-callout migration-callout--left" type="button" data-library-item="bridex" data-component="icon" style="--callout-y: 60.9%;" hidden>Icon</button>
+                    <button class="migration-callout migration-callout--left" type="button" data-library-item="brimo" data-component="source-of-fund" style="--callout-y: 80.4%;" hidden>Source of Fund</button>
+                    <button class="migration-callout migration-callout--left" type="button" data-library-item="bridex" data-component="button" style="--callout-y: 93.2%;" hidden>Button</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="migration-audit__controls" id="transfer-audit-controls" hidden>
+                <div class="migration-audit__library-picker" role="group" aria-label="Choose component library">
+                  <button type="button" data-library-filter="bridex" aria-pressed="true">BRIDex</button>
+                  <button type="button" data-library-filter="brimo" aria-pressed="false">BRImo</button>
+                </div>
+                <p class="visually-hidden" data-audit-status aria-live="polite"></p>
+              </div>
+
+              <figcaption class="figure-caption">Shared and product-specific components working together during the phased migration.</figcaption>
+            </figure>
+
+            <h3>Input Amount: from local need to shared core</h3>
+            <p>The audit found different Input Amount patterns across BRImo streams. I worked with cross-stream designers to define one version, built in the BRImo library with BRIdex typography and color.</p>
+
+            <figure class="pilot-evidence foundation-audit" data-foundation-audit data-revealed="false" aria-labelledby="input-amount-audit-title">
+              <div class="migration-audit__heading">
+                <strong id="input-amount-audit-title">Input Amount foundation breakdown</strong>
+                <span>Reveal the audit, switch foundations, or choose a specification to isolate its redline.</span>
+              </div>
+
+              <div class="foundation-audit__stage dotted-grid-surface">
+                <div class="foundation-audit__component-name">
+                  <span>Component</span>
+                  <strong>Input Amount</strong>
+                </div>
+
+                <div class="foundation-audit__workspace">
+                  <aside class="foundation-audit__specs" aria-label="Selected foundation specifications" hidden>
+                    <section id="input-amount-typography-details" data-foundation-detail="typography" hidden>
+                      <h4 class="visually-hidden">Typography specifications</h4>
+                      <ul class="foundation-spec-list">
+                        <li><button type="button" class="foundation-spec" data-spec-lines="0" aria-label="Body 3 applies to Nominal Top-up">Body 3</button></li>
+                        <li><button type="button" class="foundation-spec" data-spec-lines="1" aria-label="Title 4 Bold applies to Rp">Title 4 · Bold</button></li>
+                        <li><button type="button" class="foundation-spec" data-spec-lines="2" aria-label="Caption 1 applies to Minimal Top-up">Caption 1</button></li>
+                        <li><button type="button" class="foundation-spec" data-spec-lines="3 4 5" aria-label="Body 3 Bold applies to the amount chips">Body 3 · Bold</button></li>
+                      </ul>
+                    </section>
+
+                    <section id="input-amount-color-details" data-foundation-detail="colors" hidden>
+                      <h4 class="visually-hidden">Color specifications</h4>
+                      <ul class="foundation-spec-list foundation-spec-list--colors">
+                        <li><button type="button" class="foundation-spec" data-spec-lines="0 1" aria-label="Neutral Dark 40 applies to Nominal Top-up and Rp"><i class="foundation-swatch foundation-swatch--neutral-dark" aria-hidden="true"></i><span>Neutral Dark 40</span></button></li>
+                        <li><button type="button" class="foundation-spec" data-spec-lines="2" aria-label="Neutral Light 80 applies to Minimal Top-up"><i class="foundation-swatch foundation-swatch--neutral-light" aria-hidden="true"></i><span>Neutral Light 80</span></button></li>
+                        <li><button type="button" class="foundation-spec" data-spec-lines="3 4 5" aria-label="Primary Blue 80 applies to the amount chips"><i class="foundation-swatch foundation-swatch--primary" aria-hidden="true"></i><span>Primary Blue 80</span></button></li>
+                      </ul>
+                    </section>
+                  </aside>
+
+                  <div class="foundation-audit__preview">
+                    <div class="foundation-audit__component">
+                      <div class="input-amount-card" id="input-amount-audit-card">
+                        <strong class="input-amount-card__label">Nominal Top-up</strong>
+                        <div class="input-amount-card__field">
+                          <strong class="input-amount-card__currency">Rp</strong>
+                          <span class="input-amount-card__helper">Minimal Top-up Rp10.000</span>
+                        </div>
+                        <div class="input-amount-card__quick-picks" aria-label="Example quick-pick amounts">
+                          <span>Rp10.000</span>
+                          <span>Rp30.000</span>
+                          <span>Rp50.000</span>
+                        </div>
+
+                        <button class="foundation-audit__reveal" type="button" data-foundation-reveal aria-expanded="false" aria-controls="input-amount-audit-card input-amount-foundation-controls input-amount-audit-status">
+                          <span>Tap to reveal</span>
+                        </button>
+
+                        <span class="foundation-redline foundation-redline--type" data-foundation-item="typography" style="--redline-x: 3.9%; --redline-y: 7.45%; --redline-width: 29.4%; --redline-height: 12.8%;" hidden aria-hidden="true"></span>
+                        <span class="foundation-redline foundation-redline--type" data-foundation-item="typography" style="--redline-x: 7.2%; --redline-y: 28.7%; --redline-width: 8.6%; --redline-height: 18.1%;" hidden aria-hidden="true"></span>
+                        <span class="foundation-redline foundation-redline--type" data-foundation-item="typography" style="--redline-x: 7.2%; --redline-y: 48.9%; --redline-width: 43.1%; --redline-height: 11.7%;" hidden aria-hidden="true"></span>
+                        <span class="foundation-redline foundation-redline--type" data-foundation-item="typography" style="--redline-x: 10.3%; --redline-y: 75.5%; --redline-width: 17.2%; --redline-height: 12.8%;" hidden aria-hidden="true"></span>
+                        <span class="foundation-redline foundation-redline--type" data-foundation-item="typography" style="--redline-x: 41.4%; --redline-y: 75.5%; --redline-width: 17.2%; --redline-height: 12.8%;" hidden aria-hidden="true"></span>
+                        <span class="foundation-redline foundation-redline--type" data-foundation-item="typography" style="--redline-x: 72.5%; --redline-y: 75.5%; --redline-width: 17.2%; --redline-height: 12.8%;" hidden aria-hidden="true"></span>
+
+                        <span class="foundation-redline foundation-redline--color" data-foundation-item="colors" style="--redline-x: 3.9%; --redline-y: 7.45%; --redline-width: 29.4%; --redline-height: 12.8%;" hidden aria-hidden="true"></span>
+                        <span class="foundation-redline foundation-redline--color" data-foundation-item="colors" style="--redline-x: 7.2%; --redline-y: 28.7%; --redline-width: 8.6%; --redline-height: 18.1%;" hidden aria-hidden="true"></span>
+                        <span class="foundation-redline foundation-redline--color" data-foundation-item="colors" style="--redline-x: 7.2%; --redline-y: 48.9%; --redline-width: 43.1%; --redline-height: 11.7%;" hidden aria-hidden="true"></span>
+                        <span class="foundation-redline foundation-redline--color" data-foundation-item="colors" style="--redline-x: 10.3%; --redline-y: 75.5%; --redline-width: 17.2%; --redline-height: 12.8%;" hidden aria-hidden="true"></span>
+                        <span class="foundation-redline foundation-redline--color" data-foundation-item="colors" style="--redline-x: 41.4%; --redline-y: 75.5%; --redline-width: 17.2%; --redline-height: 12.8%;" hidden aria-hidden="true"></span>
+                        <span class="foundation-redline foundation-redline--color" data-foundation-item="colors" style="--redline-x: 72.5%; --redline-y: 75.5%; --redline-width: 17.2%; --redline-height: 12.8%;" hidden aria-hidden="true"></span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <svg class="foundation-audit__connectors" viewBox="0 0 532 250" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                    <g data-foundation-connector="typography">
+                      <path d="M148 25 H160 V26 H186"></path>
+                      <path d="M148 83 H174 V71 H198"></path>
+                      <path d="M148 141 H180 V103 H198"></path>
+                      <path d="M148 199 H190 V154 H209"></path>
+                    </g>
+                    <g data-foundation-connector="colors">
+                      <path d="M148 25 H160 V26 H186"></path>
+                      <path d="M160 25 V71 H198"></path>
+                      <path d="M148 83 H176 V103 H198"></path>
+                      <path d="M148 141 H188 V154 H209"></path>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="migration-audit__controls" id="input-amount-foundation-controls" hidden>
+                <div class="migration-audit__library-picker" role="group" aria-label="Input Amount foundations">
+                  <button type="button" data-foundation-filter="typography" aria-controls="input-amount-typography-details">Typography</button>
+                  <button type="button" data-foundation-filter="colors" aria-controls="input-amount-color-details">Colors</button>
+                </div>
+              </div>
+              <p class="visually-hidden" id="input-amount-audit-status" data-foundation-status aria-live="polite"></p>
+              <figcaption class="figure-caption">BRIdex typography and color foundations applied to a BRImo component.</figcaption>
+            </figure>
+
+            <p>Input Amount shipped in a customer-facing BRImo flow, then moved into the BRIdex core. It became our clearest example of a product component improving the shared system.</p>
+
+            <p>The pilot aligned design and engineering around one component direction. It did not migrate every legacy flow, and we did not measure time savings consistently.</p>
+          </section>
+
+          <section class="story-section" id="outcomes">
+            <h2>What changed, and what did not</h2>
+
+            <div class="outcome-ledger">
+              <section class="outcome-ledger__row">
+                <h3>What changed</h3>
+                <p>BRIdex moved from voluntary work to a departmental priority. I secured allocated capacity for six designers, defined clearer responsibilities, and helped the team release a shared foundation with documentation.</p>
+              </section>
+
+              <section class="outcome-ledger__row">
+                <h3>What remained difficult</h3>
+                <p>Adoption remained partial. Many product maintainers continued using legacy local components. The OKR protected the central design team’s work, but it did not remove the migration cost carried by product teams. Without dedicated engineering ownership, implementation still had to be negotiated product by product.</p>
+              </section>
+
+              <section class="outcome-ledger__row">
+                <h3>What remained unmeasured</h3>
+                <p>I defined measures around design time, development effort, onboarding, adoption, and prototype speed. The team did not establish a reliable baseline or collect the measures consistently. They show how I intended to evaluate BRIdex, not proof of business impact.</p>
+              </section>
+            </div>
+          </section>
+
+          <section class="story-section reflection" id="reflection">
+            <h2>What I learned</h2>
+            <p>BRIdex changed how I think about design systems. Library quality mattered, but it was not the hardest part. The harder questions were who had time to maintain the system, who paid the cost of migration, and what happened when shared standards competed with a product roadmap.</p>
+            <p><strong>Securing the OKR made the foundation work possible. It did not solve adoption on its own.</strong></p>
+            <p>If I approached the project again, I would establish engineering ownership and a migration plan earlier, alongside the component architecture.</p>
+          </section>
+          <section class="story-section" id="people-and-moments" aria-labelledby="people-and-moments-title">
+            <h2 id="people-and-moments-title">People and moments</h2>
+            <div class="bridex-photo-gallery">
+              <figure>
+                <img src="assets/bridex-tech-in-asia-conference.jpg" alt="Panel discussion on stage with a BRIdex presentation at the Tech in Asia Product Development Conference" width="960" height="1280" loading="lazy" decoding="async" />
+                <figcaption class="figure-caption">BRIdex at the Tech in Asia Product Development Conference.</figcaption>
+              </figure>
+              <figure>
+                <img src="assets/bri-design-team.jpg" alt="BRI Design team gathered around a long table in the office" width="2880" height="3840" loading="lazy" decoding="async" />
+                <figcaption class="figure-caption">BRI Design team.</figcaption>
+              </figure>
+              <figure class="bridex-photo-gallery__wide">
+                <img src="assets/bridex-core-team.jpg" alt="Core BRIdex team together at their office desks" width="1024" height="812" loading="lazy" decoding="async" />
+                <figcaption class="figure-caption">Core BRIdex team.</figcaption>
+              </figure>
+            </div>
+          </section>
+          </article>
+        </details>
+
+        <footer class="footer">
+          <span data-local-greeting>It’s a good time to say hello.</span>
+          <span class="footer-javanese" lang="jv-Java" aria-label="Cetha">ꦕꦼꦛ</span>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/feather.min.js"></script>
+  <script src="design-system/behaviors.js"></script>
+  <script src="design-system/case-study.js"></script>
+  <script src="design-system/bridex-case-study.js?v=20260920-foundation-inspector"></script>
+</body>
+</html>
