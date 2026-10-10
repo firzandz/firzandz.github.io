@@ -174,7 +174,7 @@ Case-study conventions:
 - Use unnumbered story headings. Sequence comes from reading order and the compact navigation, not numeric prefixes in titles.
 - Keep desktop navigation to five concise labels. Add `data-preserve-links` to `#section-navigation` when the page supplies these labels directly; shared behavior still opens a collapsed story when a link targets content inside it.
 - Use `.figure-caption` directly after its visual. The shared component owns its inset, spacing, type, and wrapping across case studies.
-- For interactive audit figures, place `.audit-instruction` inside the bordered visual surface. Reuse the existing audit reveal controls and behavior instead of creating another instruction or disclosure component.
+- For interactive audit figures, use the existing “Tap to reveal” control without extra instructional prose. Reuse the shared audit chip styles for every library and foundation; inactive callouts must not occupy layout space.
 
 ### Footer
 

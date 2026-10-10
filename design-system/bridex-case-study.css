@@ -904,7 +904,7 @@
 
     .migration-audit__phone {
       position: relative;
-      width: min(300px, calc(100% - 230px));
+      width: min(300px, calc(100% - 356px));
     }
 
     .migration-audit__screen {
@@ -999,7 +999,8 @@
       z-index: 3;
       top: var(--callout-y);
       display: inline-flex;
-      width: 108px;
+      box-sizing: border-box;
+      width: 144px;
       min-height: 34px;
       align-items: center;
       justify-content: center;
@@ -1119,11 +1120,6 @@
       color: #fff;
     }
 
-    .migration-audit[data-library="brimo"] .migration-audit__library-picker button[aria-pressed="true"] {
-      border-color: var(--text);
-      background: var(--text);
-      color: var(--background);
-    }
 
     .migration-audit__library-picker button:focus-visible {
       outline: 2px solid var(--accent);
@@ -1775,6 +1771,7 @@ body.bridex-case-study {
 }
 
 .bridex-case-study .migration-callout::after { display: none; }
+.bridex-case-study .migration-callout[data-visible="false"] { display: none; }
 .bridex-case-study .migration-callout::before {
   content: "";
   width: 8px;
