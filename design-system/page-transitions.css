@@ -1,0 +1,28 @@
+/* Native page transitions preserve ordinary links, history, and new-tab behavior. */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: page-depart 180ms ease-out both;
+}
+
+::view-transition-new(root) {
+  animation: page-arrive 320ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes page-depart {
+  to { opacity: 0; }
+}
+
+@keyframes page-arrive {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}

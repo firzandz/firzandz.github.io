@@ -1,0 +1,200 @@
+/* Page-specific composition; shared tokens and case-study components own the style. */
+.superbank-deck {
+  margin: var(--space-5) 0 0;
+  color: var(--text-secondary);
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+  text-wrap: pretty;
+}
+
+.superbank-figure { margin: 0; }
+
+.superbank-figure .figure-placeholder {
+  display: block;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+.superbank-project { margin-top: calc(var(--space-7) * 2); }
+.superbank-case-study .superbank-project > h3 {
+  margin-top: 0;
+  font-size: var(--type-story);
+}
+
+.superbank-impact {
+  margin-top: var(--space-7);
+
+}
+
+.superbank-impact > h4 {
+  margin: 0 0 var(--space-3);
+  color: var(--text-tertiary);
+  font-size: var(--type-label);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Distinguish the chapter headings from the project subheadings. */
+.superbank-case-study .story-section > h2 {
+  font-size: calc(var(--type-story) * 1.4);
+  line-height: 1.2;
+}
+
+.superbank-case-study .hero h1 { max-width: none; }
+.superbank-title-line { display: block; text-wrap: balance; }
+
+.superbank-impact > p:last-child { margin-bottom: 0; }
+
+.superbank-moments {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  margin-top: var(--space-7);
+  padding-bottom: var(--space-3);
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.superbank-moments:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.superbank-moment {
+  flex: 0 0 min(72%, 280px);
+  min-width: 0;
+  margin: 0;
+  scroll-snap-align: start;
+}
+.superbank-moment img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.superbank-product-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: var(--space-8);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.superbank-onboarding-caption {
+  font-size: var(--type-label);
+}
+
+.superbank-project > .superbank-figure + p {
+  margin-top: var(--space-8);
+}
+
+.superbank-linkage { margin-top: calc(var(--space-7) * 2); }
+.superbank-linkage > h4 {
+  margin: 0 0 var(--space-3);
+  font-size: var(--type-body);
+  font-weight: 500;
+  line-height: 1.4;
+}
+.superbank-comparison-controls {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-7);
+}
+.superbank-comparison [hidden] { display: none; }
+.superbank-comparison-controls button {
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font: inherit;
+  cursor: pointer;
+}
+.superbank-comparison-controls button[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--text);
+}
+.superbank-comparison-controls button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.superbank-zoomable { cursor: zoom-in; }
+.superbank-zoomable:focus-visible,
+.superbank-image-viewer button:focus-visible,
+.superbank-viewer-stage:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+body.superbank-viewer-open { overflow: hidden; }
+.superbank-image-viewer {
+  transform-origin: top left;
+  box-sizing: content-box;
+  max-width: calc(100vw - 34px);
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--background);
+  color: var(--text);
+}
+.superbank-image-viewer::backdrop { background: rgb(0 0 0 / 80%); }
+.superbank-viewer-frame { position: relative; }
+.superbank-viewer-controls {
+  position: absolute;
+  z-index: 1;
+  bottom: var(--space-3);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--background);
+  box-shadow: 0 2px 12px rgb(0 0 0 / 20%);
+}
+.superbank-image-viewer button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+.superbank-viewer-close {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  z-index: 1;
+}
+.superbank-viewer-controls button:disabled { opacity: 0.4; cursor: default; }
+.superbank-viewer-stage {
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.superbank-viewer-stage img {
+  display: block;
+  max-width: none;
+  margin: 0;
+}
+.superbank-viewer-caption {
+  box-sizing: border-box;
+  max-height: 64px;
+  overflow: auto;
+  margin: 0;
+  padding: var(--space-3);
+  color: var(--text-secondary);
+  font-size: var(--type-annotation);
+  line-height: 1.5;
+}

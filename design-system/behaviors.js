@@ -19,8 +19,14 @@
     }
   }
 
+  let themeTransitionTimer;
   function setTheme(theme, save = false) {
-    if (save) {
+    if (save && document.querySelector(".theme-switcher") && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.clearTimeout(themeTransitionTimer);
+      document.body.classList.add("theme-transitioning");
+      void document.body.offsetWidth;
+      themeTransitionTimer = window.setTimeout(() => document.body.classList.remove("theme-transitioning"), 360);
+    } else if (save) {
       const transitionBlocker = document.createElement("style");
       transitionBlocker.textContent = "*,*::before,*::after{transition:none!important}";
       document.head.append(transitionBlocker);

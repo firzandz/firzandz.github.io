@@ -253,3 +253,7 @@ For future iterations, define:
 - **Done when:** a visible acceptance criterion.
 
 When a new decision is accepted, update this document and the reusable component first, then use it in pages.
+
+### Page navigation motion
+
+The homepage and case studies load `design-system/page-transitions.css`. Same-origin navigation softly fades between pages with an 8px entrance over 320ms, using native cross-document view transitions. Keep normal anchor links so Back, keyboard navigation, and opening new tabs retain their behavior. `design-system/page-transitions.js` provides a short fade fallback for browsers without cross-document support; reduced-motion users skip both transitions. Include this stylesheet in new case studies, as shown in `case-study-template.html`.

@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&amp;family=Inter:wght@400..600&amp;family=Jacquard+24&amp;family=Noto+Sans+Javanese:wght@400..700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="design-system/tokens.css" />
+  <link rel="stylesheet" href="design-system/page-transitions.css" />
 
   <style>
     *, *::before, *::after {
@@ -75,7 +76,6 @@
     }
 
     .theme-option-input:checked + .theme-option {
-      background: var(--text);
       color: var(--background);
     }
 
@@ -369,8 +369,9 @@
 
     .project-visual--image {
       isolation: isolate;
-      flex: 1 1 auto;
-      min-height: 198px;
+      flex: 0 0 auto;
+      aspect-ratio: 1.5;
+      min-height: 0;
       margin: -18px -18px 16px;
       overflow: hidden;
       border-bottom: 1px solid var(--line);
@@ -928,7 +929,7 @@
       max-width: none;
       margin: 0;
       color: var(--text);
-      font-size: 18px;
+      font-size: 14px;
       font-weight: 460;
       letter-spacing: -0.012em;
       line-height: 1.5;
@@ -940,23 +941,6 @@
       align-items: center;
       justify-content: center;
       margin-top: 12px;
-    }
-
-    .testimonial-avatar {
-      display: grid;
-      width: 38px;
-      height: 38px;
-      flex: 0 0 38px;
-      place-items: center;
-      border: 1px solid var(--line);
-      border-radius: 9px;
-      background:
-        radial-gradient(circle at 66% 30%, var(--accent-soft), transparent 38%),
-        var(--surface-hover);
-      color: var(--text-tertiary);
-      font-family: "DM Mono", monospace;
-      font-size: 10px;
-      line-height: 1;
     }
 
     .testimonial-person {
@@ -971,6 +955,11 @@
     .testimonial-person-copy {
       min-width: 0;
       text-align: start;
+    }
+
+    .testimonial-person-copy .list-item-title,
+    .testimonial-person-copy .list-item-subtitle {
+      font-size: 14px;
     }
 
     .testimonial-indicator {
@@ -991,13 +980,13 @@
 
     .testimonial-step::after {
       display: block;
-      width: 18px;
-      height: 2px;
+      width: 5px;
+      height: 5px;
       margin: 0 auto;
       border-radius: 999px;
       background: var(--line);
       content: "";
-      transition: width 180ms ease, background-color 180ms ease;
+      transition: width 320ms ease, background-color 320ms ease;
     }
 
     @media (hover: hover) {
@@ -1007,7 +996,7 @@
     }
 
     .testimonial-step[aria-current="true"]::after {
-      width: 30px;
+      width: 16px;
       background: var(--text);
     }
 
@@ -1319,6 +1308,18 @@ body[data-theme="light"] .footer-javanese {
 
     }
 
+    .profile-photo { display: block; width: 40px; height: 40px; object-fit: cover; object-position: 45% 55%; border-radius: 8px; margin: 0 0 24px; }
+    .theme-switcher::before { content: ""; position: absolute; top: 3px; left: 3px; width: 32px; height: 32px; border-radius: 50%; background: var(--text); transition: transform 320ms cubic-bezier(.22,1,.36,1), background-color 320ms ease; }
+    .theme-switcher:has(#theme-light:checked)::before { transform: translateX(34px); }
+    .theme-switcher:has(#theme-dark:checked)::before { transform: translateX(68px); }
+    @media (prefers-reduced-motion: no-preference) {
+      body.theme-transitioning, body.theme-transitioning *, body.theme-transitioning *::before, body.theme-transitioning *::after {
+        transition-duration: 320ms !important;
+        transition-property: background-color, color, border-color, box-shadow, fill, stroke, transform !important;
+        transition-timing-function: ease !important;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
@@ -1359,10 +1360,12 @@ body[data-theme="light"] .footer-javanese {
 
   <main class="page">
     <header>
+      <img class="profile-photo" src="assets/firzan-childhood.jpg" alt="Firzan as a child" width="40" height="40" />
+
       <div class="profile">
         <div class="profile-copy">
           <span class="profile-name">Firzan Aulia</span>
-          <span class="profile-role">Updated at 16 Sept, 2026</span>
+          <span class="profile-role">Updated at 12 Oct, 2026</span>
         </div>
       </div>
 
@@ -1394,6 +1397,17 @@ body[data-theme="light"] .footer-javanese {
       <h2 class="section-heading" id="projects-heading">Selected work</h2>
 
       <div class="projects-grid projects-variant--a">
+        <a class="project-card" href="superbank-case-study.html" aria-label="View Superbank case study">
+          <span class="project-sticker project-sticker--ecosystem">Ecosystem</span>
+          <div class="project-visual project-visual--image" aria-hidden="true">
+            <img class="project-thumbnail-image project-thumbnail-image--full" src="assets/superbank-thumbnail.png" alt="" />
+          </div>
+          <div class="list-item list-item--card">
+            <h3 class="project-title list-item-title">Superbank</h3>
+            <p class="project-description list-item-subtitle">Designing financial experiences across embedded banking and everyday payments.</p>
+          </div>
+        </a>
+
         <a class="project-card" href="ovo-nabung-case-study.html" aria-label="View OVO Nabung case study">
           <span class="project-sticker">New</span>
           <div class="project-visual project-visual--image" aria-hidden="true">
@@ -1416,16 +1430,7 @@ body[data-theme="light"] .footer-javanese {
           </div>
         </a>
 
-        <article class="project-card project-card--coming-soon">
-          <span class="project-sticker project-sticker--incoming">Coming soon</span>
-          <div class="project-visual project-visual--image" aria-hidden="true">
-            <img class="project-thumbnail-image project-thumbnail-image--full" src="assets/superbank-thumbnail.png" alt="" />
-          </div>
-          <div class="list-item list-item--card">
-            <h3 class="project-title list-item-title">Building a Bank from Scratch</h3>
-            <p class="project-description list-item-subtitle">Designing a new digital bank from zero to launch.</p>
-          </div>
-        </article>
+
 
         <article class="project-card project-card--coming-soon">
           <span class="project-sticker project-sticker--incoming">Coming soon</span>
@@ -1492,7 +1497,6 @@ body[data-theme="light"] .footer-javanese {
                 <span class="testimonial-name list-item-title">Reza R.</span>
                 <span class="testimonial-title list-item-subtitle">Product Designer · Qatar Airways</span>
               </span>
-              <span class="testimonial-avatar" aria-hidden="true">RR</span>
             </figcaption>
           </figure>
 
@@ -1503,7 +1507,6 @@ body[data-theme="light"] .footer-javanese {
                 <span class="testimonial-name list-item-title">Melin Ayundai</span>
                 <span class="testimonial-title list-item-subtitle">Research Lead · Bank Rakyat Indonesia</span>
               </span>
-              <span class="testimonial-avatar" aria-hidden="true">MA</span>
             </figcaption>
           </figure>
 
@@ -1514,7 +1517,6 @@ body[data-theme="light"] .footer-javanese {
                 <span class="testimonial-name list-item-title">Amanda A.</span>
                 <span class="testimonial-title list-item-subtitle">Product Manager · Wego.com</span>
               </span>
-              <span class="testimonial-avatar" aria-hidden="true">AA</span>
             </figcaption>
           </figure>
         </div>
@@ -1584,7 +1586,8 @@ body[data-theme="light"] .footer-javanese {
     })();
   </script>
   <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/feather.min.js"></script>
-  <script src="design-system/behaviors.js"></script>
+  <script src="design-system/behaviors.js?v=2"></script>
 
+  <script src="design-system/page-transitions.js"></script>
 </body>
 </html>
